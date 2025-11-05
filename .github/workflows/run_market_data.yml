@@ -47,11 +47,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Create Cache Directory
+      - name: Create Directories
         run: |
           mkdir -p .cache/yfinance
           mkdir -p .cache/seeking_alpha
           mkdir -p results
+          mkdir -p plots
 
       - name: Run Market Analysis
         run: |
@@ -65,8 +66,8 @@ jobs:
         run: |
           git config --local user.email 'action@github.com'
           git config --local user.name 'GitHub Action'
-          git add results/
-          git commit -m "Update market analysis results - $(date '+%Y-%m-%d %H:%M:%S UTC')" || echo 'No changes to commit'
+          git add results/ plots/
+          git commit -m "Update market analysis results and charts - $(date '+%Y-%m-%d %H:%M:%S UTC')" || echo 'No changes to commit'
           git push || echo 'Nothing to push'
 
       - name: Upload Analysis Results as Artifacts
@@ -77,6 +78,8 @@ jobs:
           path: |
             results/*.csv
             results/*.json
+            plots/**/*.html
+            plots/**/*.png
           retention-days: 30
 
       - name: Summary
@@ -84,6 +87,12 @@ jobs:
         run: |
           echo "✅ Market analysis completed successfully!"
           echo "📊 Results saved to results/ directory"
+          echo "📈 Charts saved to plots/ directory"
           echo "📅 Analysis run at: $(date)"
+          echo ""
+          echo "Results:"
           ls -lh results/
+          echo ""
+          echo "Charts:"
+          ls -lh plots/*/
 

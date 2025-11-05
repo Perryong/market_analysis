@@ -3,7 +3,7 @@ Trading Signal System - Refactored Architecture
 Main entry point for running signal analysis
 """
 
-from typing import List
+from typing import List, Tuple
 from config.settings import ScoringConfig
 from analysis.signal_generator import SignalAnalyzer
 from analysis.strategies.momentum import RSIStrategy, MACDStrategy, OBVStrategy
@@ -14,7 +14,8 @@ from technical.patterns.strategy import CandlestickPatternStrategy
 from data.providers.seeking_alpha import SeekingAlphaProvider
 from data.providers.yfinance import YFinanceProvider
 from output.formatters import SignalFormatter
-from core.models import TradingSignal
+from visualization.chart_generator import ChartGenerator
+from core.models import TradingSignal, MarketData
 from core.enums import TimeFrame
 
 
@@ -66,7 +67,7 @@ class TradingSignalSystem:
     
     def analyze_tickers(self, tickers: List[str], 
                        market: str = "US",
-                       timeframe: TimeFrame = TimeFrame.DAILY) -> List[TradingSignal]:
+                       timeframe: TimeFrame = TimeFrame.DAILY) -> Tuple[List[TradingSignal], List[MarketData]]:
         """
         Analyze list of tickers and generate trading signals
         
@@ -76,7 +77,7 @@ class TradingSignalSystem:
             timeframe: Analysis timeframe
             
         Returns:
-            List of trading signals
+            Tuple of (List of trading signals, List of market data)
         """
         # Choose data provider based on market
         if market == "US":
@@ -91,9 +92,10 @@ class TradingSignalSystem:
             return self._analyze_tickers_batch(provider, tickers, timeframe)
     
     def _analyze_tickers_sequential(self, provider, tickers: List[str],
-                                    timeframe: TimeFrame) -> List[TradingSignal]:
+                                    timeframe: TimeFrame) -> Tuple[List[TradingSignal], List[MarketData]]:
         """Process tickers one by one (for Seeking Alpha)"""
         signals = []
+        market_data_list = []
         
         for ticker in tickers:
             try:
@@ -109,6 +111,7 @@ class TradingSignalSystem:
                 # Generate signal
                 signal = self.analyzer.analyze(market_data)
                 signals.append(signal)
+                market_data_list.append(market_data)
                 
                 print(f"[OK] {signal.signal.value}")
                 
@@ -116,12 +119,13 @@ class TradingSignalSystem:
                 print(f"[ERROR] {e}")
                 continue
         
-        return signals
+        return signals, market_data_list
     
     def _analyze_tickers_batch(self, provider, tickers: List[str],
-                               timeframe: TimeFrame) -> List[TradingSignal]:
+                               timeframe: TimeFrame) -> Tuple[List[TradingSignal], List[MarketData]]:
         """Process tickers in batch (for yfinance to avoid rate limiting)"""
         signals = []
+        saved_market_data = []
         
         # Get all market data at once using batch download
         try:
@@ -136,6 +140,7 @@ class TradingSignalSystem:
                 try:
                     signal = self.analyzer.analyze(market_data)
                     signals.append(signal)
+                    saved_market_data.append(market_data)
                 except Exception as e:
                     print(f"  [ERROR] Failed to analyze {market_data.ticker}: {e}")
                     continue
@@ -146,7 +151,7 @@ class TradingSignalSystem:
             # Fallback to sequential if batch fails
             return self._analyze_tickers_sequential(provider, tickers, timeframe)
         
-        return signals
+        return signals, saved_market_data
 
 
 def main():
@@ -169,13 +174,14 @@ def main():
     print("="*70)
     
     system = TradingSignalSystem()
+    chart_generator = ChartGenerator()
     
     # Analyze US Market
     print("\n" + "="*70)
     print("US MARKET ANALYSIS")
     print("="*70)
     
-    us_signals = system.analyze_tickers(US_TICKERS, market="US")
+    us_signals, us_market_data = system.analyze_tickers(US_TICKERS, market="US")
     
     if us_signals:
         print(f"\n[SUCCESS] Analyzed {len(us_signals)} US tickers")
@@ -187,6 +193,20 @@ def main():
             SignalFormatter.export_to_json(us_signals, "us_signals")
         except Exception as e:
             print(f"[WARNING] Could not export files: {e}")
+        
+        # Generate charts
+        print(f"\n[*] Generating charts for US market tickers...")
+        for signal, market_data in zip(us_signals, us_market_data):
+            try:
+                chart_generator.generate_all_charts(market_data, signal)
+            except Exception as e:
+                print(f"  [ERROR] Chart generation failed for {signal.ticker}: {e}")
+        
+        # Generate summary report
+        try:
+            chart_generator.generate_summary_report(us_signals, "US")
+        except Exception as e:
+            print(f"[WARNING] Could not generate summary report: {e}")
     else:
         print("\n[WARNING] No valid US signals generated")
     
@@ -195,7 +215,7 @@ def main():
     print("SINGAPORE MARKET ANALYSIS")
     print("="*70)
     
-    sg_signals = system.analyze_tickers(SG_TICKERS, market="SG")
+    sg_signals, sg_market_data = system.analyze_tickers(SG_TICKERS, market="SG")
     
     if sg_signals:
         print(f"\n[SUCCESS] Analyzed {len(sg_signals)} Singapore tickers")
@@ -207,6 +227,20 @@ def main():
             SignalFormatter.export_to_json(sg_signals, "sg_signals")
         except Exception as e:
             print(f"[WARNING] Could not export files: {e}")
+        
+        # Generate charts
+        print(f"\n[*] Generating charts for Singapore market tickers...")
+        for signal, market_data in zip(sg_signals, sg_market_data):
+            try:
+                chart_generator.generate_all_charts(market_data, signal)
+            except Exception as e:
+                print(f"  [ERROR] Chart generation failed for {signal.ticker}: {e}")
+        
+        # Generate summary report
+        try:
+            chart_generator.generate_summary_report(sg_signals, "SG")
+        except Exception as e:
+            print(f"[WARNING] Could not generate summary report: {e}")
     else:
         print("\n[WARNING] No valid Singapore signals generated")
     

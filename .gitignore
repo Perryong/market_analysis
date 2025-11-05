@@ -132,7 +132,9 @@ dmypy.json
 *.xlsx
 *.xls
 images/
+# Image files (but allow plots directory)
 *.png
+!plots/**/*.png
 *.jpg
 *.jpeg
 
