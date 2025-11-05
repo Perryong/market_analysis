@@ -1,0 +1,34 @@
+# Trading Signal System Configuration
+# Adjust these values to tune signal generation
+
+weights:
+  macd: 0.25           # MACD trend/momentum indicator
+  ma_crossover: 0.25   # Moving average crossover
+  rsi: 0.10            # Relative Strength Index
+  obv: 0.10            # On-Balance Volume
+  bollinger_bands: 0.10  # Bollinger Bands volatility
+  volume: 0.10         # Volume confirmation
+  candlestick: 0.10    # Candlestick patterns
+
+thresholds:
+  buy_threshold: 0.65         # Score >= 0.65 triggers BUY
+  sell_threshold: 0.15        # Score <= 0.15 triggers SELL
+  strong_candle_threshold: 0.70  # Strong pattern threshold
+
+adjustments:
+  weak_trend_threshold: 20    # ADX < 20 = weak trend
+  strong_trend_threshold: 40  # ADX > 40 = strong trend
+  weak_multiplier: 0.8        # Reduce confidence in weak trend
+  neutral_multiplier: 1.0     # Normal confidence
+  strong_multiplier: 1.2      # Boost confidence in strong trend
+
+snr_config:
+  tolerance_percent: 0.05     # 5% tolerance for S/R proximity
+  near_multiplier: 1.2        # Boost signal near S/R level
+  far_multiplier: 0.8         # Reduce signal far from S/R
+  proximity_threshold: 0.7    # Strength to consider "near"
+
+entry_zone:
+  lower_multiplier: 0.5       # ATR multiplier for lower bound
+  upper_multiplier: 0.8       # ATR multiplier for upper bound
+

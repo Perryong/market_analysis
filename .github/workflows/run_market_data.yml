@@ -1,0 +1,89 @@
+name: Market Data Analysis
+
+on:
+  workflow_dispatch:  # Allows manual triggering
+  schedule:
+    # Runs at 9:00 AM UTC (adjust timezone as needed)
+    - cron: '0 9 * * *'
+    # Runs at 10:30 PM UTC (adjust timezone as needed)
+    - cron: '30 22 * * *'
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - main.py
+      - 'analysis/**'
+      - 'data/**'
+      - 'technical/**'
+      - 'config/**'
+      - .github/workflows/run_market_data.yml
+
+env:
+  # Python version to use
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  analyze:
+    name: Run Market Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+          cache-dependency-path: 'requirements.txt'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Create Cache Directory
+        run: |
+          mkdir -p .cache/yfinance
+          mkdir -p .cache/seeking_alpha
+          mkdir -p results
+
+      - name: Run Market Analysis
+        run: |
+          echo "Starting market data analysis..."
+          python main.py
+        env:
+          # Add any environment variables your script might need
+          PYTHONUNBUFFERED: 1
+
+      - name: Commit and Push Results
+        run: |
+          git config --local user.email 'action@github.com'
+          git config --local user.name 'GitHub Action'
+          git add results/
+          git commit -m "Update market analysis results - $(date '+%Y-%m-%d %H:%M:%S UTC')" || echo 'No changes to commit'
+          git push || echo 'Nothing to push'
+
+      - name: Upload Analysis Results as Artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: market-analysis-results-${{ github.run_number }}
+          path: |
+            results/*.csv
+            results/*.json
+          retention-days: 30
+
+      - name: Summary
+        if: success()
+        run: |
+          echo "✅ Market analysis completed successfully!"
+          echo "📊 Results saved to results/ directory"
+          echo "📅 Analysis run at: $(date)"
+          ls -lh results/
+
