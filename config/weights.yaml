@@ -32,3 +32,29 @@ entry_zone:
   lower_multiplier: 0.5       # ATR multiplier for lower bound
   upper_multiplier: 0.8       # ATR multiplier for upper bound
 
+# Backtesting Configuration
+backtesting:
+  initial_capital: 100000     # Starting capital
+  commission: 0.001           # 0.1% commission per trade
+  slippage: 0.0005            # 0.05% slippage per trade
+  position_size: 0.1          # 10% of equity per position
+  max_positions: 10           # Maximum concurrent positions
+  stop_loss_atr: 2.0          # Stop loss distance in ATR multiples
+  take_profit_atr: 3.0        # Take profit distance in ATR multiples
+  holding_period_days: null   # Max holding period (null = unlimited)
+
+# Walk-Forward Analysis Configuration
+walk_forward:
+  train_days: 365             # Training window size
+  test_days: 90               # Testing window size
+
+# Monte Carlo Simulation Configuration
+monte_carlo:
+  num_simulations: 1000       # Number of simulation runs
+  confidence_levels:          # Confidence levels for percentiles
+    - 0.05
+    - 0.25
+    - 0.50
+    - 0.75
+    - 0.95
+

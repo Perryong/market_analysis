@@ -1,7 +1,7 @@
 """Configuration settings for trading signal system"""
 
 from dataclasses import dataclass, asdict
-from typing import Dict
+from typing import Dict, Optional
 import yaml
 from pathlib import Path
 
@@ -104,6 +104,37 @@ class EntryZoneConfig:
 
 
 @dataclass
+class BacktestingConfig:
+    """Backtesting configuration"""
+    initial_capital: float = 100000.0
+    commission: float = 0.001  # 0.1%
+    slippage: float = 0.0005   # 0.05%
+    position_size: float = 0.1  # 10% per position
+    max_positions: int = 10
+    stop_loss_atr: float = 2.0
+    take_profit_atr: float = 3.0
+    holding_period_days: Optional[int] = None
+
+
+@dataclass
+class WalkForwardConfig:
+    """Walk-forward analysis configuration"""
+    train_days: int = 365
+    test_days: int = 90
+
+
+@dataclass
+class MonteCarloConfig:
+    """Monte Carlo simulation configuration"""
+    num_simulations: int = 1000
+    confidence_levels: list = None
+    
+    def __post_init__(self):
+        if self.confidence_levels is None:
+            self.confidence_levels = [0.05, 0.25, 0.50, 0.75, 0.95]
+
+
+@dataclass
 class ScoringConfig:
     """Complete scoring configuration"""
     weights: IndicatorWeights = None
@@ -111,6 +142,9 @@ class ScoringConfig:
     adjustments: TrendAdjustments = None
     snr_config: SupportResistanceConfig = None
     entry_zone: EntryZoneConfig = None
+    backtesting: BacktestingConfig = None
+    walk_forward: WalkForwardConfig = None
+    monte_carlo: MonteCarloConfig = None
     
     def __post_init__(self):
         """Initialize with defaults if not provided"""
@@ -124,6 +158,12 @@ class ScoringConfig:
             self.snr_config = SupportResistanceConfig()
         if self.entry_zone is None:
             self.entry_zone = EntryZoneConfig()
+        if self.backtesting is None:
+            self.backtesting = BacktestingConfig()
+        if self.walk_forward is None:
+            self.walk_forward = WalkForwardConfig()
+        if self.monte_carlo is None:
+            self.monte_carlo = MonteCarloConfig()
     
     @classmethod
     def from_yaml(cls, filepath: str) -> 'ScoringConfig':
@@ -141,7 +181,10 @@ class ScoringConfig:
             thresholds=SignalThresholds(**data.get('thresholds', {})),
             adjustments=TrendAdjustments(**data.get('adjustments', {})),
             snr_config=SupportResistanceConfig(**data.get('snr_config', {})),
-            entry_zone=EntryZoneConfig(**data.get('entry_zone', {}))
+            entry_zone=EntryZoneConfig(**data.get('entry_zone', {})),
+            backtesting=BacktestingConfig(**data.get('backtesting', {})),
+            walk_forward=WalkForwardConfig(**data.get('walk_forward', {})),
+            monte_carlo=MonteCarloConfig(**data.get('monte_carlo', {}))
         )
     
     def save_to_yaml(self, filepath: str):
@@ -151,7 +194,10 @@ class ScoringConfig:
             'thresholds': asdict(self.thresholds),
             'adjustments': asdict(self.adjustments),
             'snr_config': asdict(self.snr_config),
-            'entry_zone': asdict(self.entry_zone)
+            'entry_zone': asdict(self.entry_zone),
+            'backtesting': asdict(self.backtesting),
+            'walk_forward': asdict(self.walk_forward),
+            'monte_carlo': asdict(self.monte_carlo)
         }
         
         with open(filepath, 'w') as f:

@@ -41,7 +41,13 @@ class TechnicalIndicators:
         
         # Reset VWAP at session start (daily by default)
         df_copy = df.copy()
-        df_copy['date'] = df_copy.index.date
+        
+        # Ensure index is DatetimeIndex
+        if not isinstance(df_copy.index, pd.DatetimeIndex):
+            df_copy.index = pd.to_datetime(df_copy.index)
+        
+        # Extract date from datetime index
+        df_copy['date'] = pd.to_datetime(df_copy.index.date)
         
         vwap_list = []
         for date, group in df_copy.groupby('date'):
