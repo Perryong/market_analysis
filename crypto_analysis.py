@@ -26,6 +26,15 @@ from traderXO.crypto_signal_analyzer import analyze_crypto_pair
 from traderXO.crypto_signal_formatter import CryptoSignalFormatter
 from traderXO.stock_adapter import analyze_stock_with_traderxo, get_stock_data_for_traderxo
 
+# Import backtesting modules
+from backtesting.engine import BacktestEngine, BacktestConfig
+from backtesting.metrics import MetricsCalculator
+from backtesting.visualizer import BacktestVisualizer
+from backtesting.reports import BacktestReporter
+from backtesting.monte_carlo import MonteCarloSimulator
+from backtesting.walk_forward import WalkForwardAnalyzer
+from backtesting.optimizer import StrategyOptimizer
+
 
 class TradingSignalSystem:
     """Main trading signal system orchestrator"""
@@ -211,6 +220,159 @@ def analyze_crypto_with_traderxo(crypto_pairs: List[str], exchange: str = 'binan
                 print(f"  [ERROR] Failed to generate charts for {pair}: {e}")
     
     return crypto_signals
+
+
+def backtest_strategy(tickers: List[str], 
+                     start_date: str = "2022-01-01",
+                     end_date: str = "2024-12-31",
+                     config_path: str = "config/weights.yaml",
+                     run_monte_carlo: bool = False,
+                     run_walk_forward: bool = False):
+    """
+    Backtest trading strategy on historical data
+    
+    Args:
+        tickers: List of tickers to backtest
+        start_date: Backtest start date (YYYY-MM-DD)
+        end_date: Backtest end date (YYYY-MM-DD)
+        config_path: Path to configuration file
+        run_monte_carlo: Whether to run Monte Carlo simulation
+        run_walk_forward: Whether to run walk-forward analysis
+    """
+    print("\n" + "="*70)
+    print("STRATEGY BACKTESTING")
+    print("="*70)
+    
+    # Load configuration
+    config = ScoringConfig.from_yaml(config_path)
+    
+    # Create backtest config from settings
+    backtest_config = BacktestConfig(
+        initial_capital=config.backtesting.initial_capital,
+        commission=config.backtesting.commission,
+        slippage=config.backtesting.slippage,
+        position_size=config.backtesting.position_size,
+        max_positions=config.backtesting.max_positions,
+        stop_loss_atr=config.backtesting.stop_loss_atr,
+        take_profit_atr=config.backtesting.take_profit_atr,
+        holding_period_days=config.backtesting.holding_period_days
+    )
+    
+    # Initialize components
+    signal_analyzer = SignalAnalyzer(config)
+    _setup_strategies_for_analyzer(signal_analyzer, config)
+    
+    backtest_engine = BacktestEngine(signal_analyzer, backtest_config)
+    visualizer = BacktestVisualizer()
+    reporter = BacktestReporter()
+    
+    # Run backtests for each ticker
+    all_results = []
+    
+    for ticker in tickers:
+        print(f"\n{'='*70}")
+        print(f"BACKTESTING: {ticker}")
+        print(f"{'='*70}")
+        
+        try:
+            # Run backtest
+            result = backtest_engine.run(ticker, start_date, end_date)
+            
+            # Calculate metrics
+            metrics = MetricsCalculator.calculate(result)
+            
+            # Print summary
+            reporter.print_summary(result, metrics)
+            
+            # Generate visualizations
+            visualizer.create_full_report(result, metrics, ticker)
+            
+            # Export results
+            reporter.export_trades_csv(result)
+            reporter.export_metrics_json(metrics, result)
+            reporter.generate_html_report(result, metrics)
+            
+            all_results.append((ticker, result, metrics))
+            
+            # Monte Carlo simulation
+            if run_monte_carlo and len(result.closed_trades) > 5:
+                print(f"\n[*] Running Monte Carlo simulation for {ticker}...")
+                mc_simulator = MonteCarloSimulator(
+                    num_simulations=config.monte_carlo.num_simulations,
+                    confidence_levels=config.monte_carlo.confidence_levels
+                )
+                mc_result = mc_simulator.run(result)
+                
+                # Plot Monte Carlo results
+                percentiles = {
+                    5: mc_result.percentile_5,
+                    50: mc_result.percentile_50,
+                    95: mc_result.percentile_95
+                }
+                visualizer.plot_monte_carlo(
+                    mc_result.equity_curves[:100],  # Sample for visualization
+                    percentiles=percentiles,
+                    save_path=f"results/backtesting/{ticker}_monte_carlo.png"
+                )
+            
+            # Walk-forward analysis
+            if run_walk_forward:
+                print(f"\n[*] Running walk-forward analysis for {ticker}...")
+                wf_analyzer = WalkForwardAnalyzer(signal_analyzer, backtest_config)
+                wf_result = wf_analyzer.run(
+                    ticker, start_date, end_date,
+                    train_days=config.walk_forward.train_days,
+                    test_days=config.walk_forward.test_days
+                )
+                
+                # Export and visualize
+                wf_analyzer.export_windows_csv(wf_result, 
+                    f"results/backtesting/{ticker}_walk_forward.csv")
+                wf_analyzer.plot_walk_forward_results(wf_result)
+            
+        except Exception as e:
+            print(f"[ERROR] Backtest failed for {ticker}: {e}")
+            import traceback
+            traceback.print_exc()
+            continue
+    
+    # Strategy comparison
+    if len(all_results) > 1:
+        print(f"\n{'='*70}")
+        print("STRATEGY COMPARISON")
+        print(f"{'='*70}")
+        
+        comparison_df = reporter.compare_strategies(all_results)
+        print("\n", comparison_df.to_string())
+        reporter.export_comparison_csv(comparison_df)
+    
+    print(f"\n{'='*70}")
+    print("BACKTESTING COMPLETE")
+    print(f"{'='*70}")
+    print(f"Results saved to: results/backtesting/")
+    print(f"{'='*70}\n")
+
+
+def _setup_strategies_for_analyzer(analyzer: SignalAnalyzer, config: ScoringConfig):
+    """Helper function to register strategies with analyzer"""
+    weights = config.weights
+    
+    # Momentum strategies
+    analyzer.register_strategy(RSIStrategy(weights.rsi))
+    analyzer.register_strategy(MACDStrategy(weights.macd))
+    analyzer.register_strategy(OBVStrategy(weights.obv))
+    
+    # Trend strategies
+    analyzer.register_strategy(MovingAverageCrossStrategy(weights.ma_crossover))
+    
+    # Volatility strategies
+    analyzer.register_strategy(BollingerBandStrategy(weights.bollinger_bands))
+    
+    # Volume strategies
+    analyzer.register_strategy(VolumeStrategy(weights.volume))
+    
+    # Pattern strategies
+    analyzer.register_strategy(CandlestickPatternStrategy(weights.candlestick))
 
 
 def main():
@@ -466,6 +628,95 @@ def main():
     print("="*70 + "\n")
 
 
+def run_backtest_example():
+    """
+    Example: Run backtest on US stocks
+    
+    This demonstrates how to use the backtesting system:
+    1. Simple backtest
+    2. Monte Carlo simulation
+    3. Walk-forward analysis
+    4. Parameter optimization
+    """
+    print("\n" + "="*70)
+    print("BACKTESTING EXAMPLE")
+    print("="*70)
+    
+    # Example 1: Simple backtest
+    print("\n[EXAMPLE 1] Simple Backtest")
+    backtest_strategy(
+        tickers=["AAPL", "MSFT"],
+        start_date="2022-01-01",
+        end_date="2024-10-31",
+        run_monte_carlo=False,
+        run_walk_forward=False
+    )
+    
+    # Example 2: Backtest with Monte Carlo
+    print("\n[EXAMPLE 2] Backtest with Monte Carlo Simulation")
+    backtest_strategy(
+        tickers=["NVDA"],
+        start_date="2023-01-01",
+        end_date="2024-10-31",
+        run_monte_carlo=True,
+        run_walk_forward=False
+    )
+    
+    # Example 3: Walk-forward analysis
+    print("\n[EXAMPLE 3] Walk-Forward Analysis")
+    backtest_strategy(
+        tickers=["GOOGL"],
+        start_date="2022-01-01",
+        end_date="2024-10-31",
+        run_monte_carlo=False,
+        run_walk_forward=True
+    )
+    
+    # Example 4: Parameter optimization
+    print("\n[EXAMPLE 4] Parameter Optimization")
+    config = ScoringConfig.from_yaml("config/weights.yaml")
+    
+    optimizer = StrategyOptimizer(
+        base_config=config,
+        backtest_config=BacktestConfig(
+            initial_capital=config.backtesting.initial_capital,
+            commission=config.backtesting.commission,
+            slippage=config.backtesting.slippage,
+            position_size=config.backtesting.position_size,
+            max_positions=config.backtesting.max_positions,
+            stop_loss_atr=config.backtesting.stop_loss_atr,
+            take_profit_atr=config.backtesting.take_profit_atr
+        )
+    )
+    
+    # Define parameter grid to test
+    param_grid = {
+        'buy_threshold': [0.60, 0.65, 0.70],
+        'sell_threshold': [0.10, 0.15, 0.20],
+    }
+    
+    opt_result = optimizer.optimize(
+        ticker="AAPL",
+        start_date="2023-01-01",
+        end_date="2024-10-31",
+        param_grid=param_grid,
+        metric='sharpe_ratio'
+    )
+    
+    # Export and visualize optimization results
+    optimizer.export_results_csv(opt_result, 
+        "results/backtesting/AAPL_optimization.csv")
+    optimizer.plot_optimization_surface(opt_result, 
+        'buy_threshold', 'sell_threshold',
+        save_path="results/backtesting/AAPL_optimization_surface.png")
+    
+    print("\n[SUCCESS] All backtest examples completed!")
+
+
 if __name__ == "__main__":
+    # Run main trading analysis
     main()
+    
+    # Uncomment to run backtest examples
+    # run_backtest_example()
 

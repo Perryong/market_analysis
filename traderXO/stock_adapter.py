@@ -26,6 +26,10 @@ def analyze_stock_with_traderxo(ticker: str, market_data_df: pd.DataFrame,
     # Prepare dataframe - ensure it has the right column names
     df = market_data_df.copy()
     
+    # Ensure index is DatetimeIndex
+    if not isinstance(df.index, pd.DatetimeIndex):
+        df.index = pd.to_datetime(df.index)
+    
     # Standardize column names (yfinance uses Title case, traderXO uses lowercase)
     column_mapping = {
         'Open': 'open',
@@ -49,6 +53,9 @@ def analyze_stock_with_traderxo(ticker: str, market_data_df: pd.DataFrame,
     # Calculate indicators using traderXO methods
     if weekly_df is not None:
         weekly_df = weekly_df.copy()
+        # Ensure weekly_df also has DatetimeIndex
+        if not isinstance(weekly_df.index, pd.DatetimeIndex):
+            weekly_df.index = pd.to_datetime(weekly_df.index)
         # Standardize weekly columns too
         for old_col, new_col in column_mapping.items():
             if old_col in weekly_df.columns:
@@ -82,23 +89,42 @@ def get_stock_data_for_traderxo(stock_market_data) -> Tuple[pd.DataFrame, pd.Dat
     # Get the historical dataframe
     df = stock_market_data.historical.copy()
     
-    # Reset index to make Date a column if it's an index
-    if df.index.name == 'Date' or isinstance(df.index, pd.DatetimeIndex):
-        df = df.reset_index()
+    # Ensure index is DatetimeIndex (required for TraderXO)
+    if not isinstance(df.index, pd.DatetimeIndex):
+        if 'Date' in df.columns:
+            df = df.set_index('Date')
+        else:
+            # Try to find a date column
+            date_cols = [col for col in df.columns if 'date' in col.lower()]
+            if date_cols:
+                df = df.set_index(date_cols[0])
+            else:
+                raise ValueError("Cannot find date column to set as index")
+    
+    # Ensure index is datetime type
+    if not isinstance(df.index, pd.DatetimeIndex):
+        df.index = pd.to_datetime(df.index)
     
     # For weekly data, resample the historical data
-    if 'Date' in df.columns:
-        df_temp = df.set_index('Date')
-    else:
-        df_temp = df
+    # Make sure we're working with a DatetimeIndex
+    df_temp = df.copy()
     
     # Resample to weekly
     weekly_df = pd.DataFrame()
-    weekly_df['open'] = df_temp['Open'].resample('W').first() if 'Open' in df_temp.columns else df_temp['open'].resample('W').first()
-    weekly_df['high'] = df_temp['High'].resample('W').max() if 'High' in df_temp.columns else df_temp['high'].resample('W').max()
-    weekly_df['low'] = df_temp['Low'].resample('W').min() if 'Low' in df_temp.columns else df_temp['low'].resample('W').min()
-    weekly_df['close'] = df_temp['Close'].resample('W').last() if 'Close' in df_temp.columns else df_temp['close'].resample('W').last()
-    weekly_df['volume'] = df_temp['Volume'].resample('W').sum() if 'Volume' in df_temp.columns else df_temp['volume'].resample('W').sum()
+    
+    # Handle both uppercase and lowercase column names
+    if 'Open' in df_temp.columns:
+        weekly_df['open'] = df_temp['Open'].resample('W').first()
+        weekly_df['high'] = df_temp['High'].resample('W').max()
+        weekly_df['low'] = df_temp['Low'].resample('W').min()
+        weekly_df['close'] = df_temp['Close'].resample('W').last()
+        weekly_df['volume'] = df_temp['Volume'].resample('W').sum()
+    else:
+        weekly_df['open'] = df_temp['open'].resample('W').first()
+        weekly_df['high'] = df_temp['high'].resample('W').max()
+        weekly_df['low'] = df_temp['low'].resample('W').min()
+        weekly_df['close'] = df_temp['close'].resample('W').last()
+        weekly_df['volume'] = df_temp['volume'].resample('W').sum()
     
     weekly_df = weekly_df.dropna()
     

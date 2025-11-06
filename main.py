@@ -163,7 +163,7 @@ def main():
     ]
     
     SG_TICKERS = [
-        "CRPU.SI", "J69U.SI", "BUOU.SI", "M44U.SI",
+        "CRPU.SI", "BUOU.SI", "M44U.SI",
         "ME8U.SI"
     ]
     

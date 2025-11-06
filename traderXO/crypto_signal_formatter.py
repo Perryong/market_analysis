@@ -48,7 +48,7 @@ class CryptoSignalFormatter:
         
         # Header
         print(f"\n{'='*70}")
-        print(f"CRYPTOCURRENCY SIGNAL REPORT")
+        print(f"SIGNAL REPORT")
         print(f"{'='*70}\n")
         
         # Count signals by type
