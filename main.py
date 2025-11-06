@@ -164,7 +164,7 @@ def main():
     
     SG_TICKERS = [
         "CRPU.SI", "J69U.SI", "BUOU.SI", "M44U.SI",
-        "ME8U.SI", "JYEU.SI"
+        "ME8U.SI"
     ]
     
     # Initialize system

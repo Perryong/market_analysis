@@ -1,5 +1,5 @@
 {
-  "report_date": "2025-11-06 00:45:58",
+  "report_date": "2025-11-06 02:31:48",
   "total_analyzed": 17,
   "markets": {
     "us": {
@@ -288,7 +288,7 @@
   "sg_signals": [
     {
       "ticker": "CRPU.SI",
-      "name": "Sasseur Reit",
+      "name": "CRPU.SI",
       "signal": "HOLD",
       "confidence": 48.78,
       "last_close": 0.69,
@@ -312,7 +312,7 @@
     },
     {
       "ticker": "J69U.SI",
-      "name": "FRASERS CENTREPOINT TRUST",
+      "name": "J69U.SI",
       "signal": "HOLD",
       "confidence": 44.16,
       "last_close": 2.28,
@@ -337,7 +337,7 @@
     },
     {
       "ticker": "BUOU.SI",
-      "name": "FRASERS LOGISTICS & COM TRUST",
+      "name": "BUOU.SI",
       "signal": "HOLD",
       "confidence": 43.92,
       "last_close": 0.94,
@@ -362,7 +362,7 @@
     },
     {
       "ticker": "M44U.SI",
-      "name": "Mapletree Log Tr",
+      "name": "M44U.SI",
       "signal": "HOLD",
       "confidence": 42.91,
       "last_close": 1.31,
@@ -386,7 +386,7 @@
     },
     {
       "ticker": "ME8U.SI",
-      "name": "Mapletree Ind Tr",
+      "name": "ME8U.SI",
       "signal": "HOLD",
       "confidence": 32.2,
       "last_close": 2.05,
@@ -410,7 +410,7 @@
     },
     {
       "ticker": "JYEU.SI",
-      "name": "Lendlease Reit",
+      "name": "JYEU.SI",
       "signal": "HOLD",
       "confidence": 46.4,
       "last_close": NaN,
