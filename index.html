@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,12 +38,6 @@
             margin-bottom: 30px;
             font-size: 1.1em;
             text-align: center;
-        }
-        .loading {
-            text-align: center;
-            color: #666;
-            padding: 40px;
-            font-size: 1.1em;
         }
         .date-section {
             margin-bottom: 40px;
@@ -128,124 +123,32 @@
         <h1>📊 Market Analysis Reports</h1>
         <p class="subtitle">Trading Signal Analysis Dashboard</p>
         
-        <div id="reports-container">
-            <div class="loading">Loading available reports...</div>
+        
+        <div class="date-section latest">
+            <h3 class="date-header">
+                📅 2025-11-07
+                <span class="latest-badge">Latest</span>
+            </h3>
+            <div class="report-links">
+
+                <a href="plots/2025-11-07/us_report.html" class="report-card us" target="_blank">
+                    <div class="report-title">🇺🇸 US Market Report</div>
+                    <div class="report-description">View analysis for US stock market tickers</div>
+                </a>
+
+                <a href="plots/2025-11-07/sg_report.html" class="report-card sg" target="_blank">
+                    <div class="report-title">🇸🇬 Singapore Market Report</div>
+                    <div class="report-description">View analysis for Singapore stock market tickers</div>
+                </a>
+
+            </div>
         </div>
+
         
         <div class="footer">
             <p>Generated automatically by Market Analysis System</p>
-            <p id="last-updated">Last updated: Loading...</p>
+            <p>Last updated: 2025-11-07 15:10:55 UTC</p>
         </div>
     </div>
-
-    <script>
-        // Function to check if a file exists
-        async function checkFileExists(url) {
-            try {
-                const response = await fetch(url, { method: 'HEAD' });
-                return response.ok;
-            } catch (error) {
-                return false;
-            }
-        }
-
-        // Function to generate date range (last 30 days)
-        function generateDateRange() {
-            const dates = [];
-            const today = new Date();
-            for (let i = 0; i < 30; i++) {
-                const date = new Date(today);
-                date.setDate(date.getDate() - i);
-                const dateStr = date.toISOString().split('T')[0];
-                dates.push(dateStr);
-            }
-            return dates;
-        }
-
-        // Function to check if reports exist for a date
-        async function checkDateReports(date) {
-            const usReport = `plots/${date}/us_report.html`;
-            const sgReport = `plots/${date}/sg_report.html`;
-            
-            const [usExists, sgExists] = await Promise.all([
-                checkFileExists(usReport),
-                checkFileExists(sgReport)
-            ]);
-            
-            return { date, usExists, sgExists };
-        }
-
-        // Function to create date section HTML
-        function createDateSection(dateInfo, isLatest) {
-            const { date, usExists, sgExists } = dateInfo;
-            if (!usExists && !sgExists) return '';
-            
-            const latestClass = isLatest ? 'latest' : '';
-            const latestBadge = isLatest ? '<span class="latest-badge">Latest</span>' : '';
-            
-            let reportLinks = '';
-            if (usExists) {
-                reportLinks += `
-                <a href="plots/${date}/us_report.html" class="report-card us" target="_blank">
-                    <div class="report-title">🇺🇸 US Market Report</div>
-                    <div class="report-description">View analysis for US stock market tickers</div>
-                </a>`;
-            }
-            if (sgExists) {
-                reportLinks += `
-                <a href="plots/${date}/sg_report.html" class="report-card sg" target="_blank">
-                    <div class="report-title">🇸🇬 Singapore Market Report</div>
-                    <div class="report-description">View analysis for Singapore stock market tickers</div>
-                </a>`;
-            }
-            
-            return `
-        <div class="date-section ${latestClass}">
-            <h3 class="date-header">
-                📅 ${date}
-                ${latestBadge}
-            </h3>
-            <div class="report-links">
-${reportLinks}
-            </div>
-        </div>`;
-        }
-
-        // Main function to load reports
-        async function loadReports() {
-            const container = document.getElementById('reports-container');
-            const dates = generateDateRange();
-            
-            // Check all dates in parallel
-            const dateChecks = await Promise.all(dates.map(checkDateReports));
-            
-            // Filter to only dates with reports
-            const availableDates = dateChecks.filter(d => d.usExists || d.sgExists);
-            
-            if (availableDates.length === 0) {
-                container.innerHTML = '<div class="no-reports">No reports available yet. Run the analysis to generate reports.</div>';
-                return;
-            }
-            
-            // Sort by date (newest first)
-            availableDates.sort((a, b) => b.date.localeCompare(a.date));
-            
-            // Generate HTML
-            let html = '';
-            availableDates.forEach((dateInfo, index) => {
-                const isLatest = index === 0;
-                html += createDateSection(dateInfo, isLatest);
-            });
-            
-            container.innerHTML = html;
-            
-            // Update last updated time
-            document.getElementById('last-updated').textContent = 
-                `Last updated: ${new Date().toLocaleString()}`;
-        }
-
-        // Load reports when page loads
-        loadReports();
-    </script>
 </body>
 </html>
