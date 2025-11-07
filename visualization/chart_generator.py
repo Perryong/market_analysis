@@ -590,21 +590,73 @@ class ChartGenerator:
     def generate_index_html(self, root_dir: str = "."):
         """
         Generate an index.html file in the root directory that links to US and SG reports
-        for GitHub Pages deployment
+        for GitHub Pages deployment. Scans all available date folders in plots/ directory.
         
         Args:
             root_dir: Root directory where index.html should be created
         """
         index_path = Path(root_dir) / "index.html"
+        plots_dir = Path(root_dir) / "plots"
         
-        # Relative path from root to the reports
-        report_path = f"plots/{self.date_str}"
+        # Find all available date folders
+        available_dates = []
+        if plots_dir.exists():
+            for date_dir in sorted(plots_dir.iterdir(), reverse=True):
+                if date_dir.is_dir() and date_dir.name.startswith("20"):  # Date folders start with year
+                    date_str = date_dir.name
+                    us_report = date_dir / "us_report.html"
+                    sg_report = date_dir / "sg_report.html"
+                    
+                    if us_report.exists() or sg_report.exists():
+                        available_dates.append({
+                            "date": date_str,
+                            "us_exists": us_report.exists(),
+                            "sg_exists": sg_report.exists(),
+                            "is_latest": date_str == self.date_str
+                        })
+        
+        # Get latest date (first in sorted list, or current date)
+        latest_date = available_dates[0]["date"] if available_dates else self.date_str
+        
+        # Build HTML for date sections
+        date_sections_html = ""
+        for date_info in available_dates:
+            date_str = date_info["date"]
+            report_path = f"plots/{date_str}"
+            is_latest = date_info["is_latest"]
+            
+            date_sections_html += f"""
+        <div class="date-section {'latest' if is_latest else ''}">
+            <h3 class="date-header">
+                📅 {date_str}
+                {('<span class="latest-badge">Latest</span>' if is_latest else '')}
+            </h3>
+            <div class="report-links">
+"""
+            if date_info["us_exists"]:
+                date_sections_html += f"""
+                <a href="{report_path}/us_report.html" class="report-card us" target="_blank">
+                    <div class="report-title">🇺🇸 US Market Report</div>
+                    <div class="report-description">View analysis for US stock market tickers</div>
+                </a>
+"""
+            if date_info["sg_exists"]:
+                date_sections_html += f"""
+                <a href="{report_path}/sg_report.html" class="report-card sg" target="_blank">
+                    <div class="report-title">🇸🇬 Singapore Market Report</div>
+                    <div class="report-description">View analysis for Singapore stock market tickers</div>
+                </a>
+"""
+            date_sections_html += """
+            </div>
+        </div>
+"""
         
         html_content = f"""
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Market Analysis Reports - {self.date_str}</title>
+    <title>Market Analysis Reports</title>
     <style>
         html, body {{
             height: 100%;
@@ -619,54 +671,72 @@ class ChartGenerator:
             padding: 0;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 20px;
         }}
         .container {{
             background: white;
             border-radius: 10px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
             padding: 40px;
-            max-width: 600px;
-            width: 90%;
-            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }}
         h1 {{
             color: #333;
             margin-bottom: 10px;
             font-size: 2.5em;
+            text-align: center;
         }}
         .subtitle {{
             color: #666;
             margin-bottom: 30px;
             font-size: 1.1em;
+            text-align: center;
         }}
-        .date-badge {{
-            display: inline-block;
+        .date-section {{
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+        }}
+        .date-section.latest {{
+            border-color: #667eea;
+            background: #f0f4ff;
+        }}
+        .date-header {{
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }}
+        .latest-badge {{
             background: #667eea;
             color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            margin-bottom: 30px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-weight: normal;
         }}
         .report-links {{
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }}
         .report-card {{
-            background: #f8f9fa;
+            background: white;
             border: 2px solid #e9ecef;
             border-radius: 8px;
-            padding: 25px;
+            padding: 20px;
             transition: all 0.3s ease;
             text-decoration: none;
             color: inherit;
+            display: block;
         }}
         .report-card:hover {{
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             border-color: #667eea;
         }}
@@ -677,7 +747,7 @@ class ChartGenerator:
             border-left: 5px solid #ffc107;
         }}
         .report-title {{
-            font-size: 1.5em;
+            font-size: 1.3em;
             font-weight: bold;
             color: #333;
             margin-bottom: 8px;
@@ -687,11 +757,18 @@ class ChartGenerator:
             font-size: 0.95em;
         }}
         .footer {{
-            margin-top: 30px;
+            margin-top: 40px;
             padding-top: 20px;
             border-top: 1px solid #e9ecef;
             color: #999;
             font-size: 0.85em;
+            text-align: center;
+        }}
+        .no-reports {{
+            text-align: center;
+            color: #666;
+            padding: 40px;
+            font-size: 1.1em;
         }}
     </style>
 </head>
@@ -699,19 +776,8 @@ class ChartGenerator:
     <div class="container">
         <h1>📊 Market Analysis Reports</h1>
         <p class="subtitle">Trading Signal Analysis Dashboard</p>
-        <div class="date-badge">📅 {self.date_str}</div>
         
-        <div class="report-links">
-            <a href="{report_path}/us_report.html" class="report-card us" target="_blank">
-                <div class="report-title">🇺🇸 US Market Report</div>
-                <div class="report-description">View analysis for US stock market tickers</div>
-            </a>
-            
-            <a href="{report_path}/sg_report.html" class="report-card sg" target="_blank">
-                <div class="report-title">🇸🇬 Singapore Market Report</div>
-                <div class="report-description">View analysis for Singapore stock market tickers</div>
-            </a>
-        </div>
+        {date_sections_html if available_dates else '<div class="no-reports">No reports available yet. Run the analysis to generate reports.</div>'}
         
         <div class="footer">
             <p>Generated automatically by Market Analysis System</p>
@@ -726,6 +792,8 @@ class ChartGenerator:
             f.write(html_content)
         
         print(f"[SUCCESS] Index page saved: {index_path}")
+        if available_dates:
+            print(f"  Found {len(available_dates)} date folder(s) with reports")
         return index_path
     
     def generate_tabbed_charts_view(self, signals: List[TradingSignal], market: str):

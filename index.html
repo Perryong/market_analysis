@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Market Analysis Reports</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            text-align: center;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            text-align: center;
+        }
+        .loading {
+            text-align: center;
+            color: #666;
+            padding: 40px;
+            font-size: 1.1em;
+        }
+        .date-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+        }
+        .date-section.latest {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        .date-header {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .latest-badge {
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-weight: normal;
+        }
+        .report-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .report-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .report-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+        .report-card.us {
+            border-left: 5px solid #28a745;
+        }
+        .report-card.sg {
+            border-left: 5px solid #ffc107;
+        }
+        .report-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .report-description {
+            color: #666;
+            font-size: 0.95em;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+            color: #999;
+            font-size: 0.85em;
+            text-align: center;
+        }
+        .no-reports {
+            text-align: center;
+            color: #666;
+            padding: 40px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Market Analysis Reports</h1>
+        <p class="subtitle">Trading Signal Analysis Dashboard</p>
+        
+        <div id="reports-container">
+            <div class="loading">Loading available reports...</div>
+        </div>
+        
+        <div class="footer">
+            <p>Generated automatically by Market Analysis System</p>
+            <p id="last-updated">Last updated: Loading...</p>
+        </div>
+    </div>
+
+    <script>
+        // Function to check if a file exists
+        async function checkFileExists(url) {
+            try {
+                const response = await fetch(url, { method: 'HEAD' });
+                return response.ok;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        // Function to generate date range (last 30 days)
+        function generateDateRange() {
+            const dates = [];
+            const today = new Date();
+            for (let i = 0; i < 30; i++) {
+                const date = new Date(today);
+                date.setDate(date.getDate() - i);
+                const dateStr = date.toISOString().split('T')[0];
+                dates.push(dateStr);
+            }
+            return dates;
+        }
+
+        // Function to check if reports exist for a date
+        async function checkDateReports(date) {
+            const usReport = `plots/${date}/us_report.html`;
+            const sgReport = `plots/${date}/sg_report.html`;
+            
+            const [usExists, sgExists] = await Promise.all([
+                checkFileExists(usReport),
+                checkFileExists(sgReport)
+            ]);
+            
+            return { date, usExists, sgExists };
+        }
+
+        // Function to create date section HTML
+        function createDateSection(dateInfo, isLatest) {
+            const { date, usExists, sgExists } = dateInfo;
+            if (!usExists && !sgExists) return '';
+            
+            const latestClass = isLatest ? 'latest' : '';
+            const latestBadge = isLatest ? '<span class="latest-badge">Latest</span>' : '';
+            
+            let reportLinks = '';
+            if (usExists) {
+                reportLinks += `
+                <a href="plots/${date}/us_report.html" class="report-card us" target="_blank">
+                    <div class="report-title">🇺🇸 US Market Report</div>
+                    <div class="report-description">View analysis for US stock market tickers</div>
+                </a>`;
+            }
+            if (sgExists) {
+                reportLinks += `
+                <a href="plots/${date}/sg_report.html" class="report-card sg" target="_blank">
+                    <div class="report-title">🇸🇬 Singapore Market Report</div>
+                    <div class="report-description">View analysis for Singapore stock market tickers</div>
+                </a>`;
+            }
+            
+            return `
+        <div class="date-section ${latestClass}">
+            <h3 class="date-header">
+                📅 ${date}
+                ${latestBadge}
+            </h3>
+            <div class="report-links">
+${reportLinks}
+            </div>
+        </div>`;
+        }
+
+        // Main function to load reports
+        async function loadReports() {
+            const container = document.getElementById('reports-container');
+            const dates = generateDateRange();
+            
+            // Check all dates in parallel
+            const dateChecks = await Promise.all(dates.map(checkDateReports));
+            
+            // Filter to only dates with reports
+            const availableDates = dateChecks.filter(d => d.usExists || d.sgExists);
+            
+            if (availableDates.length === 0) {
+                container.innerHTML = '<div class="no-reports">No reports available yet. Run the analysis to generate reports.</div>';
+                return;
+            }
+            
+            // Sort by date (newest first)
+            availableDates.sort((a, b) => b.date.localeCompare(a.date));
+            
+            // Generate HTML
+            let html = '';
+            availableDates.forEach((dateInfo, index) => {
+                const isLatest = index === 0;
+                html += createDateSection(dateInfo, isLatest);
+            });
+            
+            container.innerHTML = html;
+            
+            // Update last updated time
+            document.getElementById('last-updated').textContent = 
+                `Last updated: ${new Date().toLocaleString()}`;
+        }
+
+        // Load reports when page loads
+        loadReports();
+    </script>
+</body>
+</html>

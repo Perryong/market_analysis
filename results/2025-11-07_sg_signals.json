@@ -1,0 +1,158 @@
+{
+  "report_date": "2025-11-07 22:17:30",
+  "total_analyzed": 6,
+  "summary": {
+    "buy": 1,
+    "sell": 0,
+    "hold": 5
+  },
+  "signals": [
+    {
+      "ticker": "CRPU.SI",
+      "name": "CRPU.SI",
+      "signal": "HOLD",
+      "confidence": 44.02,
+      "last_close": 0.69,
+      "atr": 0.009,
+      "entry_zone": {
+        "lower": 0.68,
+        "upper": 0.69
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 50.7 - Neutral (trend: v)",
+        "MACD Mild Bullish (spread: 0.0002, d_hist: -0.0005)",
+        "OBV slope 679400.0 - Strong Bullish volume flow",
+        "MA50 0.68 vs MA200 0.64 - Strong Bullish Trend (spread: 7.1%)",
+        "BB Mild Bearish (upper half) - price middle<->upper (normal bands, width: 0.049)",
+        "Volume 90,700 vs SMA20 1,248,095 - Weak Bearish (low volume) (ratio: 0.07x)",
+        "Neutral Candlesticks 0.31 : bear_marubozu",
+        "Weak trend (ADX=17.1) - reduced confidence",
+        "Near S/R level at $0.70"
+      ]
+    },
+    {
+      "ticker": "J69U.SI",
+      "name": "J69U.SI",
+      "signal": "HOLD",
+      "confidence": 52.54,
+      "last_close": 2.28,
+      "atr": 0.0347,
+      "entry_zone": {
+        "lower": 2.26,
+        "upper": 2.31
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 38.3 - Bullish (trend: ^)",
+        "MACD Neutral Bearish (spread: -0.0135, d_hist: 0.0004)",
+        "OBV slope -2177500.0 - Bearish volume flow",
+        "MA50 2.31 vs MA200 2.16 - Mild Bullish Trend (spread: 6.7%)",
+        "BB Bullish (near lower) - price lower<->middle (normal bands, width: 0.068)",
+        "Volume 943,300 vs SMA20 5,751,525 - Weak Bullish (low volume) (ratio: 0.16x)",
+        "Neutral Candlesticks 0.05 : bear_harami",
+        "Strong trend (ADX=49.9) - boosted confidence",
+        "Near S/R level at $2.23"
+      ]
+    },
+    {
+      "ticker": "BUOU.SI",
+      "name": "BUOU.SI",
+      "signal": "BUY",
+      "confidence": 95.28,
+      "last_close": 0.96,
+      "atr": 0.0147,
+      "entry_zone": {
+        "lower": 0.95,
+        "upper": 0.97
+      },
+      "timeframe": "1d",
+      "is_actionable": true,
+      "analysis": [
+        "RSI 51.4 - Neutral (trend: ^)",
+        "MACD Neutral Bearish (spread: -0.0031, d_hist: 0.0010)",
+        "OBV slope 7661800.0 - Strong Bullish volume flow",
+        "MA50 0.95 vs MA200 0.87 - Strong Bullish Trend (spread: 9.3%)",
+        "BB Mild Bullish (lower half) - price lower<->middle (normal bands, width: 0.049)",
+        "Volume 11,805,700 vs SMA20 11,504,320 - Mild Bullish (normal volume) (ratio: 1.03x)",
+        "Neutral Candlesticks 0.08 : bull_marubozu",
+        "Strong trend (ADX=53.2) - boosted confidence",
+        "Near S/R level at $0.96"
+      ]
+    },
+    {
+      "ticker": "M44U.SI",
+      "name": "M44U.SI",
+      "signal": "HOLD",
+      "confidence": 35.44,
+      "last_close": 1.31,
+      "atr": 0.0267,
+      "entry_zone": {
+        "lower": 1.3,
+        "upper": 1.33
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 61.5 - Neutral (trend: -)",
+        "MACD Strong Bearish Crossover (spread: -0.0001, d_hist: -0.0012)",
+        "OBV slope -9581666.7 - Bearish volume flow",
+        "MA50 1.26 vs MA200 1.17 - Strong Bullish Trend (spread: 7.4%)",
+        "BB Mild Bearish (upper half) - price middle<->upper (wide bands, width: 0.108)",
+        "Volume 7,501,500 vs SMA20 18,936,605 - Neutral (low volume) (ratio: 0.40x)",
+        "Neutral Candlesticks 0.16 : bull_marubozu",
+        "Near S/R level at $1.26"
+      ]
+    },
+    {
+      "ticker": "ME8U.SI",
+      "name": "ME8U.SI",
+      "signal": "HOLD",
+      "confidence": 57.9,
+      "last_close": 2.03,
+      "atr": 0.0272,
+      "entry_zone": {
+        "lower": 2.02,
+        "upper": 2.05
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 29.8 - Bullish (trend: v)",
+        "MACD Bearish Momentum (spread: -0.0152, d_hist: -0.0012)",
+        "OBV slope -11868955.7 - Bearish volume flow",
+        "MA50 2.10 vs MA200 1.98 - Mild Bullish Trend (spread: 6.0%)",
+        "BB Bullish (near lower) - price lower<->middle (wide bands, width: 0.080)",
+        "Volume 794,000 vs SMA20 9,173,609 - Weak Bearish (low volume) (ratio: 0.09x)",
+        "Neutral Candlesticks 0.00 : ",
+        "Near S/R level at $2.02"
+      ]
+    },
+    {
+      "ticker": "JYEU.SI",
+      "name": "JYEU.SI",
+      "signal": "HOLD",
+      "confidence": 36.44,
+      "last_close": 0.63,
+      "atr": 0.0127,
+      "entry_zone": {
+        "lower": 0.62,
+        "upper": 0.64
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 45.1 - Neutral (trend: ^)",
+        "MACD Bearish Momentum (spread: -0.0032, d_hist: -0.0003)",
+        "OBV slope -9543200.0 - Bearish volume flow",
+        "MA50 0.63 vs MA200 0.53 - Mild Bullish Trend (spread: 18.2%)",
+        "BB Mild Bullish (lower half) - price lower<->middle (normal bands, width: 0.055)",
+        "Volume 17,388,400 vs SMA20 10,122,595 - Neutral (elevated volume) (ratio: 1.72x)",
+        "Neutral Candlesticks 0.26 : bull_marubozu",
+        "Near S/R level at $0.65"
+      ]
+    }
+  ]
+}
