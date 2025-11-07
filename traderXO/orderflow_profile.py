@@ -87,11 +87,12 @@ def plot_orderflow_profile(ticker: str, timeframe: str = '1h', lookback_days: in
     plt.setp(ax1.get_xticklabels(), visible=False)
     plt.setp(ax2.get_xticklabels(), visible=False)
     
-    # Save plot
-    Path(save_dir).mkdir(parents=True, exist_ok=True)
+    # Save plot in date-based directory (same structure as main plots)
     date_str = datetime.now().strftime('%Y-%m-%d')
-    filename = f"{ticker.replace('/', '_')}_{timeframe}_orderflow_{date_str}.png"
-    filepath = Path(save_dir) / filename
+    date_dir = Path(save_dir) / date_str
+    date_dir.mkdir(parents=True, exist_ok=True)
+    filename = f"{ticker.replace('/', '_')}_{timeframe}_orderflow.png"
+    filepath = date_dir / filename
     
     plt.tight_layout()
     plt.savefig(filepath, dpi=150, bbox_inches='tight')

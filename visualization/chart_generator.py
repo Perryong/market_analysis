@@ -597,6 +597,7 @@ class ChartGenerator:
         """
         index_path = Path(root_dir) / "index.html"
         plots_dir = Path(root_dir) / "plots"
+        crypto_plots_dir = Path(root_dir) / "traderXO" / "plots"
         
         # Find all available date folders
         available_dates = []
@@ -606,12 +607,14 @@ class ChartGenerator:
                     date_str = date_dir.name
                     us_report = date_dir / "us_report.html"
                     sg_report = date_dir / "sg_report.html"
+                    crypto_report = crypto_plots_dir / date_str / "crypto_report.html" if crypto_plots_dir.exists() else None
                     
-                    if us_report.exists() or sg_report.exists():
+                    if us_report.exists() or sg_report.exists() or (crypto_report and crypto_report.exists()):
                         available_dates.append({
                             "date": date_str,
                             "us_exists": us_report.exists(),
                             "sg_exists": sg_report.exists(),
+                            "crypto_exists": crypto_report.exists() if crypto_report else False,
                             "is_latest": date_str == self.date_str
                         })
         
@@ -645,6 +648,14 @@ class ChartGenerator:
                 <a href="{report_path}/sg_report.html" class="report-card sg" target="_blank">
                     <div class="report-title">🇸🇬 Singapore Market Report</div>
                     <div class="report-description">View analysis for Singapore stock market tickers</div>
+                </a>
+"""
+            if date_info.get("crypto_exists", False):
+                crypto_report_path = f"traderXO/plots/{date_str}"
+                date_sections_html += f"""
+                <a href="{crypto_report_path}/crypto_report.html" class="report-card crypto" target="_blank">
+                    <div class="report-title">🪙 Crypto Market Report</div>
+                    <div class="report-description">View TraderXO crypto analysis charts</div>
                 </a>
 """
             date_sections_html += """
@@ -745,6 +756,9 @@ class ChartGenerator:
         }}
         .report-card.sg {{
             border-left: 5px solid #ffc107;
+        }}
+        .report-card.crypto {{
+            border-left: 5px solid #9c27b0;
         }}
         .report-title {{
             font-size: 1.3em;

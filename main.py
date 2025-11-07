@@ -219,6 +219,15 @@ def analyze_crypto_with_traderxo(crypto_pairs: List[str], exchange: str = 'binan
             except Exception as e:
                 print(f"  [ERROR] Failed to generate charts for {pair}: {e}")
     
+    # Generate crypto summary report after all charts are created
+    if generate_charts and crypto_signals:
+        try:
+            from traderXO.report_generator import TraderXOReportGenerator
+            crypto_report_gen = TraderXOReportGenerator()
+            crypto_report_gen.generate_summary_report()
+        except Exception as e:
+            print(f"[WARNING] Could not generate crypto report: {e}")
+    
     return crypto_signals
 
 
@@ -529,13 +538,6 @@ def main():
     else:
         print("\n[WARNING] No valid Singapore signals generated")
     
-    # Generate index.html for GitHub Pages after both reports are created
-    if us_signals or sg_signals:
-        try:
-            chart_generator.generate_index_html()
-        except Exception as e:
-            print(f"[WARNING] Could not generate index.html: {e}")
-    
     # Stock Market Summary
     print("\n" + "="*70)
     print("STOCK MARKET ANALYSIS COMPLETE")
@@ -563,6 +565,14 @@ def main():
     
     # ========== PART 2: CRYPTOCURRENCY ANALYSIS ==========
     crypto_signals = analyze_crypto_with_traderxo(CRYPTO_PAIRS, EXCHANGE, generate_charts=True)
+    
+    # Generate index.html for GitHub Pages after ALL reports are created (stocks + crypto)
+    if us_signals or sg_signals or crypto_signals:
+        try:
+            chart_generator.generate_index_html()
+            print("\n[SUCCESS] Index page generated with all reports (US, SG, and Crypto)")
+        except Exception as e:
+            print(f"[WARNING] Could not generate index.html: {e}")
     
     # Show actionable crypto signals
     if crypto_signals:

@@ -98,11 +98,12 @@ def plot_range_fade(ticker: str, range_high: float = None, range_low: float = No
     # Hide x-axis labels for upper plot
     plt.setp(ax1.get_xticklabels(), visible=False)
     
-    # Save plot
-    Path(save_dir).mkdir(parents=True, exist_ok=True)
+    # Save plot in date-based directory (same structure as main plots)
     date_str = datetime.now().strftime('%Y-%m-%d')
-    filename = f"{ticker.replace('/', '_')}_{timeframe}_range_fade_{date_str}.png"
-    filepath = Path(save_dir) / filename
+    date_dir = Path(save_dir) / date_str
+    date_dir.mkdir(parents=True, exist_ok=True)
+    filename = f"{ticker.replace('/', '_')}_{timeframe}_range_fade.png"
+    filepath = date_dir / filename
     
     plt.tight_layout()
     plt.savefig(filepath, dpi=150, bbox_inches='tight')

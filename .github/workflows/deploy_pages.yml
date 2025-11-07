@@ -13,6 +13,7 @@ on:
     paths:
       - 'index.html'
       - 'plots/**'
+      - 'traderXO/plots/**'
       - '.github/workflows/deploy_pages.yml'
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -71,6 +72,19 @@ jobs:
             find plots -type f -name "*.html" -o -name "*.png" | head -20
           else
             echo "⚠️  plots directory not found"
+          fi
+          
+          # Copy traderXO plots directory to _site
+          if [ -d "traderXO/plots" ]; then
+            cp -r traderXO/plots _site/traderXO/
+            echo "✅ Copied traderXO/plots directory"
+            
+            # List what was copied
+            echo ""
+            echo "📁 Files in traderXO/plots directory:"
+            find traderXO/plots -type f -name "*.html" -o -name "*.png" | head -20
+          else
+            echo "⚠️  traderXO/plots directory not found"
           fi
           
           # Create .nojekyll file to ensure all files are served
