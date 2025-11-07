@@ -45,6 +45,94 @@ class YFinanceProvider:
         # Cache is valid if it's from today
         return cache_date == current_date
     
+    def _check_cache_needs_update(self, ticker: str, cache_path: Path, 
+                                   period: str, timeframe: TimeFrame) -> bool:
+        """
+        Check if cached data needs updating by comparing latest date in cache
+        with latest available date from API.
+        
+        Returns True if cache needs update (new data available), False otherwise.
+        """
+        if not cache_path.exists():
+            return True
+        
+        try:
+            # Load cached data to get latest date
+            cached_df = self._load_from_cache(cache_path)
+            if cached_df is None or cached_df.empty:
+                return True
+            
+            # Get the latest date in cached data
+            cached_latest_date = cached_df.index.max().date()
+            current_date = datetime.now().date()
+            
+            # For daily data, if cached latest date is not today, we need to update
+            # For intraday data, we might want to check more frequently
+            if timeframe == TimeFrame.DAILY:
+                # If cached data is not up to today, we need to update
+                if cached_latest_date < current_date:
+                    print(f"  [UPDATE] {ticker} cache is outdated: cache={cached_latest_date}, current={current_date}")
+                    return True
+                
+                # If cached data is up to today, check API to see if there's newer data
+                # (e.g., if data was pulled before market close and now there's EOD data)
+                try:
+                    # Fetch just the last 5 days to check for updates (minimal API call)
+                    interval = timeframe.value
+                    recent_df = yf.download(
+                        ticker,
+                        period="5d",  # Just check last 5 days
+                        interval=interval,
+                        progress=False,
+                        auto_adjust=True
+                    )
+                    
+                    if recent_df.empty:
+                        return False  # No new data available
+                    
+                    # Get the latest date from API
+                    api_latest_date = recent_df.index.max().date()
+                    
+                    # If API has newer data than cache, we need to update
+                    if api_latest_date > cached_latest_date:
+                        print(f"  [UPDATE] {ticker} has new data: cache={cached_latest_date}, API={api_latest_date}")
+                        return True
+                    
+                    return False
+                    
+                except Exception as e:
+                    # If we can't check, assume cache is still valid
+                    print(f"  [WARNING] Could not check for updates for {ticker}: {e}")
+                    return False
+            else:
+                # For intraday data, always check for updates
+                try:
+                    interval = timeframe.value
+                    recent_df = yf.download(
+                        ticker,
+                        period="5d",
+                        interval=interval,
+                        progress=False,
+                        auto_adjust=True
+                    )
+                    
+                    if recent_df.empty:
+                        return False
+                    
+                    api_latest_date = recent_df.index.max().date()
+                    if api_latest_date > cached_latest_date:
+                        print(f"  [UPDATE] {ticker} has new data: cache={cached_latest_date}, API={api_latest_date}")
+                        return True
+                    
+                    return False
+                except Exception as e:
+                    print(f"  [WARNING] Could not check for updates for {ticker}: {e}")
+                    return False
+                
+        except Exception as e:
+            print(f"  [WARNING] Error checking cache update for {ticker}: {e}")
+            return True  # If we can't check, fetch new data to be safe
+    
     def _load_from_cache(self, cache_path: Path) -> Optional[pd.DataFrame]:
         """Load DataFrame from cache file"""
         try:
@@ -181,13 +269,18 @@ class YFinanceProvider:
             cache_path = self._get_cache_path(ticker, period, timeframe)
             
             if self._is_cache_valid(cache_path):
-                # Load from cache
-                df = self._load_from_cache(cache_path)
-                if df is not None and not df.empty:
-                    result[ticker] = df
-                    print(f"  [CACHE] {ticker} loaded from cache")
-                else:
+                # Cache exists and is from today, but check if new data is available
+                if self._check_cache_needs_update(ticker, cache_path, period, timeframe):
+                    # New data available, need to fetch
                     tickers_to_fetch.append(ticker)
+                else:
+                    # Load from cache (no new data available)
+                    df = self._load_from_cache(cache_path)
+                    if df is not None and not df.empty:
+                        result[ticker] = df
+                        print(f"  [CACHE] {ticker} loaded from cache (up to date)")
+                    else:
+                        tickers_to_fetch.append(ticker)
             else:
                 tickers_to_fetch.append(ticker)
         

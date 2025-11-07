@@ -163,7 +163,7 @@ class BacktestReporter:
         # Create HTML content
         html = self._generate_html_content(result, metrics, include_charts)
         
-        with open(filepath, 'w') as f:
+        with open(filepath, 'w', encoding='utf-8') as f:
             f.write(html)
         
         print(f"[*] Generated HTML report: {filepath}")
@@ -285,14 +285,14 @@ class BacktestReporter:
 </head>
 <body>
     <div class="header">
-        <h1>📊 Backtest Report</h1>
+        <h1>Backtest Report</h1>
         <p><strong>Ticker:</strong> {result.ticker}</p>
         <p><strong>Period:</strong> {result.start_date.date()} to {result.end_date.date()} ({result.duration_days} days)</p>
         <p><strong>Generated:</strong> {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
     </div>
     
     <div class="section">
-        <h2>📈 Performance Overview</h2>
+        <h2>Performance Overview</h2>
         <div class="metrics-grid">
             <div class="metric-card">
                 <div class="metric-label">Total Return</div>
@@ -318,7 +318,7 @@ class BacktestReporter:
     </div>
     
     <div class="section">
-        <h2>💰 Return Metrics</h2>
+        <h2>Return Metrics</h2>
         <table>
             <tr>
                 <th>Metric</th>
@@ -348,7 +348,7 @@ class BacktestReporter:
     </div>
     
     <div class="section">
-        <h2>⚠️ Risk Metrics</h2>
+        <h2>Risk Metrics</h2>
         <table>
             <tr>
                 <th>Metric</th>
@@ -394,7 +394,7 @@ class BacktestReporter:
     </div>
     
     <div class="section">
-        <h2>🎯 Trading Statistics</h2>
+        <h2>Trading Statistics</h2>
         <table>
             <tr>
                 <th>Metric</th>

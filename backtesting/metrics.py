@@ -358,8 +358,8 @@ class MetricsCalculator:
         if len(equity_curve) == 0:
             return pd.Series()
         
-        # Resample to month end
-        monthly_equity = equity_curve.resample('M').last()
+        # Resample to month end (ME = Month End, replaces deprecated 'M')
+        monthly_equity = equity_curve.resample('ME').last()
         monthly_returns = monthly_equity.pct_change()
         
         return monthly_returns

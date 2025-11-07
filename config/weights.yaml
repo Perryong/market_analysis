@@ -11,8 +11,8 @@ weights:
   candlestick: 0.10    # Candlestick patterns
 
 thresholds:
-  buy_threshold: 0.65         # Score >= 0.65 triggers BUY
-  sell_threshold: 0.15        # Score <= 0.15 triggers SELL
+  buy_threshold: 0.40         # Score >= 0.40 triggers BUY (aggressive for backtesting)
+  sell_threshold: 0.30        # Score <= 0.30 triggers SELL (more balanced)
   strong_candle_threshold: 0.70  # Strong pattern threshold
 
 adjustments:

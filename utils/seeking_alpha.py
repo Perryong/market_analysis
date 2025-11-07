@@ -51,24 +51,139 @@ def _get_symbol_id(ticker: str) -> str:
     return ticker
 
 
+def _check_cache_needs_update(ticker: str, cache_path: Path, function: str) -> bool:
+    """
+    Check if cached data needs updating by comparing latest date in cache
+    with latest available date from API.
+    
+    Returns True if cache needs update (new data available), False otherwise.
+    """
+    if not cache_path.exists():
+        return True
+    
+    try:
+        # Load cached data
+        with open(cache_path, 'r') as f:
+            cached_data = json.load(f)
+        
+        if not cached_data or ('data' not in cached_data and 'attributes' not in cached_data):
+            return True
+        
+        # Extract latest date from cached data
+        cached_latest_date = None
+        
+        if 'attributes' in cached_data and cached_data['attributes']:
+            # Chart data - dates are keys in attributes
+            date_strings = list(cached_data['attributes'].keys())
+            if date_strings:
+                try:
+                    dates = [pd.to_datetime(d) for d in date_strings]
+                    cached_latest_date = max(dates).date()
+                except:
+                    pass
+        elif 'data' in cached_data and cached_data['data']:
+            # For realtime_quotes or other data structures, check if we can extract dates
+            # If not, we'll handle it in the function-specific logic below
+            pass
+        
+        # For realtime_quotes, we can't easily determine dates, so we'll handle it separately
+        if function == "realtime_quotes":
+            # For realtime quotes, always check for updates if cache is from today
+            # (realtime data changes frequently)
+            return True
+        
+        if cached_latest_date is None:
+            # Can't determine date for chart data, assume needs update
+            return True
+        
+        current_date = datetime.now().date()
+        
+        # If cached data is not up to today, we need to update
+        if cached_latest_date < current_date:
+            print(f"  [UPDATE] {ticker} ({function}) cache is outdated: cache={cached_latest_date}, current={current_date}")
+            return True
+        
+        # If cached data is up to today, check API to see if there's newer data
+        # (e.g., if data was pulled before market close and now there's EOD data)
+        try:
+            # Make a small API call to check for updates
+            headers = {
+                "x-rapidapi-key": RAPIDAPI_KEY,
+                "x-rapidapi-host": RAPIDAPI_HOST
+            }
+            
+            if function in ["chart_1y", "chart_5y", "chart_max"]:
+                url = f"{BASE_URL}/symbols/get-chart"
+                period_map = {"chart_1y": "1y", "chart_5y": "5y", "chart_max": "max"}
+                period = period_map.get(function, "1y")
+                check_params = {
+                    'symbol': ticker.upper(),
+                    'period': period
+                }
+                
+                response = requests.get(url, headers=headers, params=check_params)
+                
+                if response.status_code == 200:
+                    api_data = response.json()
+                    
+                    if 'attributes' in api_data and api_data['attributes']:
+                        # Get latest date from API
+                        api_date_strings = list(api_data['attributes'].keys())
+                        if api_date_strings:
+                            try:
+                                api_dates = [pd.to_datetime(d) for d in api_date_strings]
+                                api_latest_date = max(api_dates).date()
+                                
+                                # If API has newer data than cache, we need to update
+                                if api_latest_date > cached_latest_date:
+                                    print(f"  [UPDATE] {ticker} ({function}) has new data: cache={cached_latest_date}, API={api_latest_date}")
+                                    return True
+                            except:
+                                pass
+                
+                # Small delay to be respectful to API
+                time.sleep(1)
+            
+            return False
+            
+        except Exception as e:
+            # If we can't check, assume cache is still valid
+            print(f"  [WARNING] Could not check for updates for {ticker} ({function}): {e}")
+            return False
+            
+    except Exception as e:
+        print(f"  [WARNING] Error checking cache update for {ticker} ({function}): {e}")
+        return True  # If we can't check, fetch new data to be safe
+
+
 def _fetch_with_cache(ticker: str, function: str, **params) -> dict:
     """Fetch data from Seeking Alpha API with caching."""
     cache_path = _get_cache_path(ticker, function)
     
     # Try to load from cache
     if _is_cache_valid(cache_path):
-        print(f"Loading {ticker} ({function}) from cache...")
-        with open(cache_path, 'r') as f:
-            cached_data = json.load(f)
-            # Validate cached data has expected keys (either 'data' or 'attributes')
-            if cached_data and ('data' in cached_data or 'attributes' in cached_data):
-                return cached_data
-            else:
-                print(f"Cache for {ticker} is invalid, re-fetching...")
-                try:
-                    cache_path.unlink(missing_ok=True)
-                except:
-                    pass  # Ignore file lock errors
+        # Cache exists and is from today, but check if new data is available
+        if _check_cache_needs_update(ticker, cache_path, function):
+            # New data available, need to fetch
+            print(f"  [UPDATE] {ticker} ({function}) has new data available, fetching...")
+        else:
+            # Load from cache (no new data available)
+            print(f"Loading {ticker} ({function}) from cache (up to date)...")
+            try:
+                with open(cache_path, 'r') as f:
+                    cached_data = json.load(f)
+                    # Validate cached data has expected keys (either 'data' or 'attributes')
+                    if cached_data and ('data' in cached_data or 'attributes' in cached_data):
+                        return cached_data
+                    else:
+                        print(f"Cache for {ticker} is invalid, re-fetching...")
+                        try:
+                            cache_path.unlink(missing_ok=True)
+                        except:
+                            pass  # Ignore file lock errors
+            except Exception as e:
+                print(f"  [WARNING] Error reading cache for {ticker}: {e}")
+                # Continue to fetch from API
     
     # Fetch from API
     print(f"Fetching {ticker} ({function}) from Seeking Alpha API...")

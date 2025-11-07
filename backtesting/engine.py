@@ -7,6 +7,8 @@ trade execution, position management, and portfolio tracking.
 
 from typing import List, Optional, Dict, Tuple
 from datetime import datetime, timedelta
+import json
+from pathlib import Path
 import pandas as pd
 import numpy as np
 from copy import deepcopy
@@ -156,7 +158,9 @@ class BacktestEngine:
                         if new_trade:
                             all_trades.append(new_trade)
                 except Exception as e:
-                    # Skip this day if signal generation fails
+                    # Log signal generation errors (but continue)
+                    if i == 50:  # Only print once to avoid spam
+                        print(f"[WARNING] Signal generation error: {e}")
                     pass
             
             # Record portfolio snapshot
@@ -202,21 +206,94 @@ class BacktestEngine:
     
     def _fetch_data(self, ticker: str, start_date: str, end_date: str,
                     timeframe: TimeFrame) -> Optional[pd.DataFrame]:
-        """Fetch historical data for backtesting"""
+        """Fetch historical data for backtesting (uses cached data when available)"""
+        import time
+        
         try:
             # Calculate period to fetch (need extra for indicators)
             start_dt = pd.to_datetime(start_date)
+            end_dt = pd.to_datetime(end_date)
             # Get extra 200 days for indicator calculation
             fetch_start = start_dt - timedelta(days=200)
             
-            df = self.data_provider.fetch_data(
-                ticker,
-                period=None,  # Use date range instead
-                timeframe=timeframe
-            )
+            # Try to load from cache first (yfinance cache)
+            cache_dir = Path(".cache/yfinance")
+            cache_file = cache_dir / f"{ticker}_2y_1day_yf.json"
             
-            # Filter to date range (with buffer for indicators)
+            if cache_file.exists():
+                try:
+                    print(f"[CACHE] Loading {ticker} from yfinance cache...")
+                    with open(cache_file, 'r') as f:
+                        data = json.load(f)
+                        df = pd.DataFrame(
+                            data['data'],
+                            index=pd.to_datetime(data['index']),
+                            columns=data['columns']
+                        )
+                        df.index.name = 'Date'
+                        
+                        # Filter to needed date range
+                        df = df[df.index >= fetch_start]
+                        
+                        if len(df) > 0:
+                            print(f"[CACHE] Loaded {len(df)} rows from cache")
+                            return df
+                except Exception as e:
+                    print(f"[WARNING] Failed to load from cache: {e}")
+            
+            # Try Seeking Alpha cache for US stocks (if no .SI suffix)
+            if not ticker.endswith('.SI'):
+                sa_cache = Path(".cache") / f"{ticker}_chart_1y_sa.json"
+                if sa_cache.exists():
+                    try:
+                        print(f"[CACHE] Loading {ticker} from Seeking Alpha cache...")
+                        with open(sa_cache, 'r') as f:
+                            data = json.load(f)
+                            
+                        if 'attributes' in data:
+                            # Convert SA format to DataFrame
+                            records = []
+                            for date_str, values in data['attributes'].items():
+                                record = {'Date': date_str}
+                                record.update(values)
+                                records.append(record)
+                            
+                            df = pd.DataFrame(records)
+                            df['Date'] = pd.to_datetime(df['Date'])
+                            df.set_index('Date', inplace=True)
+                            df.sort_index(inplace=True)
+                            
+                            # Rename columns to match expected format
+                            if 'open' in df.columns:
+                                df.rename(columns={
+                                    'open': 'Open',
+                                    'high': 'High',
+                                    'low': 'Low',
+                                    'close': 'Close',
+                                    'volume': 'Volume'
+                                }, inplace=True)
+                            
+                            # Filter to needed date range
+                            df = df[df.index >= fetch_start]
+                            
+                            if len(df) > 0:
+                                print(f"[CACHE] Loaded {len(df)} rows from SA cache")
+                                return df
+                    except Exception as e:
+                        print(f"[WARNING] Failed to load from SA cache: {e}")
+            
+            # If no cache, use YFinanceProvider which has its own caching logic
+            print(f"[DOWNLOAD] No cache found, downloading {ticker}...")
+            time.sleep(0.5)  # Rate limit protection
+            
+            df = self.data_provider.fetch_data(ticker, period="2y", timeframe=timeframe)
+            
+            if df is None or len(df) == 0:
+                return None
+            
+            # Filter to needed date range
             df = df[df.index >= fetch_start]
+            
             return df
             
         except Exception as e:
@@ -225,7 +302,13 @@ class BacktestEngine:
     
     def _create_market_data(self, ticker: str, df: pd.DataFrame,
                            timeframe: TimeFrame) -> MarketData:
-        """Create MarketData object from DataFrame"""
+        """Create MarketData object from DataFrame with technical indicators"""
+        # Calculate technical indicators if not already present
+        if 'rsi' not in df.columns:
+            from technical.calculator import TechnicalCalculator
+            calculator = TechnicalCalculator()
+            df = calculator.calculate_all(df)
+        
         return MarketData(
             ticker=ticker,
             current=df.iloc[-1],
