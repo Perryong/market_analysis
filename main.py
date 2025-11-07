@@ -461,6 +461,7 @@ def main():
         
         try:
             chart_generator.generate_summary_report(us_signals, "US")
+            chart_generator.generate_tabbed_charts_view(us_signals, "US")
         except Exception as e:
             print(f"[WARNING] Could not generate summary report: {e}")
     else:
@@ -522,6 +523,7 @@ def main():
         
         try:
             chart_generator.generate_summary_report(sg_signals, "SG")
+            chart_generator.generate_tabbed_charts_view(sg_signals, "SG")
         except Exception as e:
             print(f"[WARNING] Could not generate summary report: {e}")
     else:
@@ -643,7 +645,7 @@ def run_comprehensive_backtest():
     SG_TICKERS = ["CRPU.SI", "J69U.SI", "BUOU.SI", "M44U.SI"]
     
     # Backtest date range
-    START_DATE = "2022-01-01"
+    START_DATE = "2025-01-01"
     END_DATE = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")  # Yesterday
     
     # ========== US STOCK BACKTESTING ==========

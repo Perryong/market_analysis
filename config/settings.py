@@ -106,7 +106,7 @@ class EntryZoneConfig:
 @dataclass
 class BacktestingConfig:
     """Backtesting configuration"""
-    initial_capital: float = 100000.0
+    initial_capital: float = 10000.0
     commission: float = 0.001  # 0.1%
     slippage: float = 0.0005   # 0.05%
     position_size: float = 0.1  # 10% per position

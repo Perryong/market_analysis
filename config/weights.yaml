@@ -11,8 +11,8 @@ weights:
   candlestick: 0.10    # Candlestick patterns
 
 thresholds:
-  buy_threshold: 0.40         # Score >= 0.40 triggers BUY (aggressive for backtesting)
-  sell_threshold: 0.30        # Score <= 0.30 triggers SELL (more balanced)
+  buy_threshold: 0.65         # Score >= 0.40 triggers BUY (aggressive for backtesting)
+  sell_threshold: 0.15      # Score <= 0.30 triggers SELL (more balanced)
   strong_candle_threshold: 0.70  # Strong pattern threshold
 
 adjustments:
@@ -34,7 +34,7 @@ entry_zone:
 
 # Backtesting Configuration
 backtesting:
-  initial_capital: 100000     # Starting capital
+  initial_capital: 10000    # Starting capital
   commission: 0.001           # 0.1% commission per trade
   slippage: 0.0005            # 0.05% slippage per trade
   position_size: 0.1          # 10% of equity per position

@@ -302,16 +302,31 @@ class ChartGenerator:
         
         # Update layout
         fig.update_layout(
-            title=f"{ticker} - Technical Analysis ({self.date_str})",
+            title=dict(
+                text=f"{ticker} - Technical Analysis ({self.date_str})",
+                x=0.5,
+                xanchor='center',
+                font=dict(size=16)
+            ),
             xaxis_rangeslider_visible=False,
             height=1200,
+            autosize=True,
+            width=None,  # Let it be responsive
             showlegend=True,
             legend=dict(
                 orientation="h",
-                yanchor="bottom",
-                y=1.02,
-                xanchor="right",
-                x=1
+                yanchor="top",
+                y=-0.12,  # Position below the chart
+                xanchor="center",
+                x=0.5,
+                font=dict(size=9),
+                itemsizing='constant'
+            ),
+            margin=dict(
+                t=80,  # Top margin for title
+                b=120,  # Bottom margin for legend
+                l=60,
+                r=60
             ),
             hovermode='x unified',
             template='plotly_white'
@@ -324,9 +339,17 @@ class ChartGenerator:
         fig.update_yaxes(title_text="RSI", row=3, col=1, range=[0, 100])
         fig.update_yaxes(title_text="MACD", row=4, col=1)
         
-        # Save to HTML
+        # Save to HTML with responsive config
         html_path = self.charts_dir / f"{ticker}_interactive.html"
-        fig.write_html(str(html_path))
+        fig.write_html(
+            str(html_path),
+            config={
+                'responsive': True,
+                'displayModeBar': True,
+                'displaylogo': False
+            },
+            include_plotlyjs='cdn'
+        )
         
         return html_path
     
@@ -555,5 +578,328 @@ class ChartGenerator:
             f.write(html_content)
         
         print(f"[SUCCESS] Summary report saved: {report_path}")
+        return report_path
+    
+    def generate_tabbed_charts_view(self, signals: List[TradingSignal], market: str):
+        """
+        Generate a single HTML file with tabs to view all stock charts
+        
+        Args:
+            signals: List of trading signals
+            market: Market name (US, SG, etc.)
+            
+        Returns:
+            Path to saved HTML file
+        """
+        report_path = self.charts_dir / f"{market.lower()}_all_charts.html"
+        
+        # Build tabs HTML
+        tabs_html = ""
+        tab_content_html = ""
+        
+        for idx, signal in enumerate(signals):
+            ticker = signal.ticker
+            html_file = self.charts_dir / f"{ticker}_interactive.html"
+            
+            # Check if the HTML file exists
+            if html_file.exists():
+                signal_class = signal.signal.value.lower()
+                signal_color = {
+                    'buy': '#28a745',
+                    'sell': '#dc3545',
+                    'hold': '#6c757d'
+                }
+                
+                # Create tab button
+                is_active = "active" if idx == 0 else ""
+                tabs_html += f"""
+                <button class="tab-button {is_active}" onclick="openTab(event, '{ticker}')" 
+                        style="border-left: 4px solid {signal_color.get(signal_class, '#6c757d')};">
+                    <span class="ticker-name">{ticker}</span>
+                    <span class="signal-badge {signal_class}">{signal.signal.value}</span>
+                    <span class="confidence">{signal.confidence_percent:.1f}%</span>
+                </button>
+                """
+                
+                # Create tab content with iframe
+                active_class = "active" if idx == 0 else ""
+                tab_content_html += f"""
+                <div id="{ticker}" class="tab-content {active_class}">
+                    <div class="chart-header">
+                        <h2>{ticker} - {signal.short_name}</h2>
+                        <div class="signal-info">
+                            <span class="signal-label">Signal: <strong class="{signal_class}">{signal.signal.value}</strong></span>
+                            <span class="confidence-label">Confidence: <strong>{signal.confidence_percent:.1f}%</strong></span>
+                        </div>
+                    </div>
+                    <iframe src="{ticker}_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
+                </div>
+                """
+        
+        html_content = f"""
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{market} Market Analysis - All Charts - {self.date_str}</title>
+    <meta charset="utf-8">
+    <style>
+        * {{
+            box-sizing: border-box;
+        }}
+        
+        body {{
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+        }}
+        
+        .header {{
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }}
+        
+        .header h1 {{
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }}
+        
+        .header p {{
+            margin: 5px 0 0 0;
+            opacity: 0.9;
+            font-size: 14px;
+        }}
+        
+        .container {{
+            display: flex;
+            height: calc(100vh - 100px);
+        }}
+        
+        .tabs-sidebar {{
+            width: 280px;
+            background: white;
+            border-right: 1px solid #e0e0e0;
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+        }}
+        
+        .tabs-sidebar::-webkit-scrollbar {{
+            width: 6px;
+        }}
+        
+        .tabs-sidebar::-webkit-scrollbar-track {{
+            background: #f1f1f1;
+        }}
+        
+        .tabs-sidebar::-webkit-scrollbar-thumb {{
+            background: #888;
+            border-radius: 3px;
+        }}
+        
+        .tabs-sidebar::-webkit-scrollbar-thumb:hover {{
+            background: #555;
+        }}
+        
+        .tab-button {{
+            width: 100%;
+            padding: 15px 20px;
+            text-align: left;
+            background: white;
+            border: none;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }}
+        
+        .tab-button:hover {{
+            background: #f8f9fa;
+        }}
+        
+        .tab-button.active {{
+            background: #e3f2fd;
+            border-left-width: 6px;
+        }}
+        
+        .ticker-name {{
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }}
+        
+        .signal-badge {{
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }}
+        
+        .signal-badge.buy {{
+            background: #d4edda;
+            color: #155724;
+        }}
+        
+        .signal-badge.sell {{
+            background: #f8d7da;
+            color: #721c24;
+        }}
+        
+        .signal-badge.hold {{
+            background: #e2e3e5;
+            color: #383d41;
+        }}
+        
+        .confidence {{
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+        }}
+        
+        .content-area {{
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }}
+        
+        .tab-content {{
+            height: 100%;
+            display: none;
+            overflow: hidden;
+            flex-direction: column;
+        }}
+        
+        .tab-content.active {{
+            display: flex;
+        }}
+        
+        .chart-header {{
+            padding: 20px 30px;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            flex-shrink: 0;
+        }}
+        
+        .chart-header h2 {{
+            margin: 0 0 10px 0;
+            font-size: 24px;
+            color: #333;
+        }}
+        
+        .signal-info {{
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+        }}
+        
+        .signal-label, .confidence-label {{
+            color: #666;
+        }}
+        
+        .signal-label strong.buy {{
+            color: #28a745;
+        }}
+        
+        .signal-label strong.sell {{
+            color: #dc3545;
+        }}
+        
+        .signal-label strong.hold {{
+            color: #6c757d;
+        }}
+        
+        .chart-iframe {{
+            flex: 1;
+            width: 100%;
+            border: none;
+            background: white;
+            min-height: 0;
+            overflow: hidden;
+            display: block;
+        }}
+        
+        @media (max-width: 768px) {{
+            .container {{
+                flex-direction: column;
+            }}
+            
+            .tabs-sidebar {{
+                width: 100%;
+                height: 200px;
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+            }}
+        }}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>{market} Market Analysis - All Charts</h1>
+        <p>Generated: {self.date_str} | Total Tickers: {len(signals)}</p>
+    </div>
+    
+    <div class="container">
+        <div class="tabs-sidebar">
+            {tabs_html}
+        </div>
+        
+        <div class="content-area">
+            {tab_content_html}
+        </div>
+    </div>
+    
+    <script>
+        function openTab(evt, tickerName) {{
+            var i, tabcontent, tabbuttons;
+            
+            // Hide all tab content
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {{
+                tabcontent[i].classList.remove("active");
+            }}
+            
+            // Remove active class from all buttons
+            tabbuttons = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tabbuttons.length; i++) {{
+                tabbuttons[i].classList.remove("active");
+            }}
+            
+            // Show the selected tab and mark button as active
+            document.getElementById(tickerName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }}
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {{
+            var tabs = document.querySelectorAll('.tab-button');
+            var activeIndex = Array.from(tabs).findIndex(btn => btn.classList.contains('active'));
+            
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {{
+                e.preventDefault();
+                var nextIndex = (activeIndex + 1) % tabs.length;
+                tabs[nextIndex].click();
+            }} else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {{
+                e.preventDefault();
+                var prevIndex = (activeIndex - 1 + tabs.length) % tabs.length;
+                tabs[prevIndex].click();
+            }}
+        }});
+    </script>
+</body>
+</html>
+"""
+        
+        with open(report_path, 'w', encoding='utf-8') as f:
+            f.write(html_content)
+        
+        print(f"[SUCCESS] Tabbed charts view saved: {report_path}")
         return report_path
 

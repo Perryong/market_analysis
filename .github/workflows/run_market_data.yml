@@ -4,9 +4,9 @@ on:
   workflow_dispatch:  # Allows manual triggering
   schedule:
     # Runs at 9:00 AM UTC (adjust timezone as needed)
-    - cron: '0 9 * * *'
+    - cron: '30 2 * * *'
     # Runs at 10:30 PM UTC (adjust timezone as needed)
-    - cron: '30 22 * * *'
+    - cron: '30 13 * * *'
   push:
     branches:
       - master
@@ -90,9 +90,24 @@ jobs:
           echo "📈 Charts saved to plots/ directory"
           echo "📅 Analysis run at: $(date)"
           echo ""
-          echo "Results:"
-          ls -lh results/
+          
+          # Get current date in YYYY-MM-DD format
+          CURRENT_DATE=$(date +%Y-%m-%d)
+          echo "📅 Displaying results for: $CURRENT_DATE"
           echo ""
-          echo "Charts:"
-          ls -lh plots/*/
+          
+          echo "Results (Current Date Only):"
+          if ls results/${CURRENT_DATE}_*.csv results/${CURRENT_DATE}_*.json 2>/dev/null; then
+            ls -lh results/${CURRENT_DATE}_*.csv results/${CURRENT_DATE}_*.json 2>/dev/null | awk '{print $9, $5}'
+          else
+            echo "  No results found for $CURRENT_DATE"
+          fi
+          
+          echo ""
+          echo "Charts (Current Date Only):"
+          if [ -d "plots/${CURRENT_DATE}" ]; then
+            ls -lh plots/${CURRENT_DATE}/ 2>/dev/null | tail -n +2 | awk '{print $9, $5}'
+          else
+            echo "  No charts found for $CURRENT_DATE"
+          fi
 

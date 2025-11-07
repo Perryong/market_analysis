@@ -194,3 +194,4 @@ Remove-Item .cache\yfinance\AAPL_2y_1day_yf.json
 Just run your analysis and backtesting will use the cache automatically! 🚀
 
 
+
