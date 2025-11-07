@@ -66,7 +66,7 @@ jobs:
         run: |
           git config --local user.email 'action@github.com'
           git config --local user.name 'GitHub Action'
-          git add results/ plots/
+          git add results/ plots/ index.html
           git commit -m "Update market analysis results and charts - $(date '+%Y-%m-%d %H:%M:%S UTC')" || echo 'No changes to commit'
           git push || echo 'Nothing to push'
 

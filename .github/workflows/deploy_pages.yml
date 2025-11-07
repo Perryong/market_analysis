@@ -1,0 +1,127 @@
+name: Deploy to GitHub Pages
+
+on:
+  workflow_run:
+    workflows: ["Market Data Analysis"]
+    types:
+      - completed
+  workflow_dispatch:  # Allows manual triggering
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - 'index.html'
+      - 'plots/**'
+      - '.github/workflows/deploy_pages.yml'
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' || github.event_name == 'push'
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Prepare deployment files
+        run: |
+          echo "📦 Preparing files for GitHub Pages deployment..."
+          
+          # Create a deployment directory
+          mkdir -p _site
+          
+          # Copy index.html to _site root
+          if [ -f "index.html" ]; then
+            cp index.html _site/
+            echo "✅ Copied index.html"
+          else
+            echo "⚠️  index.html not found"
+          fi
+          
+          # Copy plots directory to _site
+          if [ -d "plots" ]; then
+            cp -r plots _site/
+            echo "✅ Copied plots directory"
+            
+            # List what was copied
+            echo ""
+            echo "📁 Files in plots directory:"
+            find plots -type f -name "*.html" -o -name "*.png" | head -20
+          else
+            echo "⚠️  plots directory not found"
+          fi
+          
+          # Create .nojekyll file to ensure all files are served
+          touch _site/.nojekyll
+          echo "✅ Created .nojekyll file"
+          
+          # Create a README for the site
+          cat > _site/README.md << 'EOF'
+          # Market Analysis Reports
+          
+          This site contains automatically generated market analysis reports.
+          
+          - [View Latest Reports](index.html)
+          - Reports are organized by date in the `plots/` directory
+          EOF
+          
+          echo ""
+          echo "📊 Deployment files prepared:"
+          ls -lah _site/
+          if [ -d "_site/plots" ]; then
+            echo ""
+            echo "📁 Date folders in plots:"
+            ls -d _site/plots/*/ 2>/dev/null | head -10 || echo "  No date folders found"
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Deployment Summary
+        if: success()
+        run: |
+          echo "✅ Successfully deployed to GitHub Pages!"
+          echo ""
+          echo "📊 Deployment Details:"
+          echo "  - Repository: ${{ github.repository }}"
+          echo "  - Branch: ${{ github.ref_name }}"
+          echo "  - Commit: ${{ github.sha }}"
+          echo "  - Run ID: ${{ github.run_id }}"
+          echo ""
+          echo "🌐 Your site should be available at:"
+          echo "   https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+          echo ""
+          echo "📁 Files deployed:"
+          if [ -f "_site/index.html" ]; then
+            echo "  ✅ index.html"
+          fi
+          if [ -d "_site/plots" ]; then
+            PLOT_COUNT=$(find _site/plots -type f -name "*.html" | wc -l)
+            echo "  ✅ plots/ ($PLOT_COUNT HTML files)"
+          fi
+

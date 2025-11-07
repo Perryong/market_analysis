@@ -515,6 +515,13 @@ class ChartGenerator:
 <head>
     <title>{market} Market Analysis - {self.date_str}</title>
     <style>
+        html, body {{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }}
         body {{
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -579,6 +586,147 @@ class ChartGenerator:
         
         print(f"[SUCCESS] Summary report saved: {report_path}")
         return report_path
+    
+    def generate_index_html(self, root_dir: str = "."):
+        """
+        Generate an index.html file in the root directory that links to US and SG reports
+        for GitHub Pages deployment
+        
+        Args:
+            root_dir: Root directory where index.html should be created
+        """
+        index_path = Path(root_dir) / "index.html"
+        
+        # Relative path from root to the reports
+        report_path = f"plots/{self.date_str}"
+        
+        html_content = f"""
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Market Analysis Reports - {self.date_str}</title>
+    <style>
+        html, body {{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }}
+        body {{
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }}
+        .container {{
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+        }}
+        h1 {{
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }}
+        .subtitle {{
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }}
+        .date-badge {{
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 30px;
+        }}
+        .report-links {{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }}
+        .report-card {{
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }}
+        .report-card:hover {{
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }}
+        .report-card.us {{
+            border-left: 5px solid #28a745;
+        }}
+        .report-card.sg {{
+            border-left: 5px solid #ffc107;
+        }}
+        .report-title {{
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }}
+        .report-description {{
+            color: #666;
+            font-size: 0.95em;
+        }}
+        .footer {{
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+            color: #999;
+            font-size: 0.85em;
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Market Analysis Reports</h1>
+        <p class="subtitle">Trading Signal Analysis Dashboard</p>
+        <div class="date-badge">📅 {self.date_str}</div>
+        
+        <div class="report-links">
+            <a href="{report_path}/us_report.html" class="report-card us" target="_blank">
+                <div class="report-title">🇺🇸 US Market Report</div>
+                <div class="report-description">View analysis for US stock market tickers</div>
+            </a>
+            
+            <a href="{report_path}/sg_report.html" class="report-card sg" target="_blank">
+                <div class="report-title">🇸🇬 Singapore Market Report</div>
+                <div class="report-description">View analysis for Singapore stock market tickers</div>
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p>Generated automatically by Market Analysis System</p>
+            <p>Last updated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S UTC")}</p>
+        </div>
+    </div>
+</body>
+</html>
+"""
+        
+        with open(index_path, 'w') as f:
+            f.write(html_content)
+        
+        print(f"[SUCCESS] Index page saved: {index_path}")
+        return index_path
     
     def generate_tabbed_charts_view(self, signals: List[TradingSignal], market: str):
         """

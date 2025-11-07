@@ -529,6 +529,13 @@ def main():
     else:
         print("\n[WARNING] No valid Singapore signals generated")
     
+    # Generate index.html for GitHub Pages after both reports are created
+    if us_signals or sg_signals:
+        try:
+            chart_generator.generate_index_html()
+        except Exception as e:
+            print(f"[WARNING] Could not generate index.html: {e}")
+    
     # Stock Market Summary
     print("\n" + "="*70)
     print("STOCK MARKET ANALYSIS COMPLETE")
