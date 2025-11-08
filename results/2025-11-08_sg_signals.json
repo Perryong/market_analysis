@@ -1,5 +1,5 @@
 {
-  "report_date": "2025-11-08 11:40:49",
+  "report_date": "2025-11-08 03:50:13",
   "total_analyzed": 6,
   "summary": {
     "buy": 1,
@@ -144,7 +144,7 @@
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 45.1 - Neutral (trend: ^)",
+        "RSI 45.1 - Neutral (trend: -)",
         "MACD Bearish Momentum (spread: -0.0032, d_hist: -0.0003)",
         "OBV slope -9543200.0 - Bearish volume flow",
         "MA50 0.63 vs MA200 0.53 - Mild Bullish Trend (spread: 18.2%)",
