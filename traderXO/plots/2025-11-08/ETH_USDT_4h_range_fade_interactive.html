@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ETH USDT 4h range fade</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/openseadragon.min.js" integrity="sha512-VKBuvrXdP1AXvfs+m4l3ZNZSI4PFJF0K0hGJJZ4RiNRkvFMO4IwFRHkoTc7xsdZhMgkLn+Ioq4elndAZicBcRQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        html, body {
+            margin: 0;
+            height: 100%;
+            background: #0f172a;
+            color: #e2e8f0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            padding: 12px 24px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(6px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        header a {
+            color: #93c5fd;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        #viewer {
+            width: 100%;
+            height: calc(100% - 58px);
+            background: #0f172a;
+        }
+        .hint {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ETH USDT 4h range fade</h1>
+        <div class="hint">Use mouse wheel or pinch to zoom · Click and drag to pan · Double-click to zoom</div>
+        <a href="ETH_USDT_4h_range_fade.png" download>Download PNG</a>
+    </header>
+    <div id="viewer"></div>
+    <script>
+        OpenSeadragon({
+            id: "viewer",
+            prefixUrl: "https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/images/",
+            tileSources: {
+                type: "image",
+                url: "ETH_USDT_4h_range_fade.png"
+            },
+            showRotationControl: true,
+            showNavigator: true,
+            navigatorAutoFade: false,
+            defaultZoomLevel: 1,
+            minZoomLevel: 0.5,
+            maxZoomLevel: 20,
+            zoomPerClick: 1.5,
+            gestureSettingsTouch: {
+                pinchToZoom: true,
+                flickEnabled: true
+            },
+            gestureSettingsMouse: {
+                clickToZoom: true,
+                dblClickToZoom: true
+            }
+        });
+    </script>
+</body>
+</html>

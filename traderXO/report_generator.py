@@ -64,10 +64,13 @@ class TraderXOReportGenerator:
                 if strategy not in plots_by_ticker[ticker]:
                     plots_by_ticker[ticker][strategy] = []
                 
+                interactive_name = self._ensure_interactive_html(plot_file)
+
                 plots_by_ticker[ticker][strategy].append({
                     'file': plot_file.name,
                     'timeframe': timeframe,
-                    'strategy': strategy
+                    'strategy': strategy,
+                    'interactive': interactive_name
                 })
         
         # Generate HTML report
@@ -131,9 +134,6 @@ class TraderXOReportGenerator:
             border-radius: 8px;
             padding: 15px;
             transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block;
         }}
         .plot-card:hover {{
             transform: translateY(-3px);
@@ -158,6 +158,19 @@ class TraderXOReportGenerator:
             border-radius: 10px;
             font-size: 0.8em;
             margin-right: 5px;
+        }}
+        .plot-links {{
+            margin-top: 10px;
+        }}
+        .plot-links a {{
+            color: #0066cc;
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: bold;
+            font-size: 0.85em;
+        }}
+        .plot-links a:hover {{
+            text-decoration: underline;
         }}
     </style>
 </head>
@@ -189,14 +202,23 @@ class TraderXOReportGenerator:
                 for plot in plots:
                     plot_name = plot['file']
                     timeframe = plot['timeframe']
+                    interactive = plot.get('interactive')
+                    interactive_link = ""
+                    if interactive:
+                        interactive_link = f'<a href="{interactive}" target="_blank" rel="noopener">Interactive Chart</a>'
+                    static_link = f'<a href="{plot_name}" target="_blank" rel="noopener">Static Chart</a>'
                     html_content += f"""
-                <a href="{plot_name}" class="plot-card" target="_blank">
+                <div class="plot-card">
                     <img src="{plot_name}" alt="{ticker} {strategy_display}" loading="lazy">
                     <div class="plot-info">
                         <span class="timeframe-badge">{timeframe}</span>
                         {strategy_display}
                     </div>
-                </a>
+                    <div class="plot-links">
+                        {interactive_link}
+                        {static_link}
+                    </div>
+                </div>
 """
                 
                 html_content += """
@@ -213,11 +235,117 @@ class TraderXOReportGenerator:
 </html>
 """
         
-        with open(report_path, 'w') as f:
+        with open(report_path, 'w', encoding='utf-8') as f:
             f.write(html_content)
         
         print(f"[SUCCESS] Crypto report saved: {report_path}")
         return report_path
+
+    def _ensure_interactive_html(self, png_path: Path) -> Optional[str]:
+        """
+        Ensure that an interactive HTML viewer exists for the given PNG plot.
+
+        Returns the name of the interactive HTML file if available, otherwise None.
+        """
+        html_path = png_path.with_name(f"{png_path.stem}_interactive.html")
+
+        try:
+            html_content = self._build_interactive_html(
+                image_name=png_path.name,
+                title=png_path.stem.replace('_', ' ')
+            )
+            html_path.write_text(html_content, encoding='utf-8')
+            return html_path.name
+        except Exception as exc:
+            print(f"[WARNING] Could not create interactive view for {png_path.name}: {exc}")
+            return None
+
+    @staticmethod
+    def _build_interactive_html(image_name: str, title: str) -> str:
+        """Build a lightweight interactive viewer for a PNG using OpenSeadragon."""
+        return f"""<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/openseadragon.min.js" integrity="sha512-VKBuvrXdP1AXvfs+m4l3ZNZSI4PFJF0K0hGJJZ4RiNRkvFMO4IwFRHkoTc7xsdZhMgkLn+Ioq4elndAZicBcRQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        html, body {{
+            margin: 0;
+            height: 100%;
+            background: #0f172a;
+            color: #e2e8f0;
+            font-family: Arial, sans-serif;
+        }}
+        header {{
+            padding: 12px 24px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(6px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }}
+        header h1 {{
+            margin: 0;
+            font-size: 1.1rem;
+        }}
+        header a {{
+            color: #93c5fd;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }}
+        #viewer {{
+            width: 100%;
+            height: calc(100% - 58px);
+            background: #0f172a;
+        }}
+        .hint {{
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{title}</h1>
+        <div class="hint">Use mouse wheel or pinch to zoom · Click and drag to pan · Double-click to zoom</div>
+        <a href="{image_name}" download>Download PNG</a>
+    </header>
+    <div id="viewer"></div>
+    <script>
+        OpenSeadragon({{
+            id: "viewer",
+            prefixUrl: "https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/images/",
+            tileSources: {{
+                type: "image",
+                url: "{image_name}"
+            }},
+            showRotationControl: true,
+            showNavigator: true,
+            navigatorAutoFade: false,
+            defaultZoomLevel: 1,
+            minZoomLevel: 0.5,
+            maxZoomLevel: 20,
+            zoomPerClick: 1.5,
+            gestureSettingsTouch: {{
+                pinchToZoom: true,
+                flickEnabled: true
+            }},
+            gestureSettingsMouse: {{
+                clickToZoom: true,
+                dblClickToZoom: true
+            }}
+        }});
+    </script>
+</body>
+</html>
+"""
     
     def generate_all_reports(self) -> List[Path]:
         """
