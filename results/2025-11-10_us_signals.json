@@ -1,5 +1,5 @@
 {
-  "report_date": "2025-11-10 03:39:14",
+  "report_date": "2025-11-10 13:47:30",
   "total_analyzed": 11,
   "summary": {
     "buy": 4,
@@ -12,17 +12,17 @@
       "name": "AAPL",
       "signal": "HOLD",
       "confidence": 32.44,
-      "last_close": 268.47,
-      "atr": 5.1286,
+      "last_close": 268.21,
+      "atr": 5.1282,
       "entry_zone": {
-        "lower": 265.91,
-        "upper": 272.57
+        "lower": 265.65,
+        "upper": 272.31
       },
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 63.7 - Bearish (trend: v)",
-        "MACD Strong Bearish Crossover (spread: -0.1446, d_hist: -0.2766)",
+        "RSI 63.1 - Bearish (trend: v)",
+        "MACD Strong Bearish Crossover (spread: -0.1612, d_hist: -0.2932)",
         "OBV slope -18582779.3 - Strong Bearish volume flow",
         "MA50 252.25 vs MA200 224.40 - Strong Bullish Trend (spread: 12.4%)",
         "BB Mild Bearish (upper half) - price middle<->upper (wide bands, width: 0.135)",
