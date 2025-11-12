@@ -1,5 +1,5 @@
 {
-  "report_date": "2025-11-12 03:33:49",
+  "report_date": "2025-11-12 13:48:41",
   "total_analyzed": 11,
   "summary": {
     "buy": 1,
@@ -155,24 +155,24 @@
       "ticker": "V",
       "name": "V",
       "signal": "HOLD",
-      "confidence": 63.79,
-      "last_close": 338.92,
-      "atr": 5.9728,
+      "confidence": 51.4,
+      "last_close": 334.85,
+      "atr": 5.9792,
       "entry_zone": {
-        "lower": 335.93,
-        "upper": 343.7
+        "lower": 331.86,
+        "upper": 339.63
       },
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 46.1 - Neutral (trend: ^)",
-        "MACD Neutral Bearish (spread: -0.7676, d_hist: 0.2771)",
-        "OBV slope -2053654.0 - Bearish volume flow",
-        "MA50 343.02 vs MA200 346.49 - Bearish Trend (spread: -1.0%)",
-        "BB Mild Bullish (lower half) - price lower<->middle (normal bands, width: 0.052)",
-        "Volume 4,453,262 vs SMA20 5,794,036 - Mild Bullish (normal volume) (ratio: 0.77x)",
-        "Neutral Candlesticks 0.56 : bear_harami",
-        "Strong trend (ADX=47.5) - boosted confidence",
+        "RSI 39.9 - Neutral (trend: v)",
+        "MACD Bearish Momentum (spread: -1.0447, d_hist: -0.0752)",
+        "OBV slope -6374042.7 - Strong Bearish volume flow",
+        "MA50 343.25 vs MA200 346.47 - Bearish Trend (spread: -0.9%)",
+        "BB Bullish (near lower) - price lower<->middle (normal bands, width: 0.053)",
+        "Volume 5,295,841 vs SMA20 5,857,940 - Mild Bearish (normal volume) (ratio: 0.90x)",
+        "Neutral Candlesticks 0.59 : bear_harami",
+        "Strong trend (ADX=43.8) - boosted confidence",
         "Near S/R level at $334.92"
       ]
     },
