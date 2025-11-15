@@ -1,0 +1,439 @@
+{
+  "report_date": "2025-11-15 03:29:09",
+  "total_analyzed": 17,
+  "markets": {
+    "us": {
+      "total": 11,
+      "buy": 2,
+      "sell": 0,
+      "hold": 9
+    },
+    "sg": {
+      "total": 6,
+      "buy": 1,
+      "sell": 0,
+      "hold": 5
+    }
+  },
+  "summary": {
+    "total_buy": 3,
+    "total_sell": 0,
+    "total_hold": 14
+  },
+  "us_signals": [
+    {
+      "ticker": "AAPL",
+      "name": "AAPL",
+      "signal": "HOLD",
+      "confidence": 37.13,
+      "last_close": 272.41,
+      "atr": 5.2526,
+      "entry_zone": {
+        "lower": 269.78,
+        "upper": 276.61
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 64.8 - Bearish (trend: v)",
+        "MACD Bearish Momentum (spread: -0.2953, d_hist: -0.1316)",
+        "OBV slope -48477369.0 - Strong Bearish volume flow",
+        "MA50 255.93 vs MA200 225.38 - Strong Bullish Trend (spread: 13.6%)",
+        "BB Mild Bearish (upper half) - price middle<->upper (normal bands, width: 0.069)",
+        "Volume 47,431,331 vs SMA20 51,115,147 - Mild Bearish (normal volume) (ratio: 0.93x)",
+        "Neutral Candlesticks 0.58 : bear_harami",
+        "Near S/R level at $260.10"
+      ]
+    },
+    {
+      "ticker": "MSFT",
+      "name": "MSFT",
+      "signal": "HOLD",
+      "confidence": 38.8,
+      "last_close": 510.18,
+      "atr": 10.1376,
+      "entry_zone": {
+        "lower": 505.11,
+        "upper": 518.29
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 47.4 - Neutral (trend: ^)",
+        "MACD Neutral Bearish (spread: -1.3612, d_hist: 0.5734)",
+        "OBV slope 9935827.7 - Strong Bullish volume flow",
+        "MA50 514.26 vs MA200 464.71 - Mild Bullish Trend (spread: 10.7%)",
+        "BB Mild Bullish (lower half) - price lower<->middle (wide bands, width: 0.096)",
+        "Volume 28,505,746 vs SMA20 24,038,177 - Mild Bullish (normal volume) (ratio: 1.19x)",
+        "Neutral Candlesticks 0.22 : bear_harami",
+        "Weak trend (ADX=13.5) - reduced confidence",
+        "Near S/R level at $492.37"
+      ]
+    },
+    {
+      "ticker": "GOOGL",
+      "name": "GOOGL",
+      "signal": "HOLD",
+      "confidence": 46.53,
+      "last_close": 276.41,
+      "atr": 7.8147,
+      "entry_zone": {
+        "lower": 272.5,
+        "upper": 282.66
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 55.9 - Neutral (trend: v)",
+        "MACD Bearish Momentum (spread: -0.9313, d_hist: -0.8110)",
+        "OBV slope -28657063.3 - Strong Bearish volume flow",
+        "MA50 257.24 vs MA200 197.06 - Strong Bullish Trend (spread: 30.5%)",
+        "BB Mild Bearish (upper half) - price middle<->upper (wide bands, width: 0.191)",
+        "Volume 31,647,227 vs SMA20 33,692,236 - Mild Bearish (normal volume) (ratio: 0.94x)",
+        "Neutral Candlesticks 0.21 : bear_harami"
+      ]
+    },
+    {
+      "ticker": "NVDA",
+      "name": "NVDA",
+      "signal": "HOLD",
+      "confidence": 48.89,
+      "last_close": 190.17,
+      "atr": 7.7239,
+      "entry_zone": {
+        "lower": 186.31,
+        "upper": 196.35
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 49.4 - Neutral (trend: ^)",
+        "MACD Bearish Momentum (spread: -1.3191, d_hist: -0.0615)",
+        "OBV slope 44701348.3 - Strong Bullish volume flow",
+        "MA50 185.61 vs MA200 151.19 - Strong Bullish Trend (spread: 22.8%)",
+        "BB Mild Bullish (lower half) - price lower<->middle (wide bands, width: 0.177)",
+        "Volume 186,591,856 vs SMA20 186,473,476 - Mild Bullish (normal volume) (ratio: 1.00x)",
+        "Neutral Candlesticks 0.32 : bull_harami",
+        "Near S/R level at $184.48"
+      ]
+    },
+    {
+      "ticker": "AMZN",
+      "name": "AMZN",
+      "signal": "HOLD",
+      "confidence": 53.59,
+      "last_close": 234.69,
+      "atr": 6.8903,
+      "entry_zone": {
+        "lower": 231.24,
+        "upper": 240.2
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 49.8 - Neutral (trend: v)",
+        "MACD Strong Bearish Crossover (spread: -0.4219, d_hist: -0.8449)",
+        "OBV slope -37182823.3 - Strong Bearish volume flow",
+        "MA50 228.70 vs MA200 215.09 - Strong Bullish Trend (spread: 6.3%)",
+        "BB Mild Bullish (lower half) - price lower<->middle (wide bands, width: 0.209)",
+        "Volume 38,956,669 vs SMA20 53,101,513 - Mild Bearish (normal volume) (ratio: 0.73x)",
+        "Neutral Candlesticks 0.43 : bull_engulfing",
+        "Near S/R level at $236.53"
+      ]
+    },
+    {
+      "ticker": "BABA",
+      "name": "BABA",
+      "signal": "HOLD",
+      "confidence": 38.64,
+      "last_close": 153.8,
+      "atr": 6.1959,
+      "entry_zone": {
+        "lower": 150.7,
+        "upper": 158.76
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 36.9 - Neutral (trend: v)",
+        "MACD Bearish Momentum (spread: -2.0936, d_hist: -0.2503)",
+        "OBV slope -10232938.0 - Strong Bearish volume flow",
+        "MA50 167.93 vs MA200 133.14 - Mild Bullish Trend (spread: 26.1%)",
+        "BB Strong Bullish (<lower band) - price <lower (wide bands, width: 0.167)",
+        "Volume 33,991,002 vs SMA20 13,690,096 - Strong Bearish (high volume dump) (ratio: 2.48x)",
+        "Neutral Candlesticks 0.00 : ",
+        "Strong trend (ADX=50.0) - boosted confidence",
+        "Near S/R level at $148.43"
+      ]
+    },
+    {
+      "ticker": "V",
+      "name": "V",
+      "signal": "BUY",
+      "confidence": 56.52,
+      "last_close": 330.02,
+      "atr": 6.0971,
+      "entry_zone": {
+        "lower": 326.97,
+        "upper": 334.9
+      },
+      "timeframe": "1d",
+      "is_actionable": true,
+      "analysis": [
+        "RSI 36.1 - Neutral (trend: v)",
+        "MACD Bearish Momentum (spread: -0.8857, d_hist: -0.3430)",
+        "OBV slope -5924534.0 - Strong Bearish volume flow",
+        "MA50 342.22 vs MA200 346.45 - Bearish Trend (spread: -1.2%)",
+        "BB Strong Bullish (<lower band) - price <lower (normal bands, width: 0.059)",
+        "Volume 6,422,317 vs SMA20 5,868,374 - Mild Bearish (normal volume) (ratio: 1.09x)",
+        "Strong Bullish Candlesticks 1.00 : bull_rising_sun",
+        "Strong trend (ADX=50.7) - boosted confidence",
+        "Near S/R level at $334.92"
+      ]
+    },
+    {
+      "ticker": "MA",
+      "name": "MA",
+      "signal": "BUY",
+      "confidence": 68.6,
+      "last_close": 545.73,
+      "atr": 10.0742,
+      "entry_zone": {
+        "lower": 540.69,
+        "upper": 553.79
+      },
+      "timeframe": "1d",
+      "is_actionable": true,
+      "analysis": [
+        "RSI 37.9 - Neutral (trend: v)",
+        "MACD Mild Bullish (spread: 0.0825, d_hist: -0.6093)",
+        "OBV slope -946018.3 - Strong Bearish volume flow",
+        "MA50 568.49 vs MA200 561.37 - Mild Bullish Trend (spread: 1.3%)",
+        "BB Bullish (near lower) - price lower<->middle (normal bands, width: 0.068)",
+        "Volume 2,567,913 vs SMA20 2,571,710 - Mild Bearish (normal volume) (ratio: 1.00x)",
+        "Neutral Candlesticks 0.63 : bear_harami",
+        "Near S/R level at $537.70"
+      ]
+    },
+    {
+      "ticker": "AMD",
+      "name": "AMD",
+      "signal": "HOLD",
+      "confidence": 56.87,
+      "last_close": 246.81,
+      "atr": 13.7724,
+      "entry_zone": {
+        "lower": 239.92,
+        "upper": 257.83
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 55.1 - Neutral (trend: v)",
+        "MACD Neutral Bearish (spread: -3.1586, d_hist: 0.0407)",
+        "OBV slope -630752.3 - Bearish volume flow",
+        "MA50 208.05 vs MA200 145.79 - Strong Bullish Trend (spread: 42.7%)",
+        "BB Mild Bullish (lower half) - price lower<->middle (wide bands, width: 0.167)",
+        "Volume 47,655,644 vs SMA20 55,934,212 - Mild Bearish (normal volume) (ratio: 0.85x)",
+        "Neutral Candlesticks 0.22 : bear_harami"
+      ]
+    },
+    {
+      "ticker": "VOO",
+      "name": "VOO",
+      "signal": "HOLD",
+      "confidence": 44.81,
+      "last_close": 617.83,
+      "atr": 7.2372,
+      "entry_zone": {
+        "lower": 614.21,
+        "upper": 623.62
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 48.2 - Neutral (trend: v)",
+        "MACD Bearish Momentum (spread: -1.1398, d_hist: -0.3339)",
+        "OBV slope -5552403.0 - Strong Bearish volume flow",
+        "MA50 614.78 vs MA200 563.80 - Strong Bullish Trend (spread: 9.0%)",
+        "BB Mild Bullish (lower half) - price lower<->middle (normal bands, width: 0.037)",
+        "Volume 9,681,664 vs SMA20 7,075,058 - Bearish (above avg volume) (ratio: 1.37x)",
+        "Neutral Candlesticks 0.24 : bull_rising_sun",
+        "Strong trend (ADX=40.0) - boosted confidence",
+        "Near S/R level at $600.23"
+      ]
+    },
+    {
+      "ticker": "META",
+      "name": "META",
+      "signal": "HOLD",
+      "confidence": 62.78,
+      "last_close": 609.46,
+      "atr": 19.8544,
+      "entry_zone": {
+        "lower": 599.53,
+        "upper": 625.34
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 27.0 - Bullish (trend: v)",
+        "MACD Neutral Bearish (spread: -5.3130, d_hist: 1.0889)",
+        "OBV slope -8081191.0 - Strong Bearish volume flow",
+        "MA50 713.72 vs MA200 677.46 - Mild Bullish Trend (spread: 5.4%)",
+        "BB Mild Bullish (lower half) - price lower<->middle (wide bands, width: 0.345)",
+        "Volume 20,724,146 vs SMA20 23,645,500 - Mild Bearish (normal volume) (ratio: 0.88x)",
+        "Neutral Candlesticks 0.36 : bull_harami",
+        "Strong trend (ADX=75.9) - boosted confidence"
+      ]
+    }
+  ],
+  "sg_signals": [
+    {
+      "ticker": "CRPU.SI",
+      "name": "Sasseur Reit",
+      "signal": "HOLD",
+      "confidence": 52.78,
+      "last_close": 0.68,
+      "atr": 0.0096,
+      "entry_zone": {
+        "lower": 0.67,
+        "upper": 0.68
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 41.9 - Neutral (trend: v)",
+        "MACD Bearish Momentum (spread: -0.0016, d_hist: -0.0005)",
+        "OBV slope -825433.3 - Strong Bearish volume flow",
+        "MA50 0.68 vs MA200 0.64 - Mild Bullish Trend (spread: 6.9%)",
+        "BB Bullish (near lower) - price lower<->middle (normal bands, width: 0.042)",
+        "Volume 1,790,400 vs SMA20 1,459,235 - Mild Bearish (normal volume) (ratio: 1.23x)",
+        "Neutral Candlesticks 0.25 : bear_marubozu",
+        "Near S/R level at $0.67"
+      ]
+    },
+    {
+      "ticker": "J69U.SI",
+      "name": "FRASERS CENTREPOINT TRUST",
+      "signal": "HOLD",
+      "confidence": 60.19,
+      "last_close": 2.26,
+      "atr": 0.0333,
+      "entry_zone": {
+        "lower": 2.24,
+        "upper": 2.29
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 35.8 - Neutral (trend: v)",
+        "MACD Bearish Momentum (spread: -0.0087, d_hist: -0.0002)",
+        "OBV slope -3336100.0 - Strong Bearish volume flow",
+        "MA50 2.31 vs MA200 2.17 - Mild Bullish Trend (spread: 6.4%)",
+        "BB Mild Bullish (lower half) - price lower<->middle (wide bands, width: 0.082)",
+        "Volume 5,851,400 vs SMA20 6,325,730 - Mild Bearish (normal volume) (ratio: 0.93x)",
+        "Neutral Candlesticks 0.11 : bear_harami",
+        "Strong trend (ADX=52.0) - boosted confidence",
+        "Near S/R level at $2.23"
+      ]
+    },
+    {
+      "ticker": "BUOU.SI",
+      "name": "FRASERS LOGISTICS & COM TRUST",
+      "signal": "BUY",
+      "confidence": 98.07,
+      "last_close": 0.97,
+      "atr": 0.0136,
+      "entry_zone": {
+        "lower": 0.96,
+        "upper": 0.98
+      },
+      "timeframe": "1d",
+      "is_actionable": true,
+      "analysis": [
+        "RSI 56.8 - Neutral (trend: ^)",
+        "MACD Neutral Bearish (spread: -0.0001, d_hist: 0.0009)",
+        "OBV slope 7306033.3 - Strong Bullish volume flow",
+        "MA50 0.96 vs MA200 0.87 - Strong Bullish Trend (spread: 9.4%)",
+        "BB Mild Bearish (upper half) - price middle<->upper (normal bands, width: 0.051)",
+        "Volume 33,065,900 vs SMA20 14,242,240 - Strong Bullish (high volume surge) (ratio: 2.32x)",
+        "Neutral Candlesticks 0.07 : bull_marubozu",
+        "Strong trend (ADX=76.1) - boosted confidence",
+        "Near S/R level at $0.96"
+      ]
+    },
+    {
+      "ticker": "M44U.SI",
+      "name": "Mapletree Log Tr",
+      "signal": "HOLD",
+      "confidence": 38.9,
+      "last_close": 1.29,
+      "atr": 0.0263,
+      "entry_zone": {
+        "lower": 1.28,
+        "upper": 1.31
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 49.7 - Neutral (trend: v)",
+        "MACD Bearish Momentum (spread: -0.0046, d_hist: -0.0014)",
+        "OBV slope -14119500.0 - Strong Bearish volume flow",
+        "MA50 1.27 vs MA200 1.17 - Strong Bullish Trend (spread: 7.9%)",
+        "BB Mild Bullish (lower half) - price lower<->middle (normal bands, width: 0.080)",
+        "Volume 4,682,600 vs SMA20 18,923,529 - Weak Bearish (low volume) (ratio: 0.25x)",
+        "Neutral Candlesticks 0.12 : bull_marubozu",
+        "Near S/R level at $1.26"
+      ]
+    },
+    {
+      "ticker": "ME8U.SI",
+      "name": "Mapletree Ind Tr",
+      "signal": "HOLD",
+      "confidence": 60.6,
+      "last_close": 2.04,
+      "atr": 0.0267,
+      "entry_zone": {
+        "lower": 2.03,
+        "upper": 2.06
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 35.0 - Neutral (trend: -)",
+        "MACD Neutral Bearish (spread: -0.0086, d_hist: 0.0014)",
+        "OBV slope -1529766.7 - Bearish volume flow",
+        "MA50 2.10 vs MA200 1.98 - Mild Bullish Trend (spread: 6.0%)",
+        "BB Mild Bullish (lower half) - price lower<->middle (wide bands, width: 0.100)",
+        "Volume 6,512,500 vs SMA20 10,234,364 - Neutral (low volume) (ratio: 0.64x)",
+        "Neutral Candlesticks 0.00 : ",
+        "Near S/R level at $2.02"
+      ]
+    },
+    {
+      "ticker": "JYEU.SI",
+      "name": "Lendlease Reit",
+      "signal": "HOLD",
+      "confidence": 57.69,
+      "last_close": 0.62,
+      "atr": 0.0128,
+      "entry_zone": {
+        "lower": 0.62,
+        "upper": 0.64
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 50.9 - Neutral (trend: ^)",
+        "MACD Neutral Bearish (spread: -0.0018, d_hist: 0.0005)",
+        "OBV slope 5773000.0 - Strong Bullish volume flow",
+        "MA50 0.62 vs MA200 0.53 - Strong Bullish Trend (spread: 18.0%)",
+        "BB Mild Bullish (lower half) - price lower<->middle (normal bands, width: 0.054)",
+        "Volume 37,099,500 vs SMA20 13,226,195 - Strong Bullish (high volume surge) (ratio: 2.81x)",
+        "Neutral Candlesticks 0.47 : bull_rising_sun",
+        "Near S/R level at $0.64"
+      ]
+    }
+  ]
+}
