@@ -1,5 +1,5 @@
 {
-  "report_date": "2025-11-20 03:32:28",
+  "report_date": "2025-11-20 13:45:50",
   "total_analyzed": 11,
   "summary": {
     "buy": 5,
@@ -36,20 +36,20 @@
       "name": "MSFT",
       "signal": "HOLD",
       "confidence": 52.35,
-      "last_close": 487.12,
-      "atr": 10.817,
+      "last_close": 486.21,
+      "atr": 10.8154,
       "entry_zone": {
-        "lower": 481.71,
-        "upper": 495.77
+        "lower": 480.8,
+        "upper": 494.86
       },
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 34.1 - Neutral (trend: v)",
-        "MACD Bearish Momentum (spread: -2.4196, d_hist: -0.7065)",
+        "RSI 33.8 - Neutral (trend: v)",
+        "MACD Bearish Momentum (spread: -2.4776, d_hist: -0.7646)",
         "OBV slope -25384393.3 - Strong Bearish volume flow",
-        "MA50 514.09 vs MA200 465.96 - Mild Bullish Trend (spread: 10.3%)",
-        "BB Bullish (near lower) - price lower<->middle (wide bands, width: 0.115)",
+        "MA50 514.07 vs MA200 465.96 - Mild Bullish Trend (spread: 10.3%)",
+        "BB Bullish (near lower) - price lower<->middle (wide bands, width: 0.116)",
         "Volume 23,245,314 vs SMA20 25,385,110 - Mild Bearish (normal volume) (ratio: 0.92x)",
         "Neutral Candlesticks 0.17 : ",
         "Near S/R level at $492.37"
