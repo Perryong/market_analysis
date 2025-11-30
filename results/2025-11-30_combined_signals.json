@@ -1,6 +1,6 @@
 {
-  "report_date": "2025-11-30 03:47:03",
-  "total_analyzed": 16,
+  "report_date": "2025-11-30 13:41:49",
+  "total_analyzed": 17,
   "markets": {
     "us": {
       "total": 11,
@@ -9,14 +9,14 @@
       "hold": 5
     },
     "sg": {
-      "total": 5,
-      "buy": 1,
+      "total": 6,
+      "buy": 2,
       "sell": 0,
       "hold": 4
     }
   },
   "summary": {
-    "total_buy": 7,
+    "total_buy": 8,
     "total_sell": 0,
     "total_hold": 9
   },
@@ -293,6 +293,30 @@
     }
   ],
   "sg_signals": [
+    {
+      "ticker": "CRPU.SI",
+      "name": "Sasseur Reit",
+      "signal": "BUY",
+      "confidence": 65.69,
+      "last_close": 0.68,
+      "atr": 0.0094,
+      "entry_zone": {
+        "lower": 0.68,
+        "upper": 0.69
+      },
+      "timeframe": "1d",
+      "is_actionable": true,
+      "analysis": [
+        "RSI 47.7 - Neutral (trend: -)",
+        "MACD Neutral Bearish (spread: -0.0004, d_hist: 0.0001)",
+        "OBV slope 0.0 - Neutral volume flow",
+        "MA50 0.68 vs MA200 0.64 - Mild Bullish Trend (spread: 6.2%)",
+        "BB Mild Bullish (lower half) - price lower<->middle (normal bands, width: 0.031)",
+        "Volume 682,800 vs SMA20 1,246,325 - Neutral (low volume) (ratio: 0.55x)",
+        "Neutral Candlesticks 0.25 : bull_marubozu",
+        "Near S/R level at $0.67"
+      ]
+    },
     {
       "ticker": "J69U.SI",
       "name": "FRASERS CENTREPOINT TRUST",
