@@ -1,5 +1,5 @@
 {
-  "report_date": "2025-12-01 04:02:31",
+  "report_date": "2025-12-01 13:50:48",
   "total_analyzed": 6,
   "summary": {
     "buy": 3,
@@ -26,7 +26,7 @@
         "OBV slope 0.0 - Neutral volume flow",
         "MA50 0.68 vs MA200 0.64 - Mild Bullish Trend (spread: 6.1%)",
         "BB Mild Bullish (lower half) - price lower<->middle (tight bands, width: 0.029)",
-        "Volume 357,700 vs SMA20 1,241,970 - Neutral (low volume) (ratio: 0.29x)",
+        "Volume 563,900 vs SMA20 1,252,280 - Neutral (low volume) (ratio: 0.45x)",
         "Neutral Candlesticks 0.24 : bull_marubozu",
         "Near S/R level at $0.67"
       ]
@@ -34,49 +34,49 @@
     {
       "ticker": "J69U.SI",
       "name": "FRASERS CENTREPOINT TRUST",
-      "signal": "BUY",
-      "confidence": 67.98,
-      "last_close": 2.3,
+      "signal": "HOLD",
+      "confidence": 61.02,
+      "last_close": 2.28,
       "atr": 0.0323,
       "entry_zone": {
-        "lower": 2.28,
-        "upper": 2.33
+        "lower": 2.26,
+        "upper": 2.31
       },
       "timeframe": "1d",
-      "is_actionable": true,
+      "is_actionable": false,
       "analysis": [
-        "RSI 56.6 - Neutral (trend: ^)",
-        "MACD Bullish Momentum (spread: 0.0052, d_hist: 0.0031)",
-        "OBV slope 4277900.0 - Strong Bullish volume flow",
-        "MA50 2.30 vs MA200 2.18 - Strong Bullish Trend (spread: 5.3%)",
-        "BB Bearish (near upper) - price middle<->upper (normal bands, width: 0.041)",
-        "Volume 1,686,400 vs SMA20 5,700,910 - Weak Bullish (low volume) (ratio: 0.30x)",
+        "RSI 51.2 - Neutral (trend: -)",
+        "MACD Bullish Momentum (spread: 0.0040, d_hist: 0.0018)",
+        "OBV slope 3715766.7 - Bullish volume flow",
+        "MA50 2.30 vs MA200 2.18 - Mild Bullish Trend (spread: 5.3%)",
+        "BB Mild Bearish (upper half) - price middle<->upper (normal bands, width: 0.039)",
+        "Volume 4,119,100 vs SMA20 5,822,545 - Neutral (normal volume) (ratio: 0.71x)",
         "Neutral Candlesticks 0.06 : bear_harami",
         "Strong trend (ADX=48.3) - boosted confidence",
-        "Near S/R level at $2.34"
+        "Near S/R level at $2.23"
       ]
     },
     {
       "ticker": "BUOU.SI",
       "name": "FRASERS LOGISTICS & COM TRUST",
       "signal": "BUY",
-      "confidence": 89.64,
-      "last_close": 0.99,
-      "atr": 0.0143,
+      "confidence": 99.12,
+      "last_close": 0.98,
+      "atr": 0.0147,
       "entry_zone": {
-        "lower": 0.98,
-        "upper": 1.0
+        "lower": 0.97,
+        "upper": 0.99
       },
       "timeframe": "1d",
       "is_actionable": true,
       "analysis": [
-        "RSI 72.4 - Strong Bearish (trend: ^)",
-        "MACD Bullish Momentum (spread: 0.0053, d_hist: 0.0008)",
-        "OBV slope 6425166.7 - Bullish volume flow",
-        "MA50 0.94 vs MA200 0.86 - Strong Bullish Trend (spread: 9.5%)",
-        "BB Strong Bearish (>upper band) - price >upper (wide bands, width: 0.093)",
-        "Volume 1,747,300 vs SMA20 17,005,820 - Weak Bullish (low volume) (ratio: 0.10x)",
-        "Neutral Candlesticks 0.25 : bull_marubozu",
+        "RSI 69.5 - Neutral (trend: -)",
+        "MACD Bullish Momentum (spread: 0.0047, d_hist: 0.0001)",
+        "OBV slope 5842733.3 - Bullish volume flow",
+        "MA50 0.94 vs MA200 0.86 - Strong Bullish Trend (spread: 9.4%)",
+        "BB Bearish (near upper) - price middle<->upper (wide bands, width: 0.089)",
+        "Volume 9,692,000 vs SMA20 17,403,055 - Neutral (low volume) (ratio: 0.56x)",
+        "Neutral Candlesticks 0.17 : bull_marubozu",
         "Strong trend (ADX=57.0) - boosted confidence",
         "Near S/R level at $0.99"
       ]
@@ -85,7 +85,7 @@
       "ticker": "M44U.SI",
       "name": "Mapletree Log Tr",
       "signal": "HOLD",
-      "confidence": 60.04,
+      "confidence": 58.44,
       "last_close": 1.32,
       "atr": 0.0214,
       "entry_zone": {
@@ -95,12 +95,12 @@
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 62.7 - Neutral (trend: -)",
+        "RSI 62.7 - Bearish (trend: v)",
         "MACD Strong Bullish Crossover (spread: 0.0006, d_hist: 0.0009)",
         "OBV slope 7922500.0 - Bullish volume flow",
         "MA50 1.28 vs MA200 1.18 - Strong Bullish Trend (spread: 8.4%)",
         "BB Mild Bearish (upper half) - price middle<->upper (normal bands, width: 0.041)",
-        "Volume 1,632,800 vs SMA20 13,275,659 - Neutral (low volume) (ratio: 0.12x)",
+        "Volume 9,682,100 vs SMA20 13,678,124 - Neutral (normal volume) (ratio: 0.71x)",
         "Neutral Candlesticks 0.11 : bear_marubozu",
         "Near S/R level at $1.35"
       ]
@@ -110,21 +110,21 @@
       "name": "Mapletree Ind Tr",
       "signal": "HOLD",
       "confidence": 61.38,
-      "last_close": 2.04,
-      "atr": 0.0246,
+      "last_close": 2.03,
+      "atr": 0.026,
       "entry_zone": {
-        "lower": 2.03,
-        "upper": 2.06
+        "lower": 2.02,
+        "upper": 2.05
       },
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 44.6 - Neutral (trend: v)",
-        "MACD Mild Bullish (spread: 0.0035, d_hist: -0.0000)",
-        "OBV slope -799033.3 - Strong Bearish volume flow",
+        "RSI 42.1 - Neutral (trend: v)",
+        "MACD Mild Bullish (spread: 0.0028, d_hist: -0.0006)",
+        "OBV slope -3075366.7 - Strong Bearish volume flow",
         "MA50 2.09 vs MA200 1.98 - Mild Bullish Trend (spread: 5.2%)",
-        "BB Mild Bearish (upper half) - price middle<->upper (tight bands, width: 0.026)",
-        "Volume 8,658,300 vs SMA20 8,912,288 - Mild Bearish (normal volume) (ratio: 0.97x)",
+        "BB Mild Bullish (lower half) - price lower<->middle (tight bands, width: 0.027)",
+        "Volume 15,487,300 vs SMA20 9,253,738 - Bearish (above avg volume) (ratio: 1.67x)",
         "Neutral Candlesticks 0.13 : bull_marubozu",
         "Near S/R level at $2.02"
       ]
@@ -132,24 +132,24 @@
     {
       "ticker": "JYEU.SI",
       "name": "Lendlease Reit",
-      "signal": "HOLD",
-      "confidence": 64.73,
+      "signal": "BUY",
+      "confidence": 71.61,
       "last_close": 0.62,
       "atr": 0.0141,
       "entry_zone": {
-        "lower": 0.61,
-        "upper": 0.63
+        "lower": 0.62,
+        "upper": 0.64
       },
       "timeframe": "1d",
-      "is_actionable": false,
+      "is_actionable": true,
       "analysis": [
-        "RSI 51.2 - Neutral (trend: -)",
-        "MACD Bullish Momentum (spread: 0.0008, d_hist: 0.0002)",
-        "OBV slope 4264200.0 - Strong Bullish volume flow",
-        "MA50 0.62 vs MA200 0.53 - Mild Bullish Trend (spread: 16.3%)",
-        "BB Mild Bearish (upper half) - price middle<->upper (normal bands, width: 0.060)",
-        "Volume 7,053,690 vs SMA20 19,862,914 - Neutral (low volume) (ratio: 0.36x)",
-        "Neutral Candlesticks 0.43 : bull_rising_sun",
+        "RSI 54.1 - Neutral (trend: ^)",
+        "MACD Bullish Momentum (spread: 0.0011, d_hist: 0.0005)",
+        "OBV slope 8496330.0 - Strong Bullish volume flow",
+        "MA50 0.62 vs MA200 0.53 - Strong Bullish Trend (spread: 16.3%)",
+        "BB Mild Bearish (upper half) - price middle<->upper (normal bands, width: 0.062)",
+        "Volume 12,696,390 vs SMA20 20,145,050 - Weak Bullish (low volume) (ratio: 0.63x)",
+        "Neutral Candlesticks 0.52 : bull_rising_sun",
         "Strong trend (ADX=56.1) - boosted confidence",
         "Near S/R level at $0.64"
       ]
