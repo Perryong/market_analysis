@@ -1,5 +1,5 @@
 {
-  "report_date": "2025-12-14 03:49:29",
+  "report_date": "2025-12-14 13:43:29",
   "total_analyzed": 17,
   "markets": {
     "us": {
@@ -10,15 +10,15 @@
     },
     "sg": {
       "total": 6,
-      "buy": 1,
+      "buy": 2,
       "sell": 0,
-      "hold": 5
+      "hold": 4
     }
   },
   "summary": {
-    "total_buy": 3,
+    "total_buy": 4,
     "total_sell": 0,
-    "total_hold": 14
+    "total_hold": 13
   },
   "us_signals": [
     {
@@ -339,8 +339,8 @@
     {
       "ticker": "BUOU.SI",
       "name": "FRASERS LOGISTICS & COM TRUST",
-      "signal": "HOLD",
-      "confidence": 45.85,
+      "signal": "BUY",
+      "confidence": 68.77,
       "last_close": 0.98,
       "atr": 0.0131,
       "entry_zone": {
@@ -348,7 +348,7 @@
         "upper": 0.99
       },
       "timeframe": "1d",
-      "is_actionable": false,
+      "is_actionable": true,
       "analysis": [
         "RSI 58.7 - Neutral (trend: -)",
         "MACD Bearish Momentum (spread: -0.0009, d_hist: -0.0003)",
@@ -358,7 +358,7 @@
         "Volume 6,119,200 vs SMA20 13,445,145 - Neutral (low volume) (ratio: 0.46x)",
         "Neutral Candlesticks 0.25 : bull_marubozu",
         "Strong trend (ADX=73.6) - boosted confidence",
-        "Near S/R level at $0.95"
+        "Near S/R level at $0.99"
       ]
     },
     {
