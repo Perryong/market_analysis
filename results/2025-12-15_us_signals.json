@@ -1,5 +1,5 @@
 {
-  "report_date": "2025-12-15 03:53:50",
+  "report_date": "2025-12-15 13:56:28",
   "total_analyzed": 11,
   "summary": {
     "buy": 2,
@@ -253,19 +253,19 @@
       "name": "META",
       "signal": "HOLD",
       "confidence": 41.72,
-      "last_close": 644.23,
-      "atr": 20.8221,
+      "last_close": 643.71,
+      "atr": 20.8179,
       "entry_zone": {
-        "lower": 633.82,
-        "upper": 660.89
+        "lower": 633.3,
+        "upper": 660.36
       },
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 48.1 - Neutral (trend: v)",
-        "MACD Mild Bullish (spread: 4.8420, d_hist: -1.5290)",
+        "RSI 47.9 - Neutral (trend: v)",
+        "MACD Mild Bullish (spread: 4.8085, d_hist: -1.5625)",
         "OBV slope -5957024.0 - Strong Bearish volume flow",
-        "MA50 667.46 vs MA200 671.11 - Bearish Trend (spread: -0.5%)",
+        "MA50 667.45 vs MA200 671.11 - Bearish Trend (spread: -0.5%)",
         "BB Mild Bearish (upper half) - price middle<->upper (wide bands, width: 0.171)",
         "Volume 14,016,915 vs SMA20 18,058,363 - Mild Bearish (normal volume) (ratio: 0.78x)",
         "Neutral Candlesticks 0.24 : bear_tweezer"
