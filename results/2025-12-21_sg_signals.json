@@ -1,10 +1,10 @@
 {
-  "report_date": "2025-12-21 03:49:36",
+  "report_date": "2025-12-21 13:43:43",
   "total_analyzed": 6,
   "summary": {
-    "buy": 3,
+    "buy": 2,
     "sell": 0,
-    "hold": 3
+    "hold": 4
   },
   "signals": [
     {
@@ -59,8 +59,8 @@
     {
       "ticker": "BUOU.SI",
       "name": "Frasers L&C Tr",
-      "signal": "BUY",
-      "confidence": 78.45,
+      "signal": "HOLD",
+      "confidence": 52.3,
       "last_close": 0.99,
       "atr": 0.0127,
       "entry_zone": {
@@ -68,7 +68,7 @@
         "upper": 1.0
       },
       "timeframe": "1d",
-      "is_actionable": true,
+      "is_actionable": false,
       "analysis": [
         "RSI 63.3 - Bearish (trend: v)",
         "MACD Mild Bullish (spread: 0.0003, d_hist: -0.0002)",
@@ -78,7 +78,7 @@
         "Volume 20,628,000 vs SMA20 13,128,765 - Bearish (above avg volume) (ratio: 1.57x)",
         "Neutral Candlesticks 0.35 : bull_marubozu",
         "Strong trend (ADX=42.6) - boosted confidence",
-        "Near S/R level at $0.99"
+        "Near S/R level at $0.95"
       ]
     },
     {
