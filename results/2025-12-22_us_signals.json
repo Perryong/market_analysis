@@ -1,5 +1,5 @@
 {
-  "report_date": "2025-12-22 03:54:18",
+  "report_date": "2025-12-22 13:51:04",
   "total_analyzed": 11,
   "summary": {
     "buy": 7,
@@ -230,19 +230,19 @@
       "name": "VOO",
       "signal": "BUY",
       "confidence": 76.69,
-      "last_close": 627.56,
-      "atr": 6.9137,
+      "last_close": 625.79,
+      "atr": 6.7871,
       "entry_zone": {
-        "lower": 624.1,
-        "upper": 633.09
+        "lower": 622.4,
+        "upper": 631.22
       },
       "timeframe": "1d",
       "is_actionable": true,
       "analysis": [
-        "RSI 54.2 - Neutral (trend: ^)",
-        "MACD Neutral Bearish (spread: -0.7246, d_hist: 0.3042)",
+        "RSI 52.6 - Neutral (trend: ^)",
+        "MACD Neutral Bearish (spread: -0.8376, d_hist: 0.1912)",
         "OBV slope 8730829.0 - Strong Bullish volume flow",
-        "MA50 620.73 vs MA200 572.41 - Strong Bullish Trend (spread: 8.4%)",
+        "MA50 620.70 vs MA200 572.40 - Strong Bullish Trend (spread: 8.4%)",
         "BB Mild Bearish (upper half) - price middle<->upper (normal bands, width: 0.041)",
         "Volume 10,487,007 vs SMA20 12,204,170 - Mild Bullish (normal volume) (ratio: 0.86x)",
         "Neutral Candlesticks 0.03 : bull_harami",
