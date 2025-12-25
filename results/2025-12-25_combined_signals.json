@@ -1,5 +1,5 @@
 {
-  "report_date": "2025-12-25 03:49:11",
+  "report_date": "2025-12-25 13:47:55",
   "total_analyzed": 17,
   "markets": {
     "us": {
@@ -10,15 +10,15 @@
     },
     "sg": {
       "total": 6,
-      "buy": 2,
+      "buy": 3,
       "sell": 0,
-      "hold": 4
+      "hold": 3
     }
   },
   "summary": {
-    "total_buy": 5,
+    "total_buy": 6,
     "total_sell": 0,
-    "total_hold": 12
+    "total_hold": 11
   },
   "us_signals": [
     {
@@ -318,7 +318,7 @@
       "ticker": "J69U.SI",
       "name": "Frasers Cpt Tr",
       "signal": "HOLD",
-      "confidence": 55.8,
+      "confidence": 55.4,
       "last_close": 2.31,
       "atr": 0.0295,
       "entry_zone": {
@@ -334,7 +334,7 @@
         "MA50 2.29 vs MA200 2.21 - Bullish Trend (spread: 3.7%)",
         "BB Bearish (near upper) - price middle<->upper (normal bands, width: 0.032)",
         "Volume 882,000 vs SMA20 3,805,515 - Weak Bullish (low volume) (ratio: 0.23x)",
-        "Neutral Candlesticks 0.27 : bear_marubozu",
+        "Neutral Candlesticks 0.19 : bear_marubozu",
         "Weak trend (ADX=11.9) - reduced confidence",
         "Near S/R level at $2.34"
       ]
@@ -342,8 +342,8 @@
     {
       "ticker": "BUOU.SI",
       "name": "Frasers L&C Tr",
-      "signal": "HOLD",
-      "confidence": 44.45,
+      "signal": "BUY",
+      "confidence": 66.18,
       "last_close": 1.0,
       "atr": 0.0125,
       "entry_zone": {
@@ -351,7 +351,7 @@
         "upper": 1.0
       },
       "timeframe": "1d",
-      "is_actionable": false,
+      "is_actionable": true,
       "analysis": [
         "RSI 64.5 - Neutral (trend: ^)",
         "MACD Neutral Bearish (spread: -0.0005, d_hist: 0.0003)",
@@ -359,8 +359,8 @@
         "MA50 0.95 vs MA200 0.87 - Strong Bullish Trend (spread: 9.6%)",
         "BB Bearish (near upper) - price middle<->upper (normal bands, width: 0.033)",
         "Volume 2,555,000 vs SMA20 10,241,945 - Weak Bullish (low volume) (ratio: 0.25x)",
-        "Neutral Candlesticks 0.36 : bear_marubozu",
-        "Near S/R level at $0.95"
+        "Neutral Candlesticks 0.28 : bear_marubozu",
+        "Near S/R level at $0.99"
       ]
     },
     {
@@ -377,7 +377,7 @@
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 54.9 - Neutral (trend: v)",
+        "RSI 54.9 - Neutral (trend: -)",
         "MACD Strong Bullish Crossover (spread: 0.0004, d_hist: 0.0006)",
         "OBV slope 1641033.3 - Bullish volume flow",
         "MA50 1.30 vs MA200 1.19 - Strong Bullish Trend (spread: 8.9%)",
