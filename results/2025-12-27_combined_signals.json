@@ -1,5 +1,5 @@
 {
-  "report_date": "2025-12-27 03:44:54",
+  "report_date": "2025-12-27 13:44:37",
   "total_analyzed": 17,
   "markets": {
     "us": {
@@ -10,15 +10,15 @@
     },
     "sg": {
       "total": 6,
-      "buy": 4,
+      "buy": 3,
       "sell": 0,
-      "hold": 2
+      "hold": 3
     }
   },
   "summary": {
-    "total_buy": 7,
+    "total_buy": 6,
     "total_sell": 0,
-    "total_hold": 10
+    "total_hold": 11
   },
   "us_signals": [
     {
@@ -342,8 +342,8 @@
     {
       "ticker": "BUOU.SI",
       "name": "Frasers L&C Tr",
-      "signal": "BUY",
-      "confidence": 75.59,
+      "signal": "HOLD",
+      "confidence": 50.39,
       "last_close": 1.0,
       "atr": 0.0119,
       "entry_zone": {
@@ -351,16 +351,16 @@
         "upper": 1.0
       },
       "timeframe": "1d",
-      "is_actionable": true,
+      "is_actionable": false,
       "analysis": [
-        "RSI 64.5 - Neutral (trend: -)",
+        "RSI 64.5 - Neutral (trend: ^)",
         "MACD Neutral Bearish (spread: -0.0004, d_hist: 0.0001)",
         "OBV slope 851666.7 - Strong Bullish volume flow",
         "MA50 0.96 vs MA200 0.87 - Strong Bullish Trend (spread: 9.7%)",
         "BB Bearish (near upper) - price middle<->upper (normal bands, width: 0.032)",
         "Volume 3,848,400 vs SMA20 10,073,945 - Neutral (low volume) (ratio: 0.38x)",
         "Neutral Candlesticks 0.35 : bear_marubozu",
-        "Near S/R level at $0.99"
+        "Near S/R level at $0.95"
       ]
     },
     {
@@ -377,7 +377,7 @@
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 54.9 - Neutral (trend: -)",
+        "RSI 54.9 - Neutral (trend: v)",
         "MACD Bullish Momentum (spread: 0.0007, d_hist: 0.0004)",
         "OBV slope 1641033.3 - Bullish volume flow",
         "MA50 1.30 vs MA200 1.19 - Strong Bullish Trend (spread: 8.9%)",
