@@ -1,0 +1,457 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>US Market Analysis - All Charts - 2025-12-30</title>
+    <meta charset="utf-8">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            margin: 5px 0 0 0;
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .container {
+            display: flex;
+            height: calc(100vh - 100px);
+        }
+        
+        .tabs-sidebar {
+            width: 280px;
+            background: white;
+            border-right: 1px solid #e0e0e0;
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+        }
+        
+        .tabs-sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .tabs-sidebar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        .tabs-sidebar::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 3px;
+        }
+        
+        .tabs-sidebar::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        .tab-button {
+            width: 100%;
+            padding: 15px 20px;
+            text-align: left;
+            background: white;
+            border: none;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .tab-button:hover {
+            background: #f8f9fa;
+        }
+        
+        .tab-button.active {
+            background: #e3f2fd;
+            border-left-width: 6px;
+        }
+        
+        .ticker-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .signal-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .signal-badge.buy {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .signal-badge.sell {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .signal-badge.hold {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+        
+        .confidence {
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .content-area {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .tab-content {
+            height: 100%;
+            display: none;
+            overflow: hidden;
+            flex-direction: column;
+        }
+        
+        .tab-content.active {
+            display: flex;
+        }
+        
+        .chart-header {
+            padding: 20px 30px;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            flex-shrink: 0;
+        }
+        
+        .chart-header h2 {
+            margin: 0 0 10px 0;
+            font-size: 24px;
+            color: #333;
+        }
+        
+        .signal-info {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+        }
+        
+        .signal-label, .confidence-label {
+            color: #666;
+        }
+        
+        .signal-label strong.buy {
+            color: #28a745;
+        }
+        
+        .signal-label strong.sell {
+            color: #dc3545;
+        }
+        
+        .signal-label strong.hold {
+            color: #6c757d;
+        }
+        
+        .chart-iframe {
+            flex: 1;
+            width: 100%;
+            border: none;
+            background: white;
+            min-height: 0;
+            overflow: hidden;
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .tabs-sidebar {
+                width: 100%;
+                height: 200px;
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>US Market Analysis - All Charts</h1>
+        <p>Generated: 2025-12-30 | Total Tickers: 11</p>
+    </div>
+    
+    <div class="container">
+        <div class="tabs-sidebar">
+            
+                <button class="tab-button active" onclick="openTab(event, 'AAPL')" 
+                        style="border-left: 4px solid #28a745;">
+                    <span class="ticker-name">AAPL</span>
+                    <span class="signal-badge buy">BUY</span>
+                    <span class="confidence">91.5%</span>
+                </button>
+                
+                <button class="tab-button " onclick="openTab(event, 'MSFT')" 
+                        style="border-left: 4px solid #6c757d;">
+                    <span class="ticker-name">MSFT</span>
+                    <span class="signal-badge hold">HOLD</span>
+                    <span class="confidence">62.6%</span>
+                </button>
+                
+                <button class="tab-button " onclick="openTab(event, 'GOOGL')" 
+                        style="border-left: 4px solid #6c757d;">
+                    <span class="ticker-name">GOOGL</span>
+                    <span class="signal-badge hold">HOLD</span>
+                    <span class="confidence">55.1%</span>
+                </button>
+                
+                <button class="tab-button " onclick="openTab(event, 'NVDA')" 
+                        style="border-left: 4px solid #6c757d;">
+                    <span class="ticker-name">NVDA</span>
+                    <span class="signal-badge hold">HOLD</span>
+                    <span class="confidence">46.0%</span>
+                </button>
+                
+                <button class="tab-button " onclick="openTab(event, 'AMZN')" 
+                        style="border-left: 4px solid #6c757d;">
+                    <span class="ticker-name">AMZN</span>
+                    <span class="signal-badge hold">HOLD</span>
+                    <span class="confidence">44.3%</span>
+                </button>
+                
+                <button class="tab-button " onclick="openTab(event, 'BABA')" 
+                        style="border-left: 4px solid #6c757d;">
+                    <span class="ticker-name">BABA</span>
+                    <span class="signal-badge hold">HOLD</span>
+                    <span class="confidence">50.9%</span>
+                </button>
+                
+                <button class="tab-button " onclick="openTab(event, 'V')" 
+                        style="border-left: 4px solid #6c757d;">
+                    <span class="ticker-name">V</span>
+                    <span class="signal-badge hold">HOLD</span>
+                    <span class="confidence">50.7%</span>
+                </button>
+                
+                <button class="tab-button " onclick="openTab(event, 'MA')" 
+                        style="border-left: 4px solid #6c757d;">
+                    <span class="ticker-name">MA</span>
+                    <span class="signal-badge hold">HOLD</span>
+                    <span class="confidence">63.4%</span>
+                </button>
+                
+                <button class="tab-button " onclick="openTab(event, 'AMD')" 
+                        style="border-left: 4px solid #28a745;">
+                    <span class="ticker-name">AMD</span>
+                    <span class="signal-badge buy">BUY</span>
+                    <span class="confidence">66.4%</span>
+                </button>
+                
+                <button class="tab-button " onclick="openTab(event, 'VOO')" 
+                        style="border-left: 4px solid #28a745;">
+                    <span class="ticker-name">VOO</span>
+                    <span class="signal-badge buy">BUY</span>
+                    <span class="confidence">78.4%</span>
+                </button>
+                
+                <button class="tab-button " onclick="openTab(event, 'META')" 
+                        style="border-left: 4px solid #6c757d;">
+                    <span class="ticker-name">META</span>
+                    <span class="signal-badge hold">HOLD</span>
+                    <span class="confidence">43.5%</span>
+                </button>
+                
+        </div>
+        
+        <div class="content-area">
+            
+                <div id="AAPL" class="tab-content active">
+                    <div class="chart-header">
+                        <h2>AAPL - AAPL</h2>
+                        <div class="signal-info">
+                            <span class="signal-label">Signal: <strong class="buy">BUY</strong></span>
+                            <span class="confidence-label">Confidence: <strong>91.5%</strong></span>
+                        </div>
+                    </div>
+                    <iframe src="AAPL_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
+                </div>
+                
+                <div id="MSFT" class="tab-content ">
+                    <div class="chart-header">
+                        <h2>MSFT - MSFT</h2>
+                        <div class="signal-info">
+                            <span class="signal-label">Signal: <strong class="hold">HOLD</strong></span>
+                            <span class="confidence-label">Confidence: <strong>62.6%</strong></span>
+                        </div>
+                    </div>
+                    <iframe src="MSFT_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
+                </div>
+                
+                <div id="GOOGL" class="tab-content ">
+                    <div class="chart-header">
+                        <h2>GOOGL - GOOGL</h2>
+                        <div class="signal-info">
+                            <span class="signal-label">Signal: <strong class="hold">HOLD</strong></span>
+                            <span class="confidence-label">Confidence: <strong>55.1%</strong></span>
+                        </div>
+                    </div>
+                    <iframe src="GOOGL_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
+                </div>
+                
+                <div id="NVDA" class="tab-content ">
+                    <div class="chart-header">
+                        <h2>NVDA - NVDA</h2>
+                        <div class="signal-info">
+                            <span class="signal-label">Signal: <strong class="hold">HOLD</strong></span>
+                            <span class="confidence-label">Confidence: <strong>46.0%</strong></span>
+                        </div>
+                    </div>
+                    <iframe src="NVDA_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
+                </div>
+                
+                <div id="AMZN" class="tab-content ">
+                    <div class="chart-header">
+                        <h2>AMZN - AMZN</h2>
+                        <div class="signal-info">
+                            <span class="signal-label">Signal: <strong class="hold">HOLD</strong></span>
+                            <span class="confidence-label">Confidence: <strong>44.3%</strong></span>
+                        </div>
+                    </div>
+                    <iframe src="AMZN_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
+                </div>
+                
+                <div id="BABA" class="tab-content ">
+                    <div class="chart-header">
+                        <h2>BABA - BABA</h2>
+                        <div class="signal-info">
+                            <span class="signal-label">Signal: <strong class="hold">HOLD</strong></span>
+                            <span class="confidence-label">Confidence: <strong>50.9%</strong></span>
+                        </div>
+                    </div>
+                    <iframe src="BABA_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
+                </div>
+                
+                <div id="V" class="tab-content ">
+                    <div class="chart-header">
+                        <h2>V - V</h2>
+                        <div class="signal-info">
+                            <span class="signal-label">Signal: <strong class="hold">HOLD</strong></span>
+                            <span class="confidence-label">Confidence: <strong>50.7%</strong></span>
+                        </div>
+                    </div>
+                    <iframe src="V_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
+                </div>
+                
+                <div id="MA" class="tab-content ">
+                    <div class="chart-header">
+                        <h2>MA - MA</h2>
+                        <div class="signal-info">
+                            <span class="signal-label">Signal: <strong class="hold">HOLD</strong></span>
+                            <span class="confidence-label">Confidence: <strong>63.4%</strong></span>
+                        </div>
+                    </div>
+                    <iframe src="MA_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
+                </div>
+                
+                <div id="AMD" class="tab-content ">
+                    <div class="chart-header">
+                        <h2>AMD - AMD</h2>
+                        <div class="signal-info">
+                            <span class="signal-label">Signal: <strong class="buy">BUY</strong></span>
+                            <span class="confidence-label">Confidence: <strong>66.4%</strong></span>
+                        </div>
+                    </div>
+                    <iframe src="AMD_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
+                </div>
+                
+                <div id="VOO" class="tab-content ">
+                    <div class="chart-header">
+                        <h2>VOO - VOO</h2>
+                        <div class="signal-info">
+                            <span class="signal-label">Signal: <strong class="buy">BUY</strong></span>
+                            <span class="confidence-label">Confidence: <strong>78.4%</strong></span>
+                        </div>
+                    </div>
+                    <iframe src="VOO_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
+                </div>
+                
+                <div id="META" class="tab-content ">
+                    <div class="chart-header">
+                        <h2>META - META</h2>
+                        <div class="signal-info">
+                            <span class="signal-label">Signal: <strong class="hold">HOLD</strong></span>
+                            <span class="confidence-label">Confidence: <strong>43.5%</strong></span>
+                        </div>
+                    </div>
+                    <iframe src="META_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
+                </div>
+                
+        </div>
+    </div>
+    
+    <script>
+        function openTab(evt, tickerName) {
+            var i, tabcontent, tabbuttons;
+            
+            // Hide all tab content
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            
+            // Remove active class from all buttons
+            tabbuttons = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].classList.remove("active");
+            }
+            
+            // Show the selected tab and mark button as active
+            document.getElementById(tickerName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            var tabs = document.querySelectorAll('.tab-button');
+            var activeIndex = Array.from(tabs).findIndex(btn => btn.classList.contains('active'));
+            
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                e.preventDefault();
+                var nextIndex = (activeIndex + 1) % tabs.length;
+                tabs[nextIndex].click();
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                var prevIndex = (activeIndex - 1 + tabs.length) % tabs.length;
+                tabs[prevIndex].click();
+            }
+        });
+    </script>
+</body>
+</html>
