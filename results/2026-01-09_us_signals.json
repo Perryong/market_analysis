@@ -1,5 +1,5 @@
 {
-  "report_date": "2026-01-09 03:51:33",
+  "report_date": "2026-01-09 13:53:37",
   "total_analyzed": 11,
   "summary": {
     "buy": 3,
@@ -184,23 +184,23 @@
       "ticker": "MA",
       "name": "MA",
       "signal": "BUY",
-      "confidence": 73.93,
-      "last_close": 580.07,
-      "atr": 9.7094,
+      "confidence": 73.02,
+      "last_close": 579.92,
+      "atr": 9.2125,
       "entry_zone": {
-        "lower": 575.22,
-        "upper": 587.84
+        "lower": 575.31,
+        "upper": 587.29
       },
       "timeframe": "1d",
       "is_actionable": true,
       "analysis": [
-        "RSI 61.2 - Neutral (trend: ^)",
-        "MACD Bullish Momentum (spread: 0.2312, d_hist: 0.0791)",
-        "OBV slope 1264196.0 - Strong Bullish volume flow",
-        "MA50 556.60 vs MA200 562.16 - Mild Bearish Trend (spread: -1.0%)",
-        "BB Mild Bearish (upper half) - price middle<->upper (normal bands, width: 0.068)",
-        "Volume 3,390,208 vs SMA20 2,859,462 - Mild Bullish (normal volume) (ratio: 1.19x)",
-        "Neutral Candlesticks 0.57 : bear_tweezer",
+        "RSI 61.1 - Bearish (trend: v)",
+        "MACD Strong Bullish Crossover (spread: 0.1522, d_hist: 0.2092)",
+        "OBV slope 1089195.3 - Strong Bullish volume flow",
+        "MA50 556.45 vs MA200 561.98 - Mild Bearish Trend (spread: -1.0%)",
+        "BB Mild Bearish (upper half) - price middle<->upper (wide bands, width: 0.084)",
+        "Volume 3,654,081 vs SMA20 2,788,232 - Bearish (above avg volume) (ratio: 1.31x)",
+        "Neutral Candlesticks 0.62 : bear_tweezer",
         "Near S/R level at $582.23"
       ]
     },
