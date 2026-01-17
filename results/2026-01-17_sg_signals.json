@@ -1,5 +1,5 @@
 {
-  "report_date": "2026-01-17 03:44:32",
+  "report_date": "2026-01-17 13:45:11",
   "total_analyzed": 6,
   "summary": {
     "buy": 1,
@@ -70,7 +70,7 @@
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 62.1 - Neutral (trend: ^)",
+        "RSI 62.1 - Neutral (trend: -)",
         "MACD Mild Bullish (spread: 0.0013, d_hist: -0.0009)",
         "OBV slope -6493400.0 - Strong Bearish volume flow",
         "MA50 nan vs MA200 nan - Neutral (spread: 0.0%)",
