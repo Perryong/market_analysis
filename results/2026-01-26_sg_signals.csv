@@ -1,0 +1,7 @@
+Ticker,Name,Signal,Confidence %,Last Close,ATR,Entry Low,Entry High,Timeframe
+CRPU.SI,Sasseur Reit,HOLD,34.06,0.69,0.0071,0.68,0.69,1d
+J69U.SI,Frasers Cpt Tr,HOLD,40.80,2.27,0.0303,2.25,2.29,1d
+BUOU.SI,Frasers L&C Tr,HOLD,47.91,1.02,0.0171,1.01,1.03,1d
+M44U.SI,Mapletree Log Tr,BUY,82.61,1.36,0.0160,1.35,1.37,1d
+ME8U.SI,Mapletree Ind Tr,BUY,84.29,2.11,0.0191,2.10,2.13,1d
+JYEU.SI,Lendlease Reit,BUY,85.04,0.64,0.0113,0.64,0.65,1d
