@@ -1,0 +1,3 @@
+Ticker,Name,Signal,Confidence %,Last Close,ATR,Entry Low,Entry High,Timeframe
+AAPL,AAPL,BUY,66.03,259.48,5.4992,256.73,263.88,1d
+MSFT,MSFT,HOLD,41.32,430.29,13.4277,423.58,441.03,1d

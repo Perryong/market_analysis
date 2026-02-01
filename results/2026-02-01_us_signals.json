@@ -1,0 +1,60 @@
+{
+  "report_date": "2026-02-01 13:56:46",
+  "total_analyzed": 2,
+  "summary": {
+    "buy": 1,
+    "sell": 0,
+    "hold": 1
+  },
+  "signals": [
+    {
+      "ticker": "AAPL",
+      "name": "AAPL",
+      "signal": "BUY",
+      "confidence": 66.03,
+      "last_close": 259.48,
+      "atr": 5.4992,
+      "entry_zone": {
+        "lower": 256.73,
+        "upper": 263.88
+      },
+      "timeframe": "1d",
+      "is_actionable": true,
+      "analysis": [
+        "RSI 48.4 - Neutral (trend: ^)",
+        "MACD Bullish Momentum (spread: 0.9808, d_hist: 0.3262)",
+        "OBV slope 39469482.0 - Strong Bullish volume flow",
+        "MA50 268.30 vs MA200 236.65 - Mild Bullish Trend (spread: 13.4%)",
+        "BB Mild Bearish (upper half) - price middle<->upper (wide bands, width: 0.097)",
+        "Volume 92,443,408 vs SMA20 52,000,864 - Bullish (above avg volume) (ratio: 1.78x)",
+        "Neutral Candlesticks 0.11 : bull_engulfing",
+        "Strong trend (ADX=48.2) - boosted confidence",
+        "Near S/R level at $250.00"
+      ]
+    },
+    {
+      "ticker": "MSFT",
+      "name": "MSFT",
+      "signal": "HOLD",
+      "confidence": 41.32,
+      "last_close": 430.29,
+      "atr": 13.4277,
+      "entry_zone": {
+        "lower": 423.58,
+        "upper": 441.03
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 32.6 - Neutral (trend: v)",
+        "MACD Bearish Momentum (spread: -1.9061, d_hist: -1.7167)",
+        "OBV slope -50182246.3 - Strong Bearish volume flow",
+        "MA50 476.12 vs MA200 485.94 - Bearish Trend (spread: -2.0%)",
+        "BB Strong Bullish (<lower band) - price <lower (wide bands, width: 0.137)",
+        "Volume 58,566,819 vs SMA20 34,203,128 - Bearish (above avg volume) (ratio: 1.71x)",
+        "Neutral Candlesticks 0.24 : bull_harami",
+        "Strong trend (ADX=42.6) - boosted confidence"
+      ]
+    }
+  ]
+}
