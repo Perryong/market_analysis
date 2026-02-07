@@ -1,6 +1,6 @@
 {
-  "report_date": "2026-02-07 04:19:25",
-  "total_analyzed": 5,
+  "report_date": "2026-02-07 13:57:24",
+  "total_analyzed": 6,
   "markets": {
     "us": {
       "total": 0,
@@ -9,16 +9,16 @@
       "hold": 0
     },
     "sg": {
-      "total": 5,
+      "total": 6,
       "buy": 2,
       "sell": 0,
-      "hold": 3
+      "hold": 4
     }
   },
   "summary": {
     "total_buy": 2,
     "total_sell": 0,
-    "total_hold": 3
+    "total_hold": 4
   },
   "us_signals": [],
   "sg_signals": [
@@ -69,6 +69,30 @@
         "Volume 5,234,400 vs SMA20 5,122,845 - Mild Bullish (normal volume) (ratio: 1.02x)",
         "Neutral Candlesticks 0.00 : ",
         "Near S/R level at $2.23"
+      ]
+    },
+    {
+      "ticker": "BUOU.SI",
+      "name": "Frasers L&C Tr",
+      "signal": "HOLD",
+      "confidence": 47.0,
+      "last_close": 1.01,
+      "atr": 0.0188,
+      "entry_zone": {
+        "lower": 1.0,
+        "upper": 1.03
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 48.4 - Neutral (trend: ^)",
+        "MACD Neutral Bearish (spread: -0.0041, d_hist: 0.0006)",
+        "OBV slope -2834033.3 - Bearish volume flow",
+        "MA50 1.00 vs MA200 0.90 - Strong Bullish Trend (spread: 11.6%)",
+        "BB Mild Bullish (lower half) - price lower<->middle (normal bands, width: 0.053)",
+        "Volume 5,717,700 vs SMA20 10,332,150 - Weak Bullish (low volume) (ratio: 0.55x)",
+        "Neutral Candlesticks 0.30 : bull_marubozu",
+        "Near S/R level at $1.05"
       ]
     },
     {
