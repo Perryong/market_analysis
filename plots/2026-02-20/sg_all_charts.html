@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SG Market Analysis - All Charts - 2026-02-20</title>
+    <meta charset="utf-8">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            margin: 5px 0 0 0;
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .container {
+            display: flex;
+            height: calc(100vh - 100px);
+        }
+        
+        .tabs-sidebar {
+            width: 280px;
+            background: white;
+            border-right: 1px solid #e0e0e0;
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+        }
+        
+        .tabs-sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .tabs-sidebar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        .tabs-sidebar::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 3px;
+        }
+        
+        .tabs-sidebar::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        .tab-button {
+            width: 100%;
+            padding: 15px 20px;
+            text-align: left;
+            background: white;
+            border: none;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .tab-button:hover {
+            background: #f8f9fa;
+        }
+        
+        .tab-button.active {
+            background: #e3f2fd;
+            border-left-width: 6px;
+        }
+        
+        .ticker-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .signal-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .signal-badge.buy {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .signal-badge.sell {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .signal-badge.hold {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+        
+        .confidence {
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .content-area {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .tab-content {
+            height: 100%;
+            display: none;
+            overflow: hidden;
+            flex-direction: column;
+        }
+        
+        .tab-content.active {
+            display: flex;
+        }
+        
+        .chart-header {
+            padding: 20px 30px;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            flex-shrink: 0;
+        }
+        
+        .chart-header h2 {
+            margin: 0 0 10px 0;
+            font-size: 24px;
+            color: #333;
+        }
+        
+        .signal-info {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+        }
+        
+        .signal-label, .confidence-label {
+            color: #666;
+        }
+        
+        .signal-label strong.buy {
+            color: #28a745;
+        }
+        
+        .signal-label strong.sell {
+            color: #dc3545;
+        }
+        
+        .signal-label strong.hold {
+            color: #6c757d;
+        }
+        
+        .chart-iframe {
+            flex: 1;
+            width: 100%;
+            border: none;
+            background: white;
+            min-height: 0;
+            overflow: hidden;
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .tabs-sidebar {
+                width: 100%;
+                height: 200px;
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>SG Market Analysis - All Charts</h1>
+        <p>Generated: 2026-02-20 | Total Tickers: 6</p>
+    </div>
+    
+    <div class="container">
+        <div class="tabs-sidebar">
+            
+                <button class="tab-button active" onclick="openTab(event, 'CRPU.SI')" 
+                        style="border-left: 4px solid #6c757d;">
+                    <span class="ticker-name">CRPU.SI</span>
+                    <span class="signal-badge hold">HOLD</span>
+                    <span class="confidence">38.4%</span>
+                </button>
+                
+                <button class="tab-button " onclick="openTab(event, 'J69U.SI')" 
+                        style="border-left: 4px solid #6c757d;">
+                    <span class="ticker-name">J69U.SI</span>
+                    <span class="signal-badge hold">HOLD</span>
+                    <span class="confidence">51.6%</span>
+                </button>
+                
+                <button class="tab-button " onclick="openTab(event, 'BUOU.SI')" 
+                        style="border-left: 4px solid #6c757d;">
+                    <span class="ticker-name">BUOU.SI</span>
+                    <span class="signal-badge hold">HOLD</span>
+                    <span class="confidence">39.4%</span>
+                </button>
+                
+                <button class="tab-button " onclick="openTab(event, 'M44U.SI')" 
+                        style="border-left: 4px solid #6c757d;">
+                    <span class="ticker-name">M44U.SI</span>
+                    <span class="signal-badge hold">HOLD</span>
+                    <span class="confidence">56.0%</span>
+                </button>
+                
+                <button class="tab-button " onclick="openTab(event, 'ME8U.SI')" 
+                        style="border-left: 4px solid #6c757d;">
+                    <span class="ticker-name">ME8U.SI</span>
+                    <span class="signal-badge hold">HOLD</span>
+                    <span class="confidence">56.7%</span>
+                </button>
+                
+                <button class="tab-button " onclick="openTab(event, 'JYEU.SI')" 
+                        style="border-left: 4px solid #6c757d;">
+                    <span class="ticker-name">JYEU.SI</span>
+                    <span class="signal-badge hold">HOLD</span>
+                    <span class="confidence">27.2%</span>
+                </button>
+                
+        </div>
+        
+        <div class="content-area">
+            
+                <div id="CRPU.SI" class="tab-content active">
+                    <div class="chart-header">
+                        <h2>CRPU.SI - Sasseur Reit</h2>
+                        <div class="signal-info">
+                            <span class="signal-label">Signal: <strong class="hold">HOLD</strong></span>
+                            <span class="confidence-label">Confidence: <strong>38.4%</strong></span>
+                        </div>
+                    </div>
+                    <iframe src="CRPU.SI_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
+                </div>
+                
+                <div id="J69U.SI" class="tab-content ">
+                    <div class="chart-header">
+                        <h2>J69U.SI - Frasers Cpt Tr</h2>
+                        <div class="signal-info">
+                            <span class="signal-label">Signal: <strong class="hold">HOLD</strong></span>
+                            <span class="confidence-label">Confidence: <strong>51.6%</strong></span>
+                        </div>
+                    </div>
+                    <iframe src="J69U.SI_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
+                </div>
+                
+                <div id="BUOU.SI" class="tab-content ">
+                    <div class="chart-header">
+                        <h2>BUOU.SI - Frasers L&C Tr</h2>
+                        <div class="signal-info">
+                            <span class="signal-label">Signal: <strong class="hold">HOLD</strong></span>
+                            <span class="confidence-label">Confidence: <strong>39.4%</strong></span>
+                        </div>
+                    </div>
+                    <iframe src="BUOU.SI_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
+                </div>
+                
+                <div id="M44U.SI" class="tab-content ">
+                    <div class="chart-header">
+                        <h2>M44U.SI - Mapletree Log Tr</h2>
+                        <div class="signal-info">
+                            <span class="signal-label">Signal: <strong class="hold">HOLD</strong></span>
+                            <span class="confidence-label">Confidence: <strong>56.0%</strong></span>
+                        </div>
+                    </div>
+                    <iframe src="M44U.SI_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
+                </div>
+                
+                <div id="ME8U.SI" class="tab-content ">
+                    <div class="chart-header">
+                        <h2>ME8U.SI - Mapletree Ind Tr</h2>
+                        <div class="signal-info">
+                            <span class="signal-label">Signal: <strong class="hold">HOLD</strong></span>
+                            <span class="confidence-label">Confidence: <strong>56.7%</strong></span>
+                        </div>
+                    </div>
+                    <iframe src="ME8U.SI_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
+                </div>
+                
+                <div id="JYEU.SI" class="tab-content ">
+                    <div class="chart-header">
+                        <h2>JYEU.SI - Lendlease Reit</h2>
+                        <div class="signal-info">
+                            <span class="signal-label">Signal: <strong class="hold">HOLD</strong></span>
+                            <span class="confidence-label">Confidence: <strong>27.2%</strong></span>
+                        </div>
+                    </div>
+                    <iframe src="JYEU.SI_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
+                </div>
+                
+        </div>
+    </div>
+    
+    <script>
+        function openTab(evt, tickerName) {
+            var i, tabcontent, tabbuttons;
+            
+            // Hide all tab content
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            
+            // Remove active class from all buttons
+            tabbuttons = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].classList.remove("active");
+            }
+            
+            // Show the selected tab and mark button as active
+            document.getElementById(tickerName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            var tabs = document.querySelectorAll('.tab-button');
+            var activeIndex = Array.from(tabs).findIndex(btn => btn.classList.contains('active'));
+            
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                e.preventDefault();
+                var nextIndex = (activeIndex + 1) % tabs.length;
+                tabs[nextIndex].click();
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                var prevIndex = (activeIndex - 1 + tabs.length) % tabs.length;
+                tabs[prevIndex].click();
+            }
+        });
+    </script>
+</body>
+</html>
