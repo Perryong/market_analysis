@@ -1,6 +1,6 @@
 {
-  "report_date": "2026-02-21 04:18:00",
-  "total_analyzed": 17,
+  "report_date": "2026-02-21 13:57:07",
+  "total_analyzed": 16,
   "markets": {
     "us": {
       "total": 11,
@@ -9,16 +9,16 @@
       "hold": 10
     },
     "sg": {
-      "total": 6,
+      "total": 5,
       "buy": 0,
       "sell": 0,
-      "hold": 6
+      "hold": 5
     }
   },
   "summary": {
     "total_buy": 1,
     "total_sell": 0,
-    "total_hold": 16
+    "total_hold": 15
   },
   "us_signals": [
     {
@@ -293,31 +293,6 @@
   ],
   "sg_signals": [
     {
-      "ticker": "CRPU.SI",
-      "name": "Sasseur Reit",
-      "signal": "HOLD",
-      "confidence": 38.36,
-      "last_close": 0.69,
-      "atr": 0.0069,
-      "entry_zone": {
-        "lower": 0.68,
-        "upper": 0.69
-      },
-      "timeframe": "1d",
-      "is_actionable": false,
-      "analysis": [
-        "RSI 51.0 - Neutral (trend: v)",
-        "MACD Neutral Bearish (spread: -0.0001, d_hist: 0.0001)",
-        "OBV slope 694000.0 - Bullish volume flow",
-        "MA50 0.68 vs MA200 0.66 - Bullish Trend (spread: 3.3%)",
-        "BB Neutral (at middle) - price middle (tight bands, width: 0.021)",
-        "Volume 222,300 vs SMA20 895,005 - Weak Bearish (low volume) (ratio: 0.25x)",
-        "Neutral Candlesticks 0.49 : bear_marubozu",
-        "Weak trend (ADX=19.8) - reduced confidence",
-        "Near S/R level at $0.67"
-      ]
-    },
-    {
       "ticker": "J69U.SI",
       "name": "Frasers Cpt Tr",
       "signal": "HOLD",
@@ -404,7 +379,7 @@
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 46.8 - Neutral (trend: -)",
+        "RSI 46.8 - Neutral (trend: ^)",
         "MACD Neutral Bearish (spread: -0.0030, d_hist: 0.0008)",
         "OBV slope 414466.7 - Strong Bullish volume flow",
         "MA50 2.04 vs MA200 1.99 - Bullish Trend (spread: 2.5%)",
