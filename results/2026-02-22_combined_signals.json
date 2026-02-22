@@ -1,5 +1,5 @@
 {
-  "report_date": "2026-02-22 04:30:55",
+  "report_date": "2026-02-22 13:58:01",
   "total_analyzed": 17,
   "markets": {
     "us": {
@@ -404,7 +404,7 @@
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 46.8 - Neutral (trend: ^)",
+        "RSI 46.8 - Neutral (trend: -)",
         "MACD Neutral Bearish (spread: -0.0030, d_hist: 0.0008)",
         "OBV slope 414466.7 - Strong Bullish volume flow",
         "MA50 2.04 vs MA200 1.99 - Bullish Trend (spread: 2.5%)",
