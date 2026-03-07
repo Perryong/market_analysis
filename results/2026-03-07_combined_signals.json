@@ -1,5 +1,5 @@
 {
-  "report_date": "2026-03-07 04:11:50",
+  "report_date": "2026-03-07 13:52:53",
   "total_analyzed": 6,
   "markets": {
     "us": {
@@ -108,7 +108,7 @@
       "timeframe": "1d",
       "is_actionable": true,
       "analysis": [
-        "RSI 25.2 - Bullish (trend: -)",
+        "RSI 25.2 - Bullish (trend: v)",
         "MACD Bearish Momentum (spread: -0.0062, d_hist: -0.0003)",
         "OBV slope -13703000.0 - Bearish volume flow",
         "MA50 1.31 vs MA200 1.22 - Mild Bullish Trend (spread: 7.3%)",
@@ -147,7 +147,7 @@
       "ticker": "JYEU.SI",
       "name": "Lendlease Reit",
       "signal": "HOLD",
-      "confidence": 53.76,
+      "confidence": 55.68,
       "last_close": 0.56,
       "atr": 0.0137,
       "entry_zone": {
@@ -157,7 +157,7 @@
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 19.8 - Bullish (trend: -)",
+        "RSI 19.8 - Strong Bullish (trend: ^)",
         "MACD Neutral Bearish (spread: -0.0058, d_hist: 0.0004)",
         "OBV slope -12613933.3 - Bearish volume flow",
         "MA50 0.62 vs MA200 0.58 - Mild Bullish Trend (spread: 7.0%)",
