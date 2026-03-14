@@ -1,5 +1,5 @@
 {
-  "report_date": "2026-03-14 04:23:10",
+  "report_date": "2026-03-14 14:00:04",
   "total_analyzed": 17,
   "markets": {
     "us": {
@@ -10,15 +10,15 @@
     },
     "sg": {
       "total": 6,
-      "buy": 2,
+      "buy": 3,
       "sell": 0,
-      "hold": 4
+      "hold": 3
     }
   },
   "summary": {
-    "total_buy": 3,
+    "total_buy": 4,
     "total_sell": 0,
-    "total_hold": 14
+    "total_hold": 13
   },
   "us_signals": [
     {
@@ -364,14 +364,14 @@
         "Volume 7,781,100 vs SMA20 10,482,062 - Mild Bearish (normal volume) (ratio: 0.74x)",
         "Neutral Candlesticks 0.13 : bull_marubozu",
         "Strong trend (ADX=46.3) - boosted confidence",
-        "Near S/R level at $0.93"
+        "Near S/R level at $0.92"
       ]
     },
     {
       "ticker": "M44U.SI",
       "name": "Mapletree Log Tr",
-      "signal": "HOLD",
-      "confidence": 51.2,
+      "signal": "BUY",
+      "confidence": 76.8,
       "last_close": 1.2,
       "atr": 0.0249,
       "entry_zone": {
@@ -379,7 +379,7 @@
         "upper": 1.22
       },
       "timeframe": "1d",
-      "is_actionable": false,
+      "is_actionable": true,
       "analysis": [
         "RSI 25.2 - Bullish (trend: v)",
         "MACD Neutral Bearish (spread: -0.0065, d_hist: 0.0000)",
@@ -389,7 +389,7 @@
         "Volume 19,168,500 vs SMA20 16,526,255 - Mild Bearish (normal volume) (ratio: 1.16x)",
         "Neutral Candlesticks 0.27 : bear_tweezer",
         "Strong trend (ADX=91.5) - boosted confidence",
-        "Near S/R level at $1.22"
+        "Near S/R level at $1.20"
       ]
     },
     {
