@@ -18,14 +18,14 @@
     "total_return_percent": 1.0192043603945238,
     "annualized_return": 0.008428212633216692,
     "cumulative_return": 0.010192043603945322,
-    "volatility": 0.001004801036242049,
-    "annualized_volatility": 0.01595072195397876,
-    "sharpe_ratio": -0.7254710727307758,
-    "sortino_ratio": -0.8278588587428733,
+    "volatility": 0.0010048009122050545,
+    "annualized_volatility": 0.015950719984952517,
+    "sharpe_ratio": -0.7254711622860801,
+    "sortino_ratio": -0.8278589511293726,
     "calmar_ratio": 0.33696372098593913,
     "max_drawdown": -253.71056827049688,
     "max_drawdown_percent": -2.5012225673897945,
-    "avg_drawdown": -116.15986365198358,
+    "avg_drawdown": -116.15986333384568,
     "max_drawdown_duration_days": 301,
     "num_trades": 34,
     "num_winning_trades": 18,
@@ -44,6 +44,6 @@
     "beta": 0.0,
     "r_squared": 0.0,
     "value_at_risk_95": -0.0011786650689630251,
-    "conditional_var_95": -0.0023267819557141467
+    "conditional_var_95": -0.0023267816990795442
   }
 }
