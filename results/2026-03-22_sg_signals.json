@@ -1,10 +1,10 @@
 {
-  "report_date": "2026-03-22 04:33:08",
+  "report_date": "2026-03-22 13:59:04",
   "total_analyzed": 6,
   "summary": {
-    "buy": 5,
+    "buy": 4,
     "sell": 0,
-    "hold": 1
+    "hold": 2
   },
   "signals": [
     {
@@ -85,8 +85,8 @@
     {
       "ticker": "M44U.SI",
       "name": "Mapletree Log Tr",
-      "signal": "BUY",
-      "confidence": 76.74,
+      "signal": "HOLD",
+      "confidence": 51.16,
       "last_close": 1.21,
       "atr": 0.0247,
       "entry_zone": {
@@ -94,7 +94,7 @@
         "upper": 1.23
       },
       "timeframe": "1d",
-      "is_actionable": true,
+      "is_actionable": false,
       "analysis": [
         "RSI 35.6 - Bullish (trend: ^)",
         "MACD Neutral Bearish (spread: -0.0009, d_hist: 0.0010)",
@@ -104,7 +104,7 @@
         "Volume 15,701,400 vs SMA20 17,271,925 - Mild Bullish (normal volume) (ratio: 0.91x)",
         "Neutral Candlesticks 0.36 : bear_tweezer",
         "Strong trend (ADX=92.1) - boosted confidence",
-        "Near S/R level at $1.20"
+        "Near S/R level at $1.17"
       ]
     },
     {
