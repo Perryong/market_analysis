@@ -1,5 +1,5 @@
 {
-  "report_date": "2026-03-28 04:33:12",
+  "report_date": "2026-03-28 14:03:41",
   "total_analyzed": 6,
   "summary": {
     "buy": 5,
@@ -36,7 +36,7 @@
       "ticker": "J69U.SI",
       "name": "Frasers Cpt Tr",
       "signal": "HOLD",
-      "confidence": 55.82,
+      "confidence": 52.94,
       "last_close": 2.18,
       "atr": 0.0304,
       "entry_zone": {
@@ -46,7 +46,7 @@
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 36.3 - Bullish (trend: ^)",
+        "RSI 36.3 - Neutral (trend: -)",
         "MACD Bearish Momentum (spread: -0.0052, d_hist: -0.0010)",
         "OBV slope -1002700.0 - Bearish volume flow",
         "MA50 2.25 vs MA200 2.25 - Bearish Trend (spread: -0.1%)",
