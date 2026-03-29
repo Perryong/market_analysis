@@ -1,6 +1,6 @@
 {
-  "report_date": "2026-03-29 05:00:55",
-  "total_analyzed": 17,
+  "report_date": "2026-03-29 14:04:49",
+  "total_analyzed": 16,
   "markets": {
     "us": {
       "total": 11,
@@ -9,16 +9,16 @@
       "hold": 10
     },
     "sg": {
-      "total": 6,
+      "total": 5,
       "buy": 5,
       "sell": 0,
-      "hold": 1
+      "hold": 0
     }
   },
   "summary": {
     "total_buy": 6,
     "total_sell": 0,
-    "total_hold": 11
+    "total_hold": 10
   },
   "us_signals": [
     {
@@ -314,31 +314,6 @@
         "Neutral Candlesticks 0.62 : bear_marubozu",
         "Strong trend (ADX=58.0) - boosted confidence",
         "Near S/R level at $0.64"
-      ]
-    },
-    {
-      "ticker": "J69U.SI",
-      "name": "Frasers Cpt Tr",
-      "signal": "HOLD",
-      "confidence": 52.94,
-      "last_close": 2.18,
-      "atr": 0.0304,
-      "entry_zone": {
-        "lower": 2.16,
-        "upper": 2.2
-      },
-      "timeframe": "1d",
-      "is_actionable": false,
-      "analysis": [
-        "RSI 36.3 - Neutral (trend: -)",
-        "MACD Bearish Momentum (spread: -0.0052, d_hist: -0.0010)",
-        "OBV slope -1002700.0 - Bearish volume flow",
-        "MA50 2.25 vs MA200 2.25 - Bearish Trend (spread: -0.1%)",
-        "BB Bullish (near lower) - price lower<->middle (normal bands, width: 0.044)",
-        "Volume 3,952,600 vs SMA20 5,571,300 - Neutral (normal volume) (ratio: 0.71x)",
-        "Neutral Candlesticks 0.20 : bull_marubozu",
-        "Strong trend (ADX=50.0) - boosted confidence",
-        "Near S/R level at $2.20"
       ]
     },
     {
