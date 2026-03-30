@@ -1,0 +1,161 @@
+{
+  "report_date": "2026-03-30 05:12:51",
+  "total_analyzed": 6,
+  "summary": {
+    "buy": 3,
+    "sell": 0,
+    "hold": 3
+  },
+  "signals": [
+    {
+      "ticker": "CRPU.SI",
+      "name": "Sasseur Reit",
+      "signal": "HOLD",
+      "confidence": 44.68,
+      "last_close": 0.63,
+      "atr": 0.0085,
+      "entry_zone": {
+        "lower": 0.63,
+        "upper": 0.64
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 37.6 - Neutral (trend: v)",
+        "MACD Bearish Momentum (spread: -0.0010, d_hist: -0.0001)",
+        "OBV slope -83366.7 - Strong Bearish volume flow",
+        "MA50 0.65 vs MA200 0.64 - Mild Bullish Trend (spread: 1.6%)",
+        "BB Bullish (near lower) - price lower<->middle (normal bands, width: 0.046)",
+        "Volume 250,100 vs SMA20 1,582,945 - Weak Bearish (low volume) (ratio: 0.16x)",
+        "Neutral Candlesticks 0.66 : bear_marubozu",
+        "Strong trend (ADX=57.5) - boosted confidence",
+        "Near S/R level at $0.64"
+      ]
+    },
+    {
+      "ticker": "J69U.SI",
+      "name": "Frasers Cpt Tr",
+      "signal": "HOLD",
+      "confidence": 60.43,
+      "last_close": 2.19,
+      "atr": 0.0304,
+      "entry_zone": {
+        "lower": 2.17,
+        "upper": 2.21
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 39.5 - Bullish (trend: ^)",
+        "MACD Neutral Bearish (spread: -0.0048, d_hist: 0.0004)",
+        "OBV slope -1222000.0 - Strong Bearish volume flow",
+        "MA50 2.25 vs MA200 2.25 - Bearish Trend (spread: -0.2%)",
+        "BB Mild Bullish (lower half) - price lower<->middle (normal bands, width: 0.043)",
+        "Volume 2,871,700 vs SMA20 5,414,520 - Weak Bullish (low volume) (ratio: 0.53x)",
+        "Neutral Candlesticks 0.19 : bull_marubozu",
+        "Strong trend (ADX=49.6) - boosted confidence",
+        "Near S/R level at $2.20"
+      ]
+    },
+    {
+      "ticker": "BUOU.SI",
+      "name": "Frasers L&C Tr",
+      "signal": "BUY",
+      "confidence": 71.13,
+      "last_close": 0.88,
+      "atr": 0.0207,
+      "entry_zone": {
+        "lower": 0.87,
+        "upper": 0.9
+      },
+      "timeframe": "1d",
+      "is_actionable": true,
+      "analysis": [
+        "RSI 25.6 - Bullish (trend: v)",
+        "MACD Bearish Momentum (spread: -0.0043, d_hist: -0.0002)",
+        "OBV slope -6298466.7 - Bearish volume flow",
+        "MA50 0.98 vs MA200 0.93 - Mild Bullish Trend (spread: 5.6%)",
+        "BB Bullish (near lower) - price lower<->middle (wide bands, width: 0.120)",
+        "Volume 2,584,200 vs SMA20 13,947,590 - Weak Bearish (low volume) (ratio: 0.19x)",
+        "Neutral Candlesticks 0.23 : bull_rising_sun",
+        "Strong trend (ADX=68.3) - boosted confidence",
+        "Near S/R level at $0.87"
+      ]
+    },
+    {
+      "ticker": "M44U.SI",
+      "name": "Mapletree Log Tr",
+      "signal": "BUY",
+      "confidence": 80.52,
+      "last_close": 1.16,
+      "atr": 0.0258,
+      "entry_zone": {
+        "lower": 1.15,
+        "upper": 1.18
+      },
+      "timeframe": "1d",
+      "is_actionable": true,
+      "analysis": [
+        "RSI 25.2 - Bullish (trend: -)",
+        "MACD Neutral Bearish (spread: -0.0027, d_hist: 0.0005)",
+        "OBV slope -7447433.3 - Bearish volume flow",
+        "MA50 1.27 vs MA200 1.23 - Mild Bullish Trend (spread: 3.4%)",
+        "BB Bullish (near lower) - price lower<->middle (wide bands, width: 0.105)",
+        "Volume 14,982,500 vs SMA20 20,787,506 - Neutral (normal volume) (ratio: 0.72x)",
+        "Neutral Candlesticks 0.18 : bull_marubozu",
+        "Strong trend (ADX=78.0) - boosted confidence",
+        "Near S/R level at $1.16"
+      ]
+    },
+    {
+      "ticker": "ME8U.SI",
+      "name": "Mapletree Ind Tr",
+      "signal": "HOLD",
+      "confidence": 52.51,
+      "last_close": 1.95,
+      "atr": 0.0284,
+      "entry_zone": {
+        "lower": 1.94,
+        "upper": 1.97
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 37.6 - Bullish (trend: ^)",
+        "MACD Neutral Bearish (spread: -0.0024, d_hist: 0.0008)",
+        "OBV slope -2516000.0 - Bearish volume flow",
+        "MA50 2.02 vs MA200 2.01 - Mild Bullish Trend (spread: 0.7%)",
+        "BB Mild Bullish (lower half) - price lower<->middle (normal bands, width: 0.053)",
+        "Volume 4,933,900 vs SMA20 7,813,870 - Weak Bullish (low volume) (ratio: 0.63x)",
+        "Neutral Candlesticks 0.34 : bull_rising_sun",
+        "Strong trend (ADX=73.5) - boosted confidence",
+        "Near S/R level at $2.00"
+      ]
+    },
+    {
+      "ticker": "JYEU.SI",
+      "name": "Lendlease Reit",
+      "signal": "BUY",
+      "confidence": 66.69,
+      "last_close": 0.54,
+      "atr": 0.0131,
+      "entry_zone": {
+        "lower": 0.53,
+        "upper": 0.55
+      },
+      "timeframe": "1d",
+      "is_actionable": true,
+      "analysis": [
+        "RSI 33.0 - Neutral (trend: v)",
+        "MACD Bearish Momentum (spread: -0.0008, d_hist: -0.0001)",
+        "OBV slope -4454499.7 - Bearish volume flow",
+        "MA50 0.59 vs MA200 0.58 - Mild Bullish Trend (spread: 2.0%)",
+        "BB Bullish (near lower) - price lower<->middle (wide bands, width: 0.088)",
+        "Volume 3,624,899 vs SMA20 21,734,298 - Weak Bearish (low volume) (ratio: 0.17x)",
+        "Neutral Candlesticks 0.21 : bear_marubozu",
+        "Strong trend (ADX=54.3) - boosted confidence",
+        "Near S/R level at $0.54"
+      ]
+    }
+  ]
+}
