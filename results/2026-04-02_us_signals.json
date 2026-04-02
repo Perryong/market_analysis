@@ -1,0 +1,86 @@
+{
+  "report_date": "2026-04-02 04:41:14",
+  "total_analyzed": 3,
+  "summary": {
+    "buy": 1,
+    "sell": 0,
+    "hold": 2
+  },
+  "signals": [
+    {
+      "ticker": "AAPL",
+      "name": "AAPL",
+      "signal": "HOLD",
+      "confidence": 64.71,
+      "last_close": 255.63,
+      "atr": 5.6131,
+      "entry_zone": {
+        "lower": 252.82,
+        "upper": 260.12
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 49.9 - Neutral (trend: ^)",
+        "MACD Bullish Momentum (spread: 0.5148, d_hist: 0.4097)",
+        "OBV slope 16737103.5 - Strong Bullish volume flow",
+        "MA50 260.20 vs MA200 248.86 - Mild Bullish Trend (spread: 4.6%)",
+        "BB Mild Bearish (upper half) - price middle<->upper (normal bands, width: 0.070)",
+        "Volume 40,059,432 vs SMA20 40,994,760 - Mild Bullish (normal volume) (ratio: 0.98x)",
+        "Neutral Candlesticks 0.23 : bear_dark_cloud",
+        "Strong trend (ADX=54.9) - boosted confidence",
+        "Near S/R level at $265.32"
+      ]
+    },
+    {
+      "ticker": "MSFT",
+      "name": "MSFT",
+      "signal": "HOLD",
+      "confidence": 42.91,
+      "last_close": 369.37,
+      "atr": 8.8837,
+      "entry_zone": {
+        "lower": 364.93,
+        "upper": 376.48
+      },
+      "timeframe": "1d",
+      "is_actionable": false,
+      "analysis": [
+        "RSI 35.7 - Neutral (trend: v)",
+        "MACD Neutral Bearish (spread: -1.2630, d_hist: 0.7421)",
+        "OBV slope 20208054.1 - Strong Bullish volume flow",
+        "MA50 405.02 vs MA200 477.44 - Strong Bearish Trend (spread: -15.2%)",
+        "BB Mild Bullish (lower half) - price lower<->middle (wide bands, width: 0.185)",
+        "Volume 29,417,207 vs SMA20 33,261,162 - Mild Bearish (normal volume) (ratio: 0.88x)",
+        "Neutral Candlesticks 0.19 : bull_tweezer",
+        "Strong trend (ADX=54.6) - boosted confidence",
+        "Near S/R level at $381.71"
+      ]
+    },
+    {
+      "ticker": "GOOGL",
+      "name": "GOOGL",
+      "signal": "BUY",
+      "confidence": 87.01,
+      "last_close": 297.39,
+      "atr": 8.4755,
+      "entry_zone": {
+        "lower": 293.15,
+        "upper": 304.17
+      },
+      "timeframe": "1d",
+      "is_actionable": true,
+      "analysis": [
+        "RSI 48.8 - Neutral (trend: ^)",
+        "MACD Neutral Bearish (spread: -0.7675, d_hist: 1.3298)",
+        "OBV slope 15472873.1 - Strong Bullish volume flow",
+        "MA50 311.07 vs MA200 264.40 - Mild Bullish Trend (spread: 17.7%)",
+        "BB Mild Bullish (lower half) - price lower<->middle (wide bands, width: 0.152)",
+        "Volume 37,684,462 vs SMA20 30,443,851 - Mild Bullish (normal volume) (ratio: 1.24x)",
+        "Neutral Candlesticks 0.18 : bull_rising_sun",
+        "Strong trend (ADX=41.9) - boosted confidence",
+        "Near S/R level at $296.12"
+      ]
+    }
+  ]
+}
