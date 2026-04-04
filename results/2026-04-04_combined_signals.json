@@ -1,5 +1,5 @@
 {
-  "report_date": "2026-04-04 04:29:34",
+  "report_date": "2026-04-04 14:03:47",
   "total_analyzed": 6,
   "markets": {
     "us": {
@@ -136,7 +136,7 @@
       "timeframe": "1d",
       "is_actionable": true,
       "analysis": [
-        "RSI 42.4 - Neutral (trend: v)",
+        "RSI 42.4 - Neutral (trend: -)",
         "MACD Strong Bullish Crossover (spread: 0.0006, d_hist: 0.0014)",
         "OBV slope 1348500.0 - Bullish volume flow",
         "MA50 2.02 vs MA200 2.01 - Mild Bullish Trend (spread: 0.3%)",
