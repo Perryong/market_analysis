@@ -1,0 +1,6 @@
+Market,Ticker,Name,Signal,Confidence %,Last Close,ATR,Entry Low,Entry High,Timeframe
+SG,J69U.SI,Frasers Cpt Tr,BUY,75.29,2.22,0.0296,2.21,2.24,1d
+SG,BUOU.SI,Frasers L&C Tr,BUY,71.18,0.89,0.0198,0.89,0.91,1d
+SG,M44U.SI,Mapletree Log Tr,BUY,100.00,1.17,0.0243,1.16,1.19,1d
+SG,ME8U.SI,Mapletree Ind Tr,HOLD,64.44,1.97,0.0269,1.96,1.99,1d
+SG,JYEU.SI,Lendlease Reit,BUY,94.69,0.54,0.0120,0.53,0.55,1d
