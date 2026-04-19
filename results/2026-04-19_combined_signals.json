@@ -1,5 +1,5 @@
 {
-  "report_date": "2026-04-19 05:16:43",
+  "report_date": "2026-04-19 14:09:06",
   "total_analyzed": 17,
   "markets": {
     "us": {
@@ -293,7 +293,7 @@
   "sg_signals": [
     {
       "ticker": "CRPU.SI",
-      "name": "CRPU.SI",
+      "name": "Sasseur Reit",
       "signal": "BUY",
       "confidence": 73.32,
       "last_close": 0.67,
