@@ -1,5 +1,5 @@
 {
-  "report_date": "2026-05-03 05:43:14",
+  "report_date": "2026-05-03 14:27:31",
   "total_analyzed": 6,
   "summary": {
     "buy": 4,
@@ -111,7 +111,7 @@
       "ticker": "ME8U.SI",
       "name": "Mapletree Ind Tr",
       "signal": "HOLD",
-      "confidence": 29.65,
+      "confidence": 28.05,
       "last_close": 1.97,
       "atr": 0.0317,
       "entry_zone": {
@@ -121,7 +121,7 @@
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 36.9 - Bullish (trend: ^)",
+        "RSI 36.9 - Neutral (trend: -)",
         "MACD Bearish Momentum (spread: -0.0069, d_hist: -0.0042)",
         "OBV slope -6293733.3 - Bearish volume flow",
         "MA50 2.00 vs MA200 2.02 - Bearish Trend (spread: -0.8%)",
