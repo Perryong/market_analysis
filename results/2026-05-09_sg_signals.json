@@ -1,5 +1,5 @@
 {
-  "report_date": "2026-05-09 05:36:00",
+  "report_date": "2026-05-09 14:34:08",
   "total_analyzed": 6,
   "summary": {
     "buy": 0,
@@ -146,7 +146,7 @@
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 52.3 - Neutral (trend: v)",
+        "RSI 52.3 - Neutral (trend: -)",
         "MACD Neutral Bearish (spread: -0.0001, d_hist: 0.0001)",
         "OBV slope 9258533.3 - Bullish volume flow",
         "MA50 0.56 vs MA200 0.59 - Mild Bearish Trend (spread: -5.3%)",
