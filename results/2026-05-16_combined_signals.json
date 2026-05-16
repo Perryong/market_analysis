@@ -1,5 +1,5 @@
 {
-  "report_date": "2026-05-16 05:40:51",
+  "report_date": "2026-05-16 14:39:12",
   "total_analyzed": 17,
   "markets": {
     "us": {
@@ -366,7 +366,7 @@
       "ticker": "M44U.SI",
       "name": "Mapletree Log Tr",
       "signal": "HOLD",
-      "confidence": 40.52,
+      "confidence": 42.44,
       "last_close": 1.17,
       "atr": 0.0257,
       "entry_zone": {
@@ -376,7 +376,7 @@
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 36.5 - Neutral (trend: -)",
+        "RSI 36.5 - Bullish (trend: ^)",
         "MACD Neutral Bearish (spread: -0.0059, d_hist: 0.0003)",
         "OBV slope -11632000.0 - Bearish volume flow",
         "MA50 1.19 vs MA200 1.23 - Bearish Trend (spread: -2.9%)",
