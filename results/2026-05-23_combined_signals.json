@@ -1,5 +1,5 @@
 {
-  "report_date": "2026-05-23 05:53:16",
+  "report_date": "2026-05-23 14:47:06",
   "total_analyzed": 17,
   "markets": {
     "us": {
@@ -343,7 +343,7 @@
       "ticker": "BUOU.SI",
       "name": "Frasers L&C Tr",
       "signal": "HOLD",
-      "confidence": 39.98,
+      "confidence": 41.58,
       "last_close": 0.98,
       "atr": 0.0193,
       "entry_zone": {
@@ -353,7 +353,7 @@
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 67.4 - Bearish (trend: v)",
+        "RSI 67.4 - Neutral (trend: -)",
         "MACD Bullish Momentum (spread: 0.0018, d_hist: 0.0011)",
         "OBV slope 12876566.7 - Bullish volume flow",
         "MA50 0.92 vs MA200 0.92 - Mild Bearish Trend (spread: -0.1%)",
@@ -427,7 +427,7 @@
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 49.8 - Neutral (trend: -)",
+        "RSI 49.8 - Neutral (trend: ^)",
         "MACD Neutral Bearish (spread: -0.0003, d_hist: 0.0002)",
         "OBV slope 1823100.0 - Bullish volume flow",
         "MA50 0.56 vs MA200 0.60 - Mild Bearish Trend (spread: -5.7%)",
