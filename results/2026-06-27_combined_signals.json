@@ -1,5 +1,5 @@
 {
-  "report_date": "2026-06-27 06:09:06",
+  "report_date": "2026-06-27 14:59:35",
   "total_analyzed": 17,
   "markets": {
     "us": {
@@ -296,7 +296,7 @@
       "ticker": "CRPU.SI",
       "name": "Sasseur Reit",
       "signal": "HOLD",
-      "confidence": 40.53,
+      "confidence": 39.25,
       "last_close": 0.68,
       "atr": 0.0089,
       "entry_zone": {
@@ -306,7 +306,7 @@
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 60.7 - Neutral (trend: -)",
+        "RSI 60.7 - Bearish (trend: v)",
         "MACD Mild Bullish (spread: 0.0006, d_hist: -0.0000)",
         "OBV slope 389133.3 - Bullish volume flow",
         "MA50 0.67 vs MA200 0.65 - Bullish Trend (spread: 2.2%)",
