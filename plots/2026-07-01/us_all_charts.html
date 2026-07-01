@@ -205,45 +205,31 @@
 <body>
     <div class="header">
         <h1>US Market Analysis - All Charts</h1>
-        <p>Generated: 2026-07-01 | Total Tickers: 5</p>
+        <p>Generated: 2026-07-01 | Total Tickers: 3</p>
     </div>
     
     <div class="container">
         <div class="tabs-sidebar">
             
                 <button class="tab-button active" onclick="openTab(event, 'AAPL')" 
-                        style="border-left: 4px solid #28a745;">
+                        style="border-left: 4px solid #6c757d;">
                     <span class="ticker-name">AAPL</span>
-                    <span class="signal-badge buy">BUY</span>
-                    <span class="confidence">89.4%</span>
+                    <span class="signal-badge hold">HOLD</span>
+                    <span class="confidence">61.2%</span>
                 </button>
                 
                 <button class="tab-button " onclick="openTab(event, 'MSFT')" 
                         style="border-left: 4px solid #6c757d;">
                     <span class="ticker-name">MSFT</span>
                     <span class="signal-badge hold">HOLD</span>
-                    <span class="confidence">45.0%</span>
+                    <span class="confidence">63.9%</span>
                 </button>
                 
                 <button class="tab-button " onclick="openTab(event, 'GOOGL')" 
                         style="border-left: 4px solid #6c757d;">
                     <span class="ticker-name">GOOGL</span>
                     <span class="signal-badge hold">HOLD</span>
-                    <span class="confidence">50.7%</span>
-                </button>
-                
-                <button class="tab-button " onclick="openTab(event, 'NVDA')" 
-                        style="border-left: 4px solid #6c757d;">
-                    <span class="ticker-name">NVDA</span>
-                    <span class="signal-badge hold">HOLD</span>
-                    <span class="confidence">48.5%</span>
-                </button>
-                
-                <button class="tab-button " onclick="openTab(event, 'AMZN')" 
-                        style="border-left: 4px solid #28a745;">
-                    <span class="ticker-name">AMZN</span>
-                    <span class="signal-badge buy">BUY</span>
-                    <span class="confidence">86.2%</span>
+                    <span class="confidence">55.9%</span>
                 </button>
                 
         </div>
@@ -254,8 +240,8 @@
                     <div class="chart-header">
                         <h2>AAPL - AAPL</h2>
                         <div class="signal-info">
-                            <span class="signal-label">Signal: <strong class="buy">BUY</strong></span>
-                            <span class="confidence-label">Confidence: <strong>89.4%</strong></span>
+                            <span class="signal-label">Signal: <strong class="hold">HOLD</strong></span>
+                            <span class="confidence-label">Confidence: <strong>61.2%</strong></span>
                         </div>
                     </div>
                     <iframe src="AAPL_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
@@ -266,7 +252,7 @@
                         <h2>MSFT - MSFT</h2>
                         <div class="signal-info">
                             <span class="signal-label">Signal: <strong class="hold">HOLD</strong></span>
-                            <span class="confidence-label">Confidence: <strong>45.0%</strong></span>
+                            <span class="confidence-label">Confidence: <strong>63.9%</strong></span>
                         </div>
                     </div>
                     <iframe src="MSFT_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
@@ -277,32 +263,10 @@
                         <h2>GOOGL - GOOGL</h2>
                         <div class="signal-info">
                             <span class="signal-label">Signal: <strong class="hold">HOLD</strong></span>
-                            <span class="confidence-label">Confidence: <strong>50.7%</strong></span>
+                            <span class="confidence-label">Confidence: <strong>55.9%</strong></span>
                         </div>
                     </div>
                     <iframe src="GOOGL_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
-                </div>
-                
-                <div id="NVDA" class="tab-content ">
-                    <div class="chart-header">
-                        <h2>NVDA - NVDA</h2>
-                        <div class="signal-info">
-                            <span class="signal-label">Signal: <strong class="hold">HOLD</strong></span>
-                            <span class="confidence-label">Confidence: <strong>48.5%</strong></span>
-                        </div>
-                    </div>
-                    <iframe src="NVDA_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
-                </div>
-                
-                <div id="AMZN" class="tab-content ">
-                    <div class="chart-header">
-                        <h2>AMZN - AMZN</h2>
-                        <div class="signal-info">
-                            <span class="signal-label">Signal: <strong class="buy">BUY</strong></span>
-                            <span class="confidence-label">Confidence: <strong>86.2%</strong></span>
-                        </div>
-                    </div>
-                    <iframe src="AMZN_interactive.html" class="chart-iframe" frameborder="0" scrolling="no"></iframe>
                 </div>
                 
         </div>
