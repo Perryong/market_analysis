@@ -1,5 +1,5 @@
 {
-  "report_date": "2026-07-06 06:52:00",
+  "report_date": "2026-07-06 16:33:57",
   "total_analyzed": 6,
   "summary": {
     "buy": 1,
@@ -11,12 +11,12 @@
       "ticker": "CRPU.SI",
       "name": "Sasseur Reit",
       "signal": "BUY",
-      "confidence": 88.93,
-      "last_close": 0.68,
-      "atr": 0.0084,
+      "confidence": 67.81,
+      "last_close": NaN,
+      "atr": 0.0086,
       "entry_zone": {
-        "lower": 0.68,
-        "upper": 0.69
+        "lower": NaN,
+        "upper": NaN
       },
       "timeframe": "1d",
       "is_actionable": true,
@@ -24,123 +24,118 @@
         "RSI 57.5 - Neutral (trend: -)",
         "MACD Neutral Bearish (spread: -0.0002, d_hist: 0.0001)",
         "OBV slope 727200.0 - Strong Bullish volume flow",
-        "MA50 0.67 vs MA200 0.66 - Bullish Trend (spread: 2.3%)",
-        "BB Mild Bearish (upper half) - price middle<->upper (normal bands, width: 0.030)",
-        "Volume 280,300 vs SMA20 1,153,580 - Neutral (low volume) (ratio: 0.24x)",
+        "MA50 nan vs MA200 nan - Neutral (spread: 0.0%)",
+        "BB Neutral (at middle) - price middle (tight bands, width: 0.000)",
+        "Volume 781,400 vs SMA20 1,178,635 - Neutral (low volume) (ratio: 0.66x)",
         "Neutral Candlesticks 0.55 : bull_tweezer",
-        "Strong trend (ADX=44.3) - boosted confidence",
-        "Near S/R level at $0.68"
+        "Strong trend (ADX=44.3) - boosted confidence"
       ]
     },
     {
       "ticker": "J69U.SI",
       "name": "Frasers Cpt Tr",
       "signal": "HOLD",
-      "confidence": 32.73,
-      "last_close": 2.24,
-      "atr": 0.0327,
+      "confidence": 36.87,
+      "last_close": NaN,
+      "atr": 0.033,
       "entry_zone": {
-        "lower": 2.22,
-        "upper": 2.27
+        "lower": NaN,
+        "upper": NaN
       },
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 45.2 - Neutral (trend: v)",
-        "MACD Bearish Momentum (spread: -0.0032, d_hist: -0.0002)",
-        "OBV slope -1423666.7 - Bearish volume flow",
-        "MA50 2.26 vs MA200 2.27 - Bearish Trend (spread: -0.3%)",
-        "BB Mild Bullish (lower half) - price lower<->middle (normal bands, width: 0.035)",
-        "Volume 3,168,000 vs SMA20 5,495,618 - Weak Bearish (low volume) (ratio: 0.58x)",
+        "RSI 47.7 - Neutral (trend: -)",
+        "MACD Neutral Bearish (spread: -0.0024, d_hist: 0.0006)",
+        "OBV slope -367666.7 - Bearish volume flow",
+        "MA50 nan vs MA200 nan - Neutral (spread: 0.0%)",
+        "BB Neutral (at middle) - price middle (tight bands, width: 0.000)",
+        "Volume 4,116,100 vs SMA20 5,543,024 - Neutral (normal volume) (ratio: 0.74x)",
         "Neutral Candlesticks 0.07 : bear_marubozu",
-        "Weak trend (ADX=14.9) - reduced confidence",
-        "Near S/R level at $2.23"
+        "Weak trend (ADX=14.9) - reduced confidence"
       ]
     },
     {
       "ticker": "BUOU.SI",
       "name": "Frasers L&C Tr",
       "signal": "HOLD",
-      "confidence": 55.79,
-      "last_close": 0.96,
-      "atr": 0.0175,
+      "confidence": 64.64,
+      "last_close": NaN,
+      "atr": 0.0177,
       "entry_zone": {
-        "lower": 0.95,
-        "upper": 0.97
+        "lower": NaN,
+        "upper": NaN
       },
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 44.7 - Neutral (trend: v)",
-        "MACD Neutral Bearish (spread: -0.0022, d_hist: 0.0002)",
-        "OBV slope 153666.7 - Strong Bullish volume flow",
-        "MA50 0.97 vs MA200 0.94 - Mild Bullish Trend (spread: 2.5%)",
-        "BB Mild Bullish (lower half) - price lower<->middle (normal bands, width: 0.042)",
-        "Volume 3,882,800 vs SMA20 9,745,780 - Weak Bearish (low volume) (ratio: 0.40x)",
+        "RSI 47.8 - Neutral (trend: -)",
+        "MACD Neutral Bearish (spread: -0.0019, d_hist: 0.0005)",
+        "OBV slope 1447933.3 - Strong Bullish volume flow",
+        "MA50 nan vs MA200 nan - Neutral (spread: 0.0%)",
+        "BB Neutral (at middle) - price middle (tight bands, width: 0.000)",
+        "Volume 6,249,800 vs SMA20 9,864,130 - Neutral (low volume) (ratio: 0.63x)",
         "Neutral Candlesticks 0.02 : bull_marubozu",
-        "Strong trend (ADX=48.0) - boosted confidence",
-        "Near S/R level at $0.92"
+        "Strong trend (ADX=48.0) - boosted confidence"
       ]
     },
     {
       "ticker": "M44U.SI",
       "name": "Mapletree Log Tr",
       "signal": "HOLD",
-      "confidence": 43.11,
-      "last_close": 1.21,
-      "atr": 0.0257,
+      "confidence": 43.53,
+      "last_close": NaN,
+      "atr": 0.0261,
       "entry_zone": {
-        "lower": 1.2,
-        "upper": 1.23
+        "lower": NaN,
+        "upper": NaN
       },
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 49.9 - Neutral (trend: v)",
-        "MACD Bearish Momentum (spread: -0.0016, d_hist: -0.0006)",
-        "OBV slope 4433366.7 - Strong Bullish volume flow",
-        "MA50 1.20 vs MA200 1.24 - Mild Bearish Trend (spread: -2.8%)",
-        "BB Mild Bullish (lower half) - price lower<->middle (normal bands, width: 0.038)",
-        "Volume 7,782,500 vs SMA20 15,089,990 - Weak Bearish (low volume) (ratio: 0.52x)",
+        "RSI 54.8 - Neutral (trend: -)",
+        "MACD Neutral Bearish (spread: -0.0008, d_hist: 0.0002)",
+        "OBV slope 7027533.3 - Strong Bullish volume flow",
+        "MA50 nan vs MA200 nan - Neutral (spread: 0.0%)",
+        "BB Neutral (at middle) - price middle (tight bands, width: 0.000)",
+        "Volume 10,059,900 vs SMA20 15,203,860 - Neutral (low volume) (ratio: 0.66x)",
         "Neutral Candlesticks 0.13 : bull_marubozu",
-        "Weak trend (ADX=16.5) - reduced confidence",
-        "Near S/R level at $1.21"
+        "Weak trend (ADX=16.5) - reduced confidence"
       ]
     },
     {
       "ticker": "ME8U.SI",
       "name": "Mapletree Ind Tr",
       "signal": "HOLD",
-      "confidence": 36.37,
-      "last_close": 1.94,
-      "atr": 0.0225,
+      "confidence": 52.71,
+      "last_close": NaN,
+      "atr": 0.0235,
       "entry_zone": {
-        "lower": 1.93,
-        "upper": 1.96
+        "lower": NaN,
+        "upper": NaN
       },
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
         "RSI 50.2 - Neutral (trend: -)",
-        "MACD Neutral Bearish (spread: -0.0003, d_hist: 0.0008)",
+        "MACD Neutral Bearish (spread: -0.0009, d_hist: 0.0002)",
         "OBV slope 3307533.3 - Bullish volume flow",
-        "MA50 1.94 vs MA200 1.99 - Bearish Trend (spread: -2.1%)",
-        "BB Mild Bearish (upper half) - price middle<->upper (tight bands, width: 0.024)",
-        "Volume 3,400,700 vs SMA20 7,290,860 - Neutral (low volume) (ratio: 0.47x)",
-        "Neutral Candlesticks 0.19 : bear_marubozu",
-        "Near S/R level at $1.97"
+        "MA50 nan vs MA200 nan - Neutral (spread: 0.0%)",
+        "BB Neutral (at middle) - price middle (tight bands, width: 0.000)",
+        "Volume 5,925,100 vs SMA20 7,417,080 - Neutral (normal volume) (ratio: 0.80x)",
+        "Neutral Candlesticks 0.19 : bear_marubozu"
       ]
     },
     {
       "ticker": "JYEU.SI",
       "name": "Lendlease Reit",
       "signal": "HOLD",
-      "confidence": 56.96,
-      "last_close": 0.57,
-      "atr": 0.0103,
+      "confidence": 52.21,
+      "last_close": NaN,
+      "atr": 0.0107,
       "entry_zone": {
-        "lower": 0.57,
-        "upper": 0.58
+        "lower": NaN,
+        "upper": NaN
       },
       "timeframe": "1d",
       "is_actionable": false,
@@ -148,11 +143,10 @@
         "RSI 55.4 - Neutral (trend: -)",
         "MACD Neutral Bearish (spread: -0.0003, d_hist: 0.0001)",
         "OBV slope 2525566.7 - Bullish volume flow",
-        "MA50 0.57 vs MA200 0.59 - Mild Bearish Trend (spread: -4.4%)",
-        "BB Mild Bearish (upper half) - price middle<->upper (normal bands, width: 0.042)",
-        "Volume 1,114,700 vs SMA20 15,188,115 - Neutral (low volume) (ratio: 0.07x)",
-        "Neutral Candlesticks 0.09 : bear_marubozu",
-        "Near S/R level at $0.57"
+        "MA50 nan vs MA200 nan - Neutral (spread: 0.0%)",
+        "BB Neutral (at middle) - price middle (tight bands, width: 0.000)",
+        "Volume 7,648,700 vs SMA20 15,514,815 - Neutral (low volume) (ratio: 0.49x)",
+        "Neutral Candlesticks 0.09 : bear_marubozu"
       ]
     }
   ]
