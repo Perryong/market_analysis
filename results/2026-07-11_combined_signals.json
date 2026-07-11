@@ -1,5 +1,5 @@
 {
-  "report_date": "2026-07-11 05:27:25",
+  "report_date": "2026-07-11 14:35:21",
   "total_analyzed": 17,
   "markets": {
     "us": {
@@ -306,7 +306,7 @@
       "timeframe": "1d",
       "is_actionable": true,
       "analysis": [
-        "RSI 51.4 - Neutral (trend: -)",
+        "RSI 51.4 - Neutral (trend: v)",
         "MACD Bearish Momentum (spread: -0.0007, d_hist: -0.0000)",
         "OBV slope 0.0 - Neutral volume flow",
         "MA50 0.67 vs MA200 0.66 - Bullish Trend (spread: 2.4%)",
