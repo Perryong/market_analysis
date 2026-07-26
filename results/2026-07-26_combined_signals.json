@@ -1,5 +1,5 @@
 {
-  "report_date": "2026-07-26 05:46:44",
+  "report_date": "2026-07-26 14:48:48",
   "total_analyzed": 17,
   "markets": {
     "us": {
@@ -376,7 +376,7 @@
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 40.6 - Neutral (trend: -)",
+        "RSI 40.6 - Neutral (trend: v)",
         "MACD Neutral Bearish (spread: -0.0030, d_hist: 0.0000)",
         "OBV slope -7887833.3 - Bearish volume flow",
         "MA50 1.20 vs MA200 1.24 - Bearish Trend (spread: -2.6%)",
@@ -401,7 +401,7 @@
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 48.2 - Neutral (trend: v)",
+        "RSI 48.2 - Neutral (trend: -)",
         "MACD Mild Bullish (spread: 0.0006, d_hist: -0.0002)",
         "OBV slope -1812866.7 - Strong Bearish volume flow",
         "MA50 1.94 vs MA200 1.98 - Bearish Trend (spread: -2.1%)",
@@ -425,7 +425,7 @@
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 57.2 - Neutral (trend: ^)",
+        "RSI 57.2 - Neutral (trend: v)",
         "MACD Strong Bullish Crossover (spread: 0.0002, d_hist: 0.0003)",
         "OBV slope 8681133.3 - Bullish volume flow",
         "MA50 0.57 vs MA200 0.59 - Mild Bearish Trend (spread: -3.6%)",
