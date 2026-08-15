@@ -1,5 +1,5 @@
 {
-  "report_date": "2026-08-15 03:14:06",
+  "report_date": "2026-08-15 13:50:11",
   "total_analyzed": 6,
   "summary": {
     "buy": 0,
@@ -86,7 +86,7 @@
       "ticker": "M44U.SI",
       "name": "Mapletree Log Tr",
       "signal": "HOLD",
-      "confidence": 32.87,
+      "confidence": 21.91,
       "last_close": 1.17,
       "atr": 0.0226,
       "entry_zone": {
@@ -104,7 +104,7 @@
         "Volume 12,221,500 vs SMA20 18,338,367 - Weak Bearish (low volume) (ratio: 0.67x)",
         "Neutral Candlesticks 0.20 : bull_marubozu",
         "Weak trend (ADX=17.2) - reduced confidence",
-        "Near S/R level at $1.16"
+        "Near S/R level at $1.20"
       ]
     },
     {
@@ -121,7 +121,7 @@
       "timeframe": "1d",
       "is_actionable": false,
       "analysis": [
-        "RSI 47.2 - Neutral (trend: v)",
+        "RSI 47.2 - Neutral (trend: -)",
         "MACD Bearish Momentum (spread: -0.0016, d_hist: -0.0005)",
         "OBV slope -1336300.0 - Bearish volume flow",
         "MA50 1.91 vs MA200 1.94 - Mild Bearish Trend (spread: -1.6%)",
