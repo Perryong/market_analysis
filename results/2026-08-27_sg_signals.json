@@ -1,5 +1,5 @@
 {
-  "report_date": "2026-08-27 13:00:43",
+  "report_date": "2026-08-27 23:01:51",
   "total_analyzed": 6,
   "summary": {
     "buy": 1,
@@ -48,10 +48,10 @@
       "analysis": [
         "RSI 34.4 - Neutral (trend: v)",
         "MACD Bearish Momentum (spread: -0.0020, d_hist: -0.0005)",
-        "OBV slope -2701100.0 - Strong Bearish volume flow",
+        "OBV slope -2762933.3 - Strong Bearish volume flow",
         "MA50 2.24 vs MA200 2.26 - Bearish Trend (spread: -0.7%)",
         "BB Mild Bullish (lower half) - price lower<->middle (normal bands, width: 0.056)",
-        "Volume 4,381,900 vs SMA20 5,731,475 - Mild Bearish (normal volume) (ratio: 0.76x)",
+        "Volume 4,567,400 vs SMA20 5,740,750 - Mild Bearish (normal volume) (ratio: 0.80x)",
         "Neutral Candlesticks 0.25 : bull_marubozu",
         "Strong trend (ADX=90.7) - boosted confidence",
         "Near S/R level at $2.20"
